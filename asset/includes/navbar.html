@@ -1,0 +1,84 @@
+<!-- ==========================================================================
+   ISOLATED NAVBAR COMPONENT (PREFIXED: saidpl-nav-)
+   ========================================================================== -->
+<header class="saidpl-nav-header" id="saidplNavHeader">
+    <div class="saidpl-nav-container">
+        <!-- Brand Logo -->
+        <a href="index.html" class="saidpl-nav-brand">
+            <span class="saidpl-nav-brand-accent">SRI AMMA</span> BUILDERS
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="saidpl-nav-menu" id="saidplNavMenu" aria-label="Main Navigation">
+            <ul class="saidpl-nav-list">
+                <li class="saidpl-nav-item">
+                    <a href="index.html" class="saidpl-nav-link saidpl-nav-link--active">Home</a>
+                </li>
+
+                <!-- About Us (Page + Dropdown) -->
+                <li class="saidpl-nav-item saidpl-nav-item--has-dropdown">
+                    <div class="saidpl-nav-link-box">
+                        <a href="about.html" class="saidpl-nav-link">About Us</a>
+                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle About Submenu">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="saidpl-nav-dropdown-menu">
+                        <li class="saidpl-nav-dropdown-item">
+                            <a href="team.html" class="saidpl-nav-dropdown-link">Our Team</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Service (Page + Dropdown) -->
+                <li class="saidpl-nav-item saidpl-nav-item--has-dropdown">
+                    <div class="saidpl-nav-link-box">
+                        <a href="services.html" class="saidpl-nav-link">Service</a>
+                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle Services Submenu">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <ul class="saidpl-nav-dropdown-menu">
+                        <li class="saidpl-nav-dropdown-item">
+                            <a href="industrial.html" class="saidpl-nav-dropdown-link">Industrial Building Construction</a>
+                        </li>
+                        <li class="saidpl-nav-dropdown-item">
+                            <a href="residential.html" class="saidpl-nav-dropdown-link">Residential Building Construction</a>
+                        </li>
+                        <li class="saidpl-nav-dropdown-item">
+                            <a href="commercial.html" class="saidpl-nav-dropdown-link">Commercial Building Construction</a>
+                        </li>
+                        <li class="saidpl-nav-dropdown-item">
+                            <a href="godown.html" class="saidpl-nav-dropdown-link">Godown Building Construction</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="saidpl-nav-item">
+                    <a href="projects.html" class="saidpl-nav-link">Project</a>
+                </li>
+
+                <li class="saidpl-nav-item">
+                    <a href="contact.html" class="saidpl-nav-link">Contact</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Right Side Action & Mobile Toggle -->
+        <div class="saidpl-nav-action-area">
+            <a href="https://wa.me/919444405505?text=Hi%2C%20could%20you%20please%20share%20more%20details" target="_blank" rel="noopener noreferrer" class="saidpl-nav-cta-btn">
+                <span class="saidpl-nav-cta-icon"><i class="fa-brands fa-whatsapp"></i></span>
+                <span class="saidpl-nav-cta-text">+91 94444 05505</span>
+            </a>
+
+            <button class="saidpl-nav-hamburger" id="saidplNavHamburger" type="button" aria-label="Toggle Mobile Navigation">
+                <span class="saidpl-nav-bar saidpl-nav-bar--1"></span>
+                <span class="saidpl-nav-bar saidpl-nav-bar--2"></span>
+                <span class="saidpl-nav-bar saidpl-nav-bar--3"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Navigation Drawer Backdrop -->
+<div class="saidpl-nav-backdrop" id="saidplNavBackdrop"></div>
