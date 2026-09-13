@@ -1,9 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const siteHeader = document.getElementById('saidplNavHeader');
+/**
+ * NAVBAR.JS - Component Loader & Event Initializer
+ * 
+ * This script:
+ * 1. Waits for navbar HTML to be injected via nav-call.js
+ * 2. Initializes navbar event listeners AFTER injection
+ * 3. Preserves all existing navbar functionality
+ */
+
+// Initialize navbar only after components are loaded
+function initializeNavbar() {
+    const siteHeader = document.getElementById('saidplNavHeaderElement');
     const menuToggle = document.getElementById('saidplNavHamburger');
     const navMenu = document.getElementById('saidplNavMenu');
     const navBackdrop = document.getElementById('saidplNavBackdrop');
     const dropdownItems = document.querySelectorAll('.saidpl-nav-item--has-dropdown');
+
+    // Safety check: if elements don't exist, retry after a short delay
+    if (!siteHeader || !menuToggle || !navMenu || !navBackdrop) {
+        console.warn('Navbar elements not found yet, retrying initialization...');
+        setTimeout(initializeNavbar, 100);
+        return;
+    }
 
     // 1. Header scroll blur & border shadow on scroll
     window.addEventListener('scroll', () => {
@@ -67,4 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeMobileMenu();
         }
     });
-});
+}
+
+// Call initialization when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeNavbar);
