@@ -88,3 +88,5 @@ function initializeNavbar() {
 
 // Call initialization when DOM is ready
 document.addEventListener('DOMContentLoaded', initializeNavbar);
+
+

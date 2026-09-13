@@ -1,11 +1,13 @@
-/* ==========================================================================
-   ROOT VARIABLES (UNCHANGED)
-   ========================================================================== */
+/* ============================================================
+   ROOT VARIABLES
+============================================================ */
+
 :root {
+
     /* Brand */
     --primary-color: #0A0A0A;
-    --secondary-color: #FFB703;
-    --accent-color: #FFB703;
+    --secondary-color: #A5000D;
+    --accent-color: #A5000D;
 
     /* Text */
     --text-color: #1E1E1E;
@@ -22,601 +24,1061 @@
     /* Common */
     --white: #FFFFFF;
     --black: #000000;
+
+    /* Layout */
+    --container-width: 1240px;
+
 }
 
-/* ==========================================================================
-   RESET & FOUNDATION
-   ========================================================================== */
-*, *::before, *::after {
+
+/* ============================================================
+   RESET
+============================================================ */
+
+*,
+*::before,
+*::after {
+
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
 }
+
 
 html {
+
     scroll-behavior: smooth;
     font-size: 16px;
+
 }
+
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+
     background-color: var(--bg-dark);
+
     color: var(--white);
+
     line-height: 1.6;
+
     overflow-x: hidden;
+
 }
+
+
+body,
+button,
+a {
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+}
+
 
 a {
+
     text-decoration: none;
+
     color: inherit;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
 
-ul {
-    list-style: none;
+
+button {
+
+    font-family: inherit;
+
 }
+
+
+ul,
+ol {
+
+    list-style: none;
+
+}
+
 
 img {
-    max-width: 100%;
-    height: auto;
+
     display: block;
+
+    width: 100%;
+
+    max-width: 100%;
+
 }
+
 
 .container {
+
     width: 100%;
-    max-width: 1240px;
+
+    max-width: var(--container-width);
+
     margin: 0 auto;
-    padding: 0 1.5rem;
+
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
 }
+
 
 .section-padding {
-    padding: 5.5rem 0 6.5rem;
+
+    padding-top: 5.5rem;
+
+    padding-bottom: 6.5rem;
+
 }
 
-/* ==========================================================================
-   SMOOTH SLIDING SCROLL ANIMATIONS
-   ========================================================================== */
+
+/* ============================================================
+   SCROLL REVEAL
+============================================================ */
+
 .slide-on-scroll {
+
     opacity: 0;
+
+    transform: translate3d(0, 50px, 0);
+
     will-change: transform, opacity;
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+
+    transition:
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
 
-.slide-up {
-    transform: translate3d(0, 50px, 0);
-}
 
 .slide-on-scroll.is-visible {
+
     opacity: 1;
+
     transform: translate3d(0, 0, 0);
+
 }
 
-/* Staggered Grid Reveal */
+
+/* ============================================================
+   STAGGERED TEAM ANIMATION
+============================================================ */
+
 .staggered-slide > * {
+
     opacity: 0;
+
     transform: translate3d(0, 40px, 0);
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+
+    transition:
+        opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
 
-.slide-on-scroll.is-visible.staggered-slide > *:nth-child(3n+1) {
-    opacity: 1; transform: translate3d(0, 0, 0); transition-delay: 0.08s;
-}
-.slide-on-scroll.is-visible.staggered-slide > *:nth-child(3n+2) {
-    opacity: 1; transform: translate3d(0, 0, 0); transition-delay: 0.16s;
-}
-.slide-on-scroll.is-visible.staggered-slide > *:nth-child(3n+3) {
-    opacity: 1; transform: translate3d(0, 0, 0); transition-delay: 0.24s;
+
+.staggered-slide.is-visible > *:nth-child(3n + 1) {
+
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+
+    transition-delay: 0.08s;
+
 }
 
-/* ==========================================================================
-   SITE HEADER & NAVIGATION
-   ========================================================================== */
-.site-header {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    background-color: rgba(10, 10, 10, 0.95);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+.staggered-slide.is-visible > *:nth-child(3n + 2) {
+
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+
+    transition-delay: 0.16s;
+
 }
 
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 85px;
+
+.staggered-slide.is-visible > *:nth-child(3n + 3) {
+
+    opacity: 1;
+
+    transform: translate3d(0, 0, 0);
+
+    transition-delay: 0.24s;
+
 }
 
-.brand-logo {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    color: var(--white);
-}
 
-.logo-accent {
-    color: var(--accent-color);
-}
+/* ============================================================
+   HERO
+============================================================ */
 
-.nav-list {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-link {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #D0D0D0;
-    position: relative;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    transition: width 0.35s ease;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
-}
-
-.nav-link:hover, .nav-link.active {
-    color: var(--accent-color);
-}
-
-.header-phone-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.65rem 1.4rem;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.header-phone-btn:hover {
-    background-color: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3);
-}
-
-.mobile-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.6rem;
-    cursor: pointer;
-}
-
-/* ==========================================================================
-   1. HERO BANNER
-   ========================================================================== */
 .team-hero {
+
     position: relative;
+
+    width: 100%;
+
     height: 52vh;
+
     min-height: 420px;
+
     overflow: hidden;
+
     background-color: var(--primary-color);
+
 }
+
 
 .hero-slider-track {
+
     display: flex;
+
     width: 100%;
+
     height: 100%;
-    transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+
+    transition:
+        transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+
+    will-change: transform;
+
 }
+
 
 .hero-slide {
-    flex: 0 0 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
+
     position: relative;
+
+    flex: 0 0 100%;
+
+    width: 100%;
+
+    height: 100%;
+
+    min-width: 100%;
+
     display: flex;
+
     align-items: center;
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
 }
+
 
 .hero-overlay {
+
     position: absolute;
+
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.96) 100%);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10, 10, 10, 0.82),
+            rgba(10, 10, 10, 0.68)
+        );
+
 }
+
 
 .hero-content {
+
     position: relative;
+
     z-index: 2;
-    text-align: center;
+
     max-width: 850px;
+
+    text-align: center;
+
 }
+
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    margin-bottom: 0.75rem;
+
     color: var(--white);
+
+    font-size: clamp(2.5rem, 5vw, 4rem);
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    margin-bottom: 0.9rem;
+
 }
+
 
 .hero-subtitle {
-    font-size: 1.15rem;
+
+    max-width: 760px;
+
+    margin: 0 auto 1.4rem;
+
     color: #D0D0D0;
+
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+
+    font-weight: 400;
+
     font-style: italic;
-    margin-bottom: 1.25rem;
+
+    line-height: 1.7;
+
 }
+
 
 .breadcrumbs {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 0.25rem;
+
     font-size: 0.95rem;
-    color: var(--accent-color);
+
     font-weight: 600;
+
 }
+
+
+.breadcrumbs a {
+
+    color: var(--accent-color);
+
+    transition: color 0.3s ease;
+
+}
+
+
+.breadcrumbs a:hover {
+
+    color: var(--white);
+
+}
+
 
 .breadcrumbs span {
-    margin: 0 0.5rem;
-    color: rgba(255, 255, 255, 0.4);
+
+    color: rgba(255, 255, 255, 0.45);
+
 }
+
 
 .breadcrumbs .current {
+
     color: #A3A3A3;
+
 }
+
+
+/* ============================================================
+   HERO DOTS
+============================================================ */
 
 .hero-dots {
+
     position: absolute;
-    bottom: 2rem;
+
     left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.6rem;
+
+    bottom: 2rem;
+
     z-index: 10;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.6rem;
+
+    transform: translateX(-50%);
+
 }
+
 
 .dot {
+
     width: 12px;
+
     height: 8px;
+
+    padding: 0;
+
+    border: 0;
+
     border-radius: 20px;
+
     background-color: rgba(255, 255, 255, 0.3);
-    border: none;
+
     cursor: pointer;
-    transition: all 0.4s ease;
+
+    transition:
+        width 0.4s ease,
+        background-color 0.4s ease;
+
 }
+
+
+.dot:hover {
+
+    background-color: rgba(255, 255, 255, 0.7);
+
+}
+
 
 .dot.is-active {
+
     width: 38px;
+
     background-color: var(--accent-color);
+
 }
 
-/* ==========================================================================
-   2. TEAM GRID (3x3 PORTRAIT CARDS WITH HOVER SLIDE)
-   ========================================================================== */
+
+/* ============================================================
+   TEAM SECTION
+============================================================ */
+
 .team-section {
+
     background-color: #383838;
+
 }
+
 
 .team-grid {
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
     gap: 2rem;
+
 }
+
+
+/* ============================================================
+   TEAM CARD
+============================================================ */
 
 .team-card {
-    background-color: var(--white);
-    border-radius: 16px;
-    overflow: hidden;
+
     position: relative;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+
+    background-color: var(--white);
+
+    border-radius: 16px;
+
     cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s ease;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.2);
+
+    transition:
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s ease;
+
 }
+
 
 .team-card:hover {
+
     transform: translateY(-8px);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+
+    box-shadow:
+        0 16px 36px rgba(0, 0, 0, 0.35);
+
 }
+
+
+/* ============================================================
+   TEAM IMAGE
+============================================================ */
 
 .team-img-box {
+
     width: 100%;
+
     aspect-ratio: 4 / 5;
-    background-color: #F0F0F0;
+
     overflow: hidden;
+
+    background-color: #F0F0F0;
+
 }
+
 
 .team-img-box img {
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    object-position: center;
+
+    transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
 }
+
 
 .team-card:hover .team-img-box img {
+
     transform: scale(1.05);
+
 }
 
-/* Sliding Info Box from Bottom */
+
+/* ============================================================
+   TEAM INFORMATION
+============================================================ */
+
 .team-hover-info {
+
     position: absolute;
-    bottom: 20px;
+
     left: 50%;
-    transform: translate3d(-50%, 60px, 0);
-    width: 86%;
-    background-color: var(--white);
-    padding: 1.15rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
-    opacity: 0;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.4s ease;
+
+    bottom: 20px;
+
     z-index: 2;
+
+    width: 86%;
+
+    padding: 1.15rem;
+
+    text-align: center;
+
+    background-color: var(--white);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.18);
+
+    opacity: 0;
+
+    transform:
+        translate3d(-50%, 60px, 0);
+
+    pointer-events: none;
+
+    transition:
+        transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.4s ease;
+
 }
+
 
 .team-card:hover .team-hover-info {
-    transform: translate3d(-50%, 0, 0);
+
     opacity: 1;
+
+    transform:
+        translate3d(-50%, 0, 0);
+
 }
+
 
 .member-name {
-    font-size: 1.05rem;
-    font-weight: 800;
+
     color: var(--primary-color);
+
+    font-size: 1.05rem;
+
+    font-weight: 800;
+
+    line-height: 1.4;
+
     margin-bottom: 0.25rem;
+
 }
+
 
 .member-role {
-    font-size: 0.85rem;
-    font-weight: 600;
+
     color: var(--text-light);
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    line-height: 1.4;
+
     margin-bottom: 0.5rem;
+
 }
+
+
+/* ============================================================
+   SOCIAL DOTS
+============================================================ */
 
 .social-dots {
+
     display: flex;
+
     justify-content: center;
+
+    align-items: center;
+
     gap: 6px;
+
     margin-top: 0.4rem;
+
 }
+
 
 .social-dots span {
+
+    display: inline-block;
+
     width: 7px;
+
     height: 7px;
+
     border-radius: 50%;
+
     background-color: var(--accent-color);
-    display: inline-block;
-    transition: transform 0.3s ease;
+
+    transition:
+        transform 0.3s ease;
+
 }
 
-.team-card:hover .social-dots span:nth-child(1) { transition-delay: 0.1s; transform: scale(1.2); }
-.team-card:hover .social-dots span:nth-child(2) { transition-delay: 0.2s; transform: scale(1.2); }
-.team-card:hover .social-dots span:nth-child(3) { transition-delay: 0.3s; transform: scale(1.2); }
 
-/* ==========================================================================
-   3. FOOTER (CLEAN WHITE TO MATCH SCREENSHOT)
-   ========================================================================== */
-.site-footer {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    padding-top: 5.5rem;
-    border-top: 1px solid var(--border-color);
+.team-card:hover
+.social-dots span:nth-child(1) {
+
+    transform: scale(1.2);
+
+    transition-delay: 0.1s;
+
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
+
+.team-card:hover
+.social-dots span:nth-child(2) {
+
+    transform: scale(1.2);
+
+    transition-delay: 0.2s;
+
 }
 
-.footer-logo {
-    display: inline-block;
-    color: var(--primary-color);
-    margin-bottom: 1.25rem;
+
+.team-card:hover
+.social-dots span:nth-child(3) {
+
+    transform: scale(1.2);
+
+    transition-delay: 0.3s;
+
 }
 
-.footer-text {
-    font-size: 0.92rem;
-    color: var(--text-light);
-    line-height: 1.65;
-    margin-bottom: 1.5rem;
-}
 
-.footer-heading {
-    font-size: 1.15rem;
-    font-weight: 800;
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    position: relative;
-}
+/* ============================================================
+   SCROLL TO TOP
+============================================================ */
 
-.footer-heading::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 32px;
-    height: 2px;
-    background-color: var(--secondary-color);
-}
-
-.footer-links li {
-    margin-bottom: 0.85rem;
-}
-
-.footer-links a {
-    color: var(--text-light);
-    font-size: 0.92rem;
-    transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--secondary-color);
-    padding-left: 4px;
-}
-
-.footer-col p {
-    font-size: 0.92rem;
-    color: var(--text-light);
-    margin-bottom: 0.85rem;
-    line-height: 1.6;
-}
-
-.footer-socials {
-    display: flex;
-    gap: 0.85rem;
-}
-
-.footer-socials a {
-    width: 38px;
-    height: 38px;
-    background: var(--bg-light);
-    color: var(--primary-color);
-    border: 1px solid var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.footer-socials a:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: var(--primary-color);
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    border-top: 1px solid var(--border-color);
-    padding: 1.85rem 0;
-    font-size: 0.85rem;
-    color: var(--text-light);
-}
-
-.bottom-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-/* Floating Actions */
 .scroll-to-top {
+
     position: fixed;
-    bottom: 2rem;
+
     right: 2rem;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
+
+    bottom: 2rem;
+
+    z-index: 999;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
+    width: 46px;
+
+    height: 46px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background-color: var(--accent-color);
+
+    color: var(--white);
+
     font-size: 1.1rem;
+
     cursor: pointer;
-    z-index: 99;
+
     opacity: 0;
+
     visibility: hidden;
+
     transform: translateY(20px);
-    transition: all 0.4s ease;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background-color 0.3s ease;
+
 }
+
 
 .scroll-to-top.is-visible {
+
     opacity: 1;
+
     visibility: visible;
+
     transform: translateY(0);
+
 }
+
 
 .scroll-to-top:hover {
+
     background-color: var(--white);
+
     color: var(--black);
+
     transform: translateY(-4px);
+
 }
+
+
+/* ============================================================
+   WHATSAPP
+============================================================ */
 
 .whatsapp-float {
+
     position: fixed;
-    bottom: 2rem;
+
     left: 2rem;
+
+    bottom: 2rem;
+
+    z-index: 999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
     width: 52px;
+
     height: 52px;
-    z-index: 99;
-    transition: transform 0.3s ease;
+
+    border-radius: 50%;
+
+    background-color: #25D366;
+
+    color: var(--white);
+
+    font-size: 1.8rem;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
 }
+
 
 .whatsapp-float:hover {
-    transform: scale(1.15);
+
+    transform: scale(1.12);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.35);
+
 }
 
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================== */
+
+/* ============================================================
+   TABLET
+============================================================ */
+
 @media (max-width: 1024px) {
+
     .team-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
         gap: 1.5rem;
+
     }
 
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .section-padding {
+
+        padding-top: 4.5rem;
+
+        padding-bottom: 5rem;
+
     }
+
 }
+
+
+/* ============================================================
+   MOBILE NAVIGATION
+============================================================ */
 
 @media (max-width: 768px) {
-    .mobile-toggle {
-        display: block;
+
+    .container {
+
+        padding-left: 1.25rem;
+
+        padding-right: 1.25rem;
+
     }
 
-    .main-nav {
-        position: absolute;
-        top: 85px;
-        left: 0;
-        width: 100%;
-        background-color: var(--primary-color);
-        padding: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        display: none;
+
+    .team-hero {
+
+        height: 60vh;
+
+        min-height: 400px;
+
     }
 
-    .main-nav.nav-open {
-        display: block;
+
+    .hero-title {
+
+        font-size: clamp(2.2rem, 9vw, 3.2rem);
+
     }
 
-    .nav-list {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.25rem;
+
+    .hero-subtitle {
+
+        font-size: 0.95rem;
+
+        line-height: 1.6;
+
     }
 
-    .header-action .header-phone-btn {
-        display: none;
-    }
 
     .team-grid {
+
         grid-template-columns: 1fr;
+
+        gap: 1.5rem;
+
     }
+
 
     .team-card {
+
+        width: 100%;
+
         max-width: 440px;
-        margin: 0 auto;
+
+        margin-left: auto;
+
+        margin-right: auto;
+
     }
+
+
+    /*
+       On touch devices there is no reliable :hover.
+       Keep the information visible so team details
+       are still accessible.
+    */
+
+    .team-hover-info {
+
+        bottom: 15px;
+
+        width: calc(100% - 30px);
+
+        opacity: 1;
+
+        transform:
+            translate3d(-50%, 0, 0);
+
+        pointer-events: auto;
+
+    }
+
+
+    .team-card:hover {
+
+        transform: none;
+
+    }
+
+
+    .team-card:hover .team-img-box img {
+
+        transform: none;
+
+    }
+
+
+    .scroll-to-top {
+
+        right: 1rem;
+
+        bottom: 1rem;
+
+        width: 44px;
+
+        height: 44px;
+
+    }
+
+
+    .whatsapp-float {
+
+        left: 1rem;
+
+        bottom: 1rem;
+
+        width: 50px;
+
+        height: 50px;
+
+    }
+
 }
 
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
 @media (max-width: 480px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
+
+    .section-padding {
+
+        padding-top: 3.5rem;
+
+        padding-bottom: 4rem;
+
     }
+
+
+    .team-hero {
+
+        height: 58vh;
+
+        min-height: 380px;
+
+    }
+
+
+    .hero-title {
+
+        font-size: 2.25rem;
+
+    }
+
+
+    .hero-subtitle {
+
+        font-size: 0.88rem;
+
+    }
+
+
+    .breadcrumbs {
+
+        font-size: 0.85rem;
+
+    }
+
+
+    .hero-dots {
+
+        bottom: 1.5rem;
+
+    }
+
+
+    .team-hover-info {
+
+        padding: 0.9rem;
+
+    }
+
+
+    .member-name {
+
+        font-size: 0.95rem;
+
+    }
+
+
+    .member-role {
+
+        font-size: 0.8rem;
+
+    }
+
+}
+
+
+/* ============================================================
+   REDUCE MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+
+    }
+
 }

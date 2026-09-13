@@ -1,93 +1,805 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* 1. INTERSECTION OBSERVER FOR CONTAINER SLIDING REVEALS */
-    const slideElements = document.querySelectorAll('.slide-on-scroll');
+    "use strict";
 
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                obs.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    });
 
-    slideElements.forEach(el => observer.observe(el));
+    /* =========================================================
+       1. SCROLL REVEAL
+    ========================================================== */
 
-    /* 2. NUMERIC COUNT-UP ENGINE */
-    const counterElements = document.querySelectorAll('.counter');
-    let hasAnimated = false;
+    const slideElements =
+        document.querySelectorAll(".slide-on-scroll");
 
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasAnimated) {
-                counterElements.forEach(counter => {
-                    const target = parseInt(counter.dataset.target, 10);
-                    const duration = 2000;
-                    const startTime = performance.now();
 
-                    const updateCount = (currentTime) => {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        counter.textContent = Math.floor(progress * target);
+    if ("IntersectionObserver" in window) {
 
-                        if (progress < 1) {
-                            requestAnimationFrame(updateCount);
-                        } else {
-                            counter.textContent = target;
+        const observer =
+            new IntersectionObserver(
+                (entries, obs) => {
+
+                    entries.forEach((entry) => {
+
+                        if (!entry.isIntersecting) {
+                            return;
                         }
-                    };
 
-                    requestAnimationFrame(updateCount);
-                });
-                hasAnimated = true;
-            }
+                        entry.target.classList.add(
+                            "is-visible"
+                        );
+
+                        obs.unobserve(entry.target);
+
+                    });
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -40px 0px"
+                }
+            );
+
+
+        slideElements.forEach((element) => {
+
+            observer.observe(element);
+
         });
-    }, { threshold: 0.3 });
 
-    const metricsSection = document.querySelector('.banner-metrics-section');
-    if (metricsSection) counterObserver.observe(metricsSection);
+    } else {
 
-    const historySection = document.querySelector('.history-section');
-    if (historySection) counterObserver.observe(historySection);
+        slideElements.forEach((element) => {
 
-    /* 3. MOBILE NAVIGATION TOGGLE */
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mainNav = document.getElementById('mainNav');
+            element.classList.add(
+                "is-visible"
+            );
 
-    if (mobileToggle && mainNav) {
-        mobileToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('nav-open');
         });
+
     }
 
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-        toggle.addEventListener('click', (event) => {
-            const dropdown = toggle.closest('.nav-dropdown');
-            if (window.innerWidth <= 768 && !dropdown.classList.contains('is-open')) {
-                event.preventDefault();
+
+    /* =========================================================
+       2. STAGGERED CHILD ANIMATION
+    ========================================================== */
+
+    const staggerContainers =
+        document.querySelectorAll(
+            ".staggered-slide.slide-on-scroll"
+        );
+
+
+    staggerContainers.forEach((container) => {
+
+        const children =
+            container.children;
+
+        Array.from(children).forEach(
+            (child, index) => {
+
+                child.style.setProperty(
+                    "--stagger-delay",
+                    `${Math.min(index * 80, 640)}ms`
+                );
+
             }
-            const isOpen = dropdown.classList.toggle('is-open');
-            toggle.setAttribute('aria-expanded', isOpen);
-        });
+        );
+
     });
 
-    /* 4. SCROLL TO TOP FLOATING BUTTON */
-    const scrollUp = document.getElementById('scrollUp');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-            scrollUp.classList.add('is-visible');
-        } else {
-            scrollUp.classList.remove('is-visible');
+
+    /* =========================================================
+       3. ABOUT HERO SLIDER
+    ========================================================== */
+
+    const heroTrack =
+        document.getElementById(
+            "aboutHeroTrack"
+        );
+
+    const hero =
+        document.querySelector(
+            ".team-style-hero"
+        );
+
+    const heroSlides =
+        document.querySelectorAll(
+            ".team-style-hero .hero-slide"
+        );
+
+    const heroDots =
+        document.querySelectorAll(
+            ".team-style-hero .dot"
+        );
+
+
+    let currentSlide = 0;
+
+    let heroTimer = null;
+
+
+    function updateHero(index) {
+
+        if (
+            !heroTrack ||
+            heroSlides.length === 0
+        ) {
+            return;
         }
-    });
+
+
+        currentSlide =
+            (index + heroSlides.length)
+            % heroSlides.length;
+
+
+        heroTrack.style.transform =
+            `translate3d(-${currentSlide * 100}%, 0, 0)`;
+
+
+        heroSlides.forEach(
+            (slide, slideIndex) => {
+
+                const active =
+                    slideIndex === currentSlide;
+
+
+                slide.classList.toggle(
+                    "is-active",
+                    active
+                );
+
+
+                slide.setAttribute(
+                    "aria-hidden",
+                    active
+                        ? "false"
+                        : "true"
+                );
+
+            }
+        );
+
+
+        heroDots.forEach(
+            (dot, dotIndex) => {
+
+                const active =
+                    dotIndex === currentSlide;
+
+
+                dot.classList.toggle(
+                    "is-active",
+                    active
+                );
+
+
+                dot.setAttribute(
+                    "aria-current",
+                    active
+                        ? "true"
+                        : "false"
+                );
+
+            }
+        );
+
+    }
+
+
+    function stopHeroSlider() {
+
+        if (heroTimer !== null) {
+
+            clearInterval(heroTimer);
+
+            heroTimer = null;
+
+        }
+
+    }
+
+
+    function startHeroSlider() {
+
+        stopHeroSlider();
+
+
+        if (
+            heroSlides.length <= 1 ||
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches
+        ) {
+            return;
+        }
+
+
+        heroTimer = setInterval(() => {
+
+            updateHero(
+                currentSlide + 1
+            );
+
+        }, 5000);
+
+    }
+
+
+    heroDots.forEach(
+        (dot, index) => {
+
+            dot.addEventListener(
+                "click",
+                () => {
+
+                    updateHero(index);
+
+                    startHeroSlider();
+
+                }
+            );
+
+        }
+    );
+
+
+    if (hero) {
+
+        hero.addEventListener(
+            "mouseenter",
+            stopHeroSlider
+        );
+
+
+        hero.addEventListener(
+            "mouseleave",
+            startHeroSlider
+        );
+
+
+        hero.addEventListener(
+            "focusin",
+            stopHeroSlider
+        );
+
+
+        hero.addEventListener(
+            "focusout",
+            startHeroSlider
+        );
+
+    }
+
+
+    updateHero(0);
+
+    startHeroSlider();
+
+
+    /* =========================================================
+       4. COUNTER ANIMATION
+    ========================================================== */
+
+    const counters =
+        document.querySelectorAll(
+            ".counter"
+        );
+
+
+    let countersStarted = false;
+
+
+    function animateCounter(
+        counter,
+        target,
+        duration = 1800
+    ) {
+
+        const startTime =
+            performance.now();
+
+
+        function updateCounter(
+            currentTime
+        ) {
+
+            const elapsed =
+                currentTime - startTime;
+
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            /*
+             * Ease-out animation
+             */
+
+            const eased =
+                1 -
+                Math.pow(
+                    1 - progress,
+                    3
+                );
+
+
+            const value =
+                Math.floor(
+                    eased * target
+                );
+
+
+            counter.textContent =
+                value.toLocaleString(
+                    "en-IN"
+                );
+
+
+            if (progress < 1) {
+
+                requestAnimationFrame(
+                    updateCounter
+                );
+
+            } else {
+
+                counter.textContent =
+                    target.toLocaleString(
+                        "en-IN"
+                    );
+
+            }
+
+        }
+
+
+        requestAnimationFrame(
+            updateCounter
+        );
+
+    }
+
+
+    function startCounters() {
+
+        if (countersStarted) {
+            return;
+        }
+
+
+        countersStarted = true;
+
+
+        counters.forEach(
+            (counter) => {
+
+                const target =
+                    Number.parseInt(
+                        counter.dataset.target,
+                        10
+                    );
+
+
+                if (
+                    Number.isNaN(target) ||
+                    target < 0
+                ) {
+                    return;
+                }
+
+
+                animateCounter(
+                    counter,
+                    target
+                );
+
+            }
+        );
+
+    }
+
+
+    const counterTrigger =
+        document.querySelector(
+            ".banner-metrics-section"
+        );
+
+
+    if (
+        counterTrigger &&
+        counters.length > 0 &&
+        "IntersectionObserver" in window
+    ) {
+
+        const counterObserver =
+            new IntersectionObserver(
+                (entries, obs) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                !entry.isIntersecting
+                            ) {
+                                return;
+                            }
+
+
+                            startCounters();
+
+
+                            obs.unobserve(
+                                entry.target
+                            );
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.25
+                }
+            );
+
+
+        counterObserver.observe(
+            counterTrigger
+        );
+
+    } else {
+
+        startCounters();
+
+    }
+
+
+    /* =========================================================
+       5. MOBILE NAVIGATION
+       
+       IMPORTANT:
+       Navbar is loaded dynamically.
+       Event delegation prevents timing problems.
+    ========================================================== */
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            const toggle =
+                event.target.closest(
+                    "#mobileToggle"
+                );
+
+
+            if (!toggle) {
+                return;
+            }
+
+
+            const mainNav =
+                document.getElementById(
+                    "mainNav"
+                );
+
+
+            if (!mainNav) {
+                return;
+            }
+
+
+            const isOpen =
+                mainNav.classList.toggle(
+                    "nav-open"
+                );
+
+
+            toggle.setAttribute(
+                "aria-expanded",
+                isOpen
+                    ? "true"
+                    : "false"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       6. MOBILE DROPDOWN
+    ========================================================== */
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            const toggle =
+                event.target.closest(
+                    ".dropdown-toggle"
+                );
+
+
+            if (!toggle) {
+                return;
+            }
+
+
+            const dropdown =
+                toggle.closest(
+                    ".nav-dropdown"
+                );
+
+
+            if (!dropdown) {
+                return;
+            }
+
+
+            if (
+                window.innerWidth <= 768
+            ) {
+
+                event.preventDefault();
+
+
+                const isOpen =
+                    dropdown.classList.toggle(
+                        "is-open"
+                    );
+
+
+                toggle.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                        ? "true"
+                        : "false"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       7. CLOSE MOBILE NAV AFTER LINK CLICK
+    ========================================================== */
+
+    document.addEventListener(
+        "click",
+        (event) => {
+
+            const link =
+                event.target.closest(
+                    "#mainNav a"
+                );
+
+
+            if (!link) {
+                return;
+            }
+
+
+            const mainNav =
+                document.getElementById(
+                    "mainNav"
+                );
+
+
+            const mobileToggle =
+                document.getElementById(
+                    "mobileToggle"
+                );
+
+
+            if (mainNav) {
+
+                mainNav.classList.remove(
+                    "nav-open"
+                );
+
+            }
+
+
+            if (mobileToggle) {
+
+                mobileToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       8. ESCAPE KEY CLOSES MOBILE NAV
+    ========================================================== */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key !== "Escape") {
+                return;
+            }
+
+
+            const mainNav =
+                document.getElementById(
+                    "mainNav"
+                );
+
+
+            const mobileToggle =
+                document.getElementById(
+                    "mobileToggle"
+                );
+
+
+            if (mainNav) {
+
+                mainNav.classList.remove(
+                    "nav-open"
+                );
+
+            }
+
+
+            if (mobileToggle) {
+
+                mobileToggle.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       9. SCROLL TO TOP
+    ========================================================== */
+
+    const scrollUp =
+        document.getElementById(
+            "scrollUp"
+        );
+
 
     if (scrollUp) {
-        scrollUp.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+
+        const updateScrollButton =
+            () => {
+
+                scrollUp.classList.toggle(
+                    "is-visible",
+                    window.scrollY > 400
+                );
+
+            };
+
+
+        window.addEventListener(
+            "scroll",
+            updateScrollButton,
+            {
+                passive: true
+            }
+        );
+
+
+        scrollUp.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior:
+                        window.matchMedia(
+                            "(prefers-reduced-motion: reduce)"
+                        ).matches
+                            ? "auto"
+                            : "smooth"
+                });
+
+            }
+        );
+
+
+        updateScrollButton();
+
     }
+
+
+    /* =========================================================
+       10. WINDOW RESIZE
+    ========================================================== */
+
+    let resizeTimer = null;
+
+
+    window.addEventListener(
+        "resize",
+        () => {
+
+            clearTimeout(
+                resizeTimer
+            );
+
+
+            resizeTimer =
+                setTimeout(() => {
+
+                    /*
+                     * Keep current hero position.
+                     */
+
+                    updateHero(
+                        currentSlide
+                    );
+
+
+                    /*
+                     * Make sure mobile nav
+                     * doesn't remain open after
+                     * switching to desktop.
+                     */
+
+                    if (
+                        window.innerWidth > 768
+                    ) {
+
+                        const mainNav =
+                            document.getElementById(
+                                "mainNav"
+                            );
+
+
+                        const mobileToggle =
+                            document.getElementById(
+                                "mobileToggle"
+                            );
+
+
+                        if (mainNav) {
+
+                            mainNav.classList.remove(
+                                "nav-open"
+                            );
+
+                        }
+
+
+                        if (mobileToggle) {
+
+                            mobileToggle.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+
+                    }
+
+                }, 150);
+
+        }
+    );
+
+
+    /* =========================================================
+       11. PAGE READY
+    ========================================================== */
+
+    document.documentElement.classList.add(
+        "about-page-ready"
+    );
+
 });
