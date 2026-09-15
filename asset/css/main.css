@@ -897,7 +897,7 @@ img {
 
 .proj-cat {
     font-size: 0.75rem;
-    color: var(--accent-color);
+    color: var(--white);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -933,7 +933,7 @@ img {
 }
 
 .testi-logo img {
-    height: 40px;
+    height: 116px;
     width: auto;
     object-fit: contain;
     border-radius: 4px;

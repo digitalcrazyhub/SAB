@@ -4,8 +4,8 @@
 :root {
     /* Brand */
     --primary-color: #0A0A0A;
-    --secondary-color: #FFB703;
-    --accent-color: #FFB703;
+    --secondary-color: #A5000D;
+    --accent-color: #A5000D;
 
     /* Text */
     --text-color: #1E1E1E;
@@ -242,7 +242,7 @@ img {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 10, 10, 0.78) 0%, rgba(10, 10, 10, 0.92) 100%);
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.8) 100%);
     z-index: 2;
 }
 
@@ -407,7 +407,7 @@ img {
 .band-title {
     font-size: 1.85rem;
     font-weight: 800;
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 1.25rem;
     position: relative;
     padding-bottom: 0.5rem;
@@ -656,53 +656,6 @@ img {
     gap: 1rem;
 }
 
-/* Floating Actions */
-.scroll-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    cursor: pointer;
-    z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
-}
-
-.scroll-to-top.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.scroll-to-top:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
-    transform: translateY(-4px);
-}
-
-.whatsapp-float {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    width: 52px;
-    height: 52px;
-    z-index: 99;
-    transition: transform 0.3s ease;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.15);
-}
 
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS

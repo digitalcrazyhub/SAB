@@ -109,15 +109,10 @@ a {
    ============================================================ */
 
 .container {
-
     width: 100%;
-
-    max-width: 1240px;
-
+    max-width: 1640px;
     margin-inline: auto;
-
     padding-inline: 24px;
-
 }
 
 
@@ -309,15 +304,14 @@ a {
     font-weight: 600;
 
 }
+.breadcrumbs a {
+    color:var(--accent-color);
+}
 
 
 .breadcrumbs span {
-
     margin-inline: .5rem;
-
-    color:
-        rgba(255, 255, 255, .4);
-
+    color:rgba(255, 255, 255, .4);
 }
 
 
@@ -958,126 +952,6 @@ a {
     display: none;
 
 }
-
-
-/* ============================================================
-   SCROLL TO TOP
-   ============================================================ */
-
-.scroll-to-top {
-
-    position: fixed;
-
-    right: 25px;
-
-    bottom: 25px;
-
-    z-index: 500;
-
-    width: 46px;
-
-    height: 46px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 0;
-
-    border: 0;
-
-    border-radius: 50%;
-
-    color:
-        var(--black);
-
-    background:
-        var(--accent-color);
-
-    cursor: pointer;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-        translateY(20px);
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease,
-        transform .3s ease,
-        background .3s ease;
-
-}
-
-
-.scroll-to-top.is-visible {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-        translateY(0);
-
-}
-
-
-.scroll-to-top:hover {
-
-    background:
-        var(--white);
-
-    transform:
-        translateY(-4px);
-
-}
-
-
-/* ============================================================
-   WHATSAPP
-   ============================================================ */
-
-.whatsapp-float {
-
-    position: fixed;
-
-    left: 25px;
-
-    bottom: 25px;
-
-    z-index: 500;
-
-    width: 52px;
-
-    height: 52px;
-
-    transition:
-        transform .3s ease;
-
-}
-
-
-.whatsapp-float img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-}
-
-
-.whatsapp-float:hover {
-
-    transform:
-        scale(1.12);
-
-}
-
 
 /* ============================================================
    TABLET
