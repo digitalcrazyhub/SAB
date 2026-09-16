@@ -85,6 +85,11 @@
 
 .saidpl-footer-brand-accent {
     color: var(--secondary-color);
+    max-height: 108px;
+    height: auto;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.35s ease;
 }
 
 .saidpl-footer-about {

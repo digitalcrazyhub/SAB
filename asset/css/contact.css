@@ -173,36 +173,23 @@ img {
 
 
 .contact-hero-slide {
-
-    flex:
-        0 0 100%;
-
+    flex:0 0 100%;
     height: 100%;
-
     position: relative;
-
     display: flex;
-
     align-items: center;
-
     background-size: cover;
-
     background-position: center;
 }
 
 
 .contact-hero-overlay {
-
     position: absolute;
-
     inset: 0;
-
     background:
         linear-gradient(
             90deg,
-            rgba(5,5,5,0.94) 0%,
-            rgba(5,5,5,0.72) 42%,
-            rgba(5,5,5,0.35) 100%
+            rgba(5,5,5,0.8) 100%
         );
 }
 
@@ -213,7 +200,7 @@ img {
 
     z-index: 2;
 
-    max-width: 900px;
+    max-width: 1204px;
 
     padding-top: 55px;
 }
@@ -1583,7 +1570,7 @@ img {
 
     background: var(--yellow);
 
-    color: #000;
+    color: #fff;
 
     transform:
         translateY(-3px);
@@ -1612,92 +1599,10 @@ img {
 
 
 .map-wrapper iframe {
-
     width: 100%;
     height: 100%;
-
     min-height: 470px;
-
     border: 0;
-
-    filter:
-        grayscale(1)
-        contrast(1.1)
-        brightness(0.55);
-}
-
-
-.map-overlay {
-
-    position: absolute;
-
-    z-index: 3;
-
-    left: 25px;
-
-    top: 25px;
-}
-
-
-.map-card {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding:
-        12px 16px;
-
-    border:
-        1px solid rgba(255,183,3,0.3);
-
-    border-radius: 6px;
-
-    background:
-        rgba(10,10,10,0.9);
-
-    backdrop-filter:
-        blur(10px);
-}
-
-
-.map-card-icon {
-
-    width: 35px;
-    height: 35px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--yellow);
-
-    color: #000;
-
-    font-size: 0.75rem;
-}
-
-
-.map-card strong {
-
-    display: block;
-
-    font-size: 0.75rem;
-}
-
-
-.map-card span {
-
-    display: block;
-
-    color: #777;
-
-    font-size: 0.65rem;
 }
 
 
@@ -1829,132 +1734,6 @@ img {
 
 .cta-btn:hover i {
     transform: translateX(5px);
-}
-
-
-/* ==============================================================
-   WHATSAPP
-   ============================================================== */
-
-.whatsapp-float {
-
-    position: fixed;
-
-    left: 25px;
-    bottom: 25px;
-
-    z-index: 100;
-
-    width: 52px;
-    height: 52px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: #25D366;
-
-    color: white;
-
-    font-size: 1.6rem;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.4);
-
-    transition: var(--transition);
-
-    animation:
-        whatsappPulse 2.5s infinite;
-}
-
-
-.whatsapp-float:hover {
-
-    transform:
-        scale(1.12);
-
-    animation: none;
-}
-
-
-@keyframes whatsappPulse {
-
-    0%,
-    100% {
-        box-shadow:
-            0 8px 25px rgba(0,0,0,0.4),
-            0 0 0 0 rgba(37,211,102,0.4);
-    }
-
-    50% {
-        box-shadow:
-            0 8px 25px rgba(0,0,0,0.4),
-            0 0 0 10px rgba(37,211,102,0);
-    }
-
-}
-
-
-/* ==============================================================
-   SCROLL TO TOP
-   ============================================================== */
-
-.scroll-to-top {
-
-    position: fixed;
-
-    right: 25px;
-    bottom: 25px;
-
-    z-index: 100;
-
-    width: 45px;
-    height: 45px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--yellow);
-
-    color: #000;
-
-    cursor: pointer;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-        translateY(20px);
-
-    transition: var(--transition);
-}
-
-
-.scroll-to-top.is-visible {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform:
-        translateY(0);
-}
-
-
-.scroll-to-top:hover {
-
-    background: white;
-
-    transform:
-        translateY(-5px);
 }
 
 

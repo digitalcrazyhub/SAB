@@ -28,6 +28,8 @@
 
     <!-- Contact Page -->
     <link rel="stylesheet" href="/asset/css/contact.css">
+     <link rel="stylesheet" href="/asset/css/float.css">
+    <link rel="icon" href="/asset/img/web_icon.png" sizes="192x192">
 </head>
 
 <body>
@@ -47,7 +49,7 @@
 
             <!-- Slide 1 -->
             <div class="contact-hero-slide is-active"
-                style="background-image: url('/asset/img/contact_banner1.png');">
+                style="background-image: url('/asset/img/contact_banner.png');">
 
                 <div class="contact-hero-overlay"></div>
 
@@ -85,7 +87,7 @@
 
             <!-- Slide 2 -->
             <div class="contact-hero-slide"
-                style="background-image: url('/asset/img/contact_banner2.png');">
+                style="background-image: url('/asset/img/contact_banner1.png');">
 
                 <div class="contact-hero-overlay"></div>
 
@@ -551,7 +553,7 @@
 
 
                         <!-- Company -->
-                        <div class="form-group">
+                        <!-- <div class="form-group">
 
                             <label for="company">
                                 Company Name
@@ -571,70 +573,29 @@
 
                             </div>
 
-                        </div>
+                        </div> -->
 
 
                         <!-- Service -->
                         <div class="form-group">
-
-                            <label for="service">
-                                Service Required
-                            </label>
-
+                            <label for="service"> Service Required</label>
                             <div class="input-wrapper select-wrapper">
-
                                 <i class="fa-solid fa-layer-group"></i>
-
-                                <select
-                                    id="service"
-                                    name="service">
-
-                                    <option value="">
-                                        Select a service
-                                    </option>
-
-                                    <option value="Industrial Construction">
-                                        Industrial Construction
-                                    </option>
-
-                                    <option value="Structural Fabrication">
-                                        Structural Fabrication
-                                    </option>
-
-                                    <option value="Engineering">
-                                        Engineering
-                                    </option>
-
-                                    <option value="Project Management">
-                                        Project Management
-                                    </option>
-
-                                    <option value="Industrial Development">
-                                        Industrial Development
-                                    </option>
-
-                                    <option value="Other">
-                                        Other
-                                    </option>
-
+                                <select id="service" name="service">
+                                    <option value=""> Select a service</option>
+                                    <option value="Industrial Construction">Industrial Building Construction</option>
+                                    <option value="Structural Fabrication">Residencial Building Construction</option>
+                                    <option value="Engineering">Commercial Building Construction</option>
+                                    <option value="Project Management">Godown Building Construction</option>
+                                    <option value="Other">Other</option>
                                 </select>
-
                             </div>
-
                         </div>
-
-
                         <!-- Message -->
                         <div class="form-group">
-
-                            <label for="message">
-                                Message <span>*</span>
-                            </label>
-
+                            <label for="message"> Message <span>*</span></label>
                             <div class="textarea-wrapper">
-
                                 <i class="fa-regular fa-message"></i>
-
                                 <textarea
                                     id="message"
                                     name="message"
@@ -642,23 +603,12 @@
                                     maxlength="1000"
                                     placeholder="Tell us about your project..."
                                     required></textarea>
-
                             </div>
-
                             <div class="message-bottom">
-
-                                <small id="messageError"
-                                    class="form-error"></small>
-
-                                <span id="messageCount">
-                                    0 / 1000
-                                </span>
-
+                                <small id="messageError" class="form-error"></small>
+                                <span id="messageCount">0 / 1000</span>
                             </div>
-
                         </div>
-
-
                         <!-- Submit -->
                         <button
                             type="submit"
@@ -740,7 +690,7 @@
                                 </span>
 
                                 <p>
-                                    Sri Amma Industrial Developer PVT LTD
+                                   4/951, 33rd Street, TVS Colony, Annanagar West Extn, Chennai - 600101.
                                 </p>
                             </div>
 
@@ -759,7 +709,7 @@
                                 </span>
 
                                 <a href="tel:+919444405505">
-                                    +91 94444 05505
+                                    +91 94444 05505 |  +91 93802 43013
                                 </a>
                             </div>
 
@@ -805,37 +755,7 @@
 
                 <!-- Map -->
                 <div class="map-wrapper slide-on-scroll slide-right">
-
-                    <div class="map-overlay">
-
-                        <div class="map-card">
-
-                            <div class="map-card-icon">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Sri Amma Industrial Developer
-                                </strong>
-
-                                <span>
-                                    Our Office
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <iframe
-                        src="https://www.google.com/maps?q=Tamil%20Nadu%20India&output=embed"
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Sri Amma Industrial Developer location">
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11409.057692951057!2d80.18331679658466!3d13.092172069786116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52640896aaaaab%3A0xe3ac64bc3951eac2!2sSri%20Amma%20Industrial%20Developers%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1789545890626!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
                 </div>
 
@@ -901,43 +821,55 @@
     ========================================================== -->
     <div id="saidplFooter"></div>
 
+<!-- ============================================================
+     SAIDPL FLOATING ACTION BUTTONS
+     Scoped component - will not affect other page CSS
+     ============================================================ -->
 
-    <!-- =========================================================
-         FLOATING WHATSAPP
-    ========================================================== -->
-    <div id="whatsapp_chat">
+<div class="saidpl-fab-stack" aria-label="Quick contact actions">
 
-        <a
-            href="https://wa.me/919444405505?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="whatsapp-float"
-            aria-label="Chat with us on WhatsApp">
-
-            <i class="fa-brands fa-whatsapp"></i>
-
-        </a>
-
-    </div>
-
-
-    <!-- =========================================================
-         SCROLL TO TOP
-    ========================================================== -->
+    <!-- Scroll to Top -->
     <button
-        id="scrollUp"
-        class="scroll-to-top"
-        aria-label="Scroll to top">
-
-        <i class="fa-solid fa-arrow-up"></i>
-
+        type="button"
+        id="saidplToTop"
+        class="saidpl-fab saidpl-fab-top"
+        aria-label="Scroll to top"
+        title="Back to top">
+        <i data-lucide="arrow-up" aria-hidden="true"></i>
     </button>
 
+    <!-- Phone -->
+    <a href="tel:+917845401301" class="saidpl-fab saidpl-fab-call" aria-label="Call us" title="Call us">
+        <i data-lucide="phone" aria-hidden="true"></i>
+    </a>
+    <!-- WhatsApp -->
+    <a href="https://wa.me/917845401301?text=Hi%2C%20I%20saw%20your%20website.%20I%20need%20more%20details%20about%20your%20services."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="saidpl-fab saidpl-fab-whatsapp"
+        aria-label="Chat with us on WhatsApp"
+        title="WhatsApp">
 
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 16 16"
+            width="24"
+            height="24"
+            fill="currentColor"
+            aria-hidden="true">
+
+            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+
+        </svg>
+
+    </a>
+
+</div>
     <!-- =========================================================
          JAVASCRIPT
     ========================================================== -->
-
+<script src="https://unpkg.com/lucide@latest"></script>
+     <script src="/asset/js/float.js"></script>
     <script src="/asset/js/contact.js"></script>
 
     <!-- Existing Navbar -->
@@ -945,7 +877,13 @@
 
     <!-- Existing component loader -->
     <script src="/asset/js/nav-call.js"></script>
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+</script>
 </body>
 
 </html>

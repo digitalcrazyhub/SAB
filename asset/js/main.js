@@ -223,3 +223,380 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+/* ============================================================
+   SAIDPL TESTIMONIAL CAROUSEL
+   Scoped JavaScript
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const track =
+        document.getElementById(
+            'saidplTestimonialTrack'
+        );
+
+    const items =
+        document.querySelectorAll(
+            '.saidpl-testimonial-item'
+        );
+
+    const prevButton =
+        document.getElementById(
+            'saidplTestimonialPrev'
+        );
+
+    const nextButton =
+        document.getElementById(
+            'saidplTestimonialNext'
+        );
+
+    const currentCounter =
+        document.getElementById(
+            'saidplTestimonialCurrent'
+        );
+
+    const progress =
+        document.getElementById(
+            'saidplTestimonialProgress'
+        );
+
+
+    /* ========================================================
+       SAFETY CHECK
+       ======================================================== */
+
+    if (
+        !track ||
+        !items.length ||
+        !prevButton ||
+        !nextButton
+    ) {
+        return;
+    }
+
+
+    /* ========================================================
+       VARIABLES
+       ======================================================== */
+
+    let currentIndex = 0;
+
+    const totalItems = items.length;
+
+    let autoplayTimer = null;
+
+    let touchStartX = 0;
+
+    let touchEndX = 0;
+
+
+    /* ========================================================
+       UPDATE CAROUSEL
+       ======================================================== */
+
+    function updateCarousel() {
+
+        const offset =
+            currentIndex * 100;
+
+        track.style.transform =
+            `translate3d(-${offset}%, 0, 0)`;
+
+
+        /* Counter */
+
+        if (currentCounter) {
+
+            currentCounter.textContent =
+                String(currentIndex + 1)
+                    .padStart(2, '0');
+
+        }
+
+
+        /* Progress */
+
+        if (progress) {
+
+            const progressPosition =
+                currentIndex * 100;
+
+            progress.style.transform =
+                `translateX(${progressPosition}%)`;
+
+        }
+
+
+        /* Accessibility */
+
+        items.forEach((item, index) => {
+
+            item.setAttribute(
+                'aria-hidden',
+                index !== currentIndex
+            );
+
+        });
+
+    }
+
+
+    /* ========================================================
+       NEXT
+       ======================================================== */
+
+    function nextTestimonial() {
+
+        currentIndex++;
+
+        if (currentIndex >= totalItems) {
+            currentIndex = 0;
+        }
+
+        updateCarousel();
+
+    }
+
+
+    /* ========================================================
+       PREVIOUS
+       ======================================================== */
+
+    function previousTestimonial() {
+
+        currentIndex--;
+
+        if (currentIndex < 0) {
+            currentIndex = totalItems - 1;
+        }
+
+        updateCarousel();
+
+    }
+
+
+    /* ========================================================
+       BUTTON EVENTS
+       ======================================================== */
+
+    nextButton.addEventListener(
+        'click',
+        () => {
+
+            nextTestimonial();
+
+            restartAutoplay();
+
+        }
+    );
+
+
+    prevButton.addEventListener(
+        'click',
+        () => {
+
+            previousTestimonial();
+
+            restartAutoplay();
+
+        }
+    );
+
+
+    /* ========================================================
+       AUTOPLAY
+       ======================================================== */
+
+    function startAutoplay() {
+
+        if (totalItems <= 1) {
+            return;
+        }
+
+        autoplayTimer =
+            setInterval(() => {
+
+                nextTestimonial();
+
+            }, 6000);
+
+    }
+
+
+    function stopAutoplay() {
+
+        if (autoplayTimer) {
+
+            clearInterval(
+                autoplayTimer
+            );
+
+            autoplayTimer = null;
+
+        }
+
+    }
+
+
+    function restartAutoplay() {
+
+        stopAutoplay();
+
+        startAutoplay();
+
+    }
+
+
+    /* ========================================================
+       PAUSE ON HOVER
+       ======================================================== */
+
+    const carousel =
+        document.querySelector(
+            '.saidpl-testimonial-card'
+        );
+
+
+    if (carousel) {
+
+        carousel.addEventListener(
+            'mouseenter',
+            stopAutoplay
+        );
+
+
+        carousel.addEventListener(
+            'mouseleave',
+            startAutoplay
+        );
+
+    }
+
+
+    /* ========================================================
+       TOUCH / SWIPE SUPPORT
+       ======================================================== */
+
+    track.addEventListener(
+        'touchstart',
+        event => {
+
+            touchStartX =
+                event.changedTouches[0].screenX;
+
+            stopAutoplay();
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    track.addEventListener(
+        'touchend',
+        event => {
+
+            touchEndX =
+                event.changedTouches[0].screenX;
+
+            handleSwipe();
+
+            startAutoplay();
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    function handleSwipe() {
+
+        const swipeDistance =
+            touchEndX - touchStartX;
+
+
+        /* Swipe left */
+
+        if (swipeDistance < -50) {
+
+            nextTestimonial();
+
+        }
+
+
+        /* Swipe right */
+
+        if (swipeDistance > 50) {
+
+            previousTestimonial();
+
+        }
+
+    }
+
+
+    /* ========================================================
+       KEYBOARD NAVIGATION
+       ======================================================== */
+
+    document.addEventListener(
+        'keydown',
+        event => {
+
+            const section =
+                document.querySelector(
+                    '.saidpl-testimonial-section'
+                );
+
+            if (!section) {
+                return;
+            }
+
+
+            const rect =
+                section.getBoundingClientRect();
+
+
+            const isVisible =
+                rect.top < window.innerHeight &&
+                rect.bottom > 0;
+
+
+            if (!isVisible) {
+                return;
+            }
+
+
+            if (event.key === 'ArrowRight') {
+
+                nextTestimonial();
+
+                restartAutoplay();
+
+            }
+
+
+            if (event.key === 'ArrowLeft') {
+
+                previousTestimonial();
+
+                restartAutoplay();
+
+            }
+
+        }
+    );
+
+
+    /* ========================================================
+       INITIALIZE
+       ======================================================== */
+
+    updateCarousel();
+
+    startAutoplay();
+
+});
+
