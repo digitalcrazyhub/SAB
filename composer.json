@@ -1,0 +1,18 @@
+{
+  "name": "sri-amma-industrial-developers/contact-backend",
+  "description": "Secure contact enquiry backend for Sri Amma Industrial Developers Pvt. Ltd.",
+  "type": "project",
+  "require": {
+    "php": ">=8.1",
+    "phpmailer/phpmailer": "^6.10",
+    "google/apiclient": "^2.18"
+  },
+  "scripts": {
+    "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+  },
+  "extra": {
+    "google/apiclient-services": [
+      "Sheets"
+    ]
+  }
+}

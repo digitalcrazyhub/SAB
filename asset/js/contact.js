@@ -634,14 +634,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        const normalized =
+            phone.value.trim().replace(/[\s()-]/g, "");
+
         const digits =
-            phone.value.replace(
-                /\D/g,
-                ""
-            );
+            normalized.startsWith("+91") && normalized.length === 13
+                ? normalized.slice(3)
+                : normalized.length === 12 && normalized.startsWith("91")
+                    ? normalized.slice(2)
+                    : normalized;
 
-
-        if (!/^[0-9]{10}$/.test(digits)) {
+        if (!/^[6-9][0-9]{9}$/.test(digits)) {
 
             setFieldError(
                 phone,
@@ -771,10 +774,12 @@ document.addEventListener("DOMContentLoaded", () => {
             "input",
             () => {
 
-                phone.value =
-                    phone.value
-                        .replace(/\D/g, "")
-                        .slice(0, 10);
+                const raw = phone.value.trim();
+                if (raw.startsWith("+91")) {
+                    phone.value = "+91" + raw.slice(3).replace(/\D/g, "").slice(0, 10);
+                } else {
+                    phone.value = raw.replace(/\D/g, "").slice(0, 10);
+                }
 
                 clearFieldError(phone);
 
@@ -815,134 +820,161 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       FORM SUBMIT
+       FORM SUBMISSION
     ========================================================== */
 
-    if (form) {
+    const csrfTokenInput = document.getElementById("csrfToken");
+    const formAction = form ? form.getAttribute("action") : "/backend/contact-submit.php";
 
-        form.addEventListener(
-            "submit",
-            (event) => {
+    async function loadCsrfToken() {
+        if (!csrfTokenInput || !formAction) return;
 
-                clearFormStatus();
-
-
-                /* Honeypot */
-                const website =
-                    document.getElementById(
-                        "website"
-                    );
-
-
-                if (
-                    website &&
-                    website.value.trim() !== ""
-                ) {
-
-                    event.preventDefault();
-
-                    return;
-
-                }
-
-
-                const validFirstName =
-                    validateName(
-                        firstName,
-                        "First name"
-                    );
-
-
-                const validLastName =
-                    validateName(
-                        lastName,
-                        "Last name"
-                    );
-
-
-                const validPhone =
-                    validatePhone();
-
-
-                const validEmail =
-                    validateEmail();
-
-
-                const validMessage =
-                    validateMessage();
-
-
-                const isValid =
-                    validFirstName &&
-                    validLastName &&
-                    validPhone &&
-                    validEmail &&
-                    validMessage;
-
-
-                if (!isValid) {
-
-                    event.preventDefault();
-
-
-                    const firstInvalid =
-                        form.querySelector(
-                            ".has-error input, .has-error textarea, .has-error select"
-                        );
-
-
-                    if (firstInvalid) {
-
-                        firstInvalid.focus({
-                            preventScroll: true
-                        });
-
-
-                        firstInvalid.scrollIntoView({
-                            behavior: "smooth",
-                            block: "center"
-                        });
-
-                    }
-
-
-                    return;
-
-                }
-
-
-                /*
-                 * Allow normal POST to mail.php.
-                 * Do not preventDefault here.
-                 */
-
-                if (submitButton) {
-
-                    submitButton.classList.add(
-                        "loading"
-                    );
-
-
-                    const buttonText =
-                        submitButton.querySelector(
-                            "span"
-                        );
-
-
-                    if (buttonText) {
-
-                        buttonText.textContent =
-                            "Sending...";
-
-                    }
-
-                }
-
+        try {
+            const response = await fetch(formAction, {
+                method: "GET",
+                credentials: "same-origin",
+                headers: { "Accept": "application/json" }
+            });
+            const data = await response.json();
+            if (response.ok && data.success && data.message) {
+                csrfTokenInput.value = data.message;
             }
-        );
-
+        } catch (error) {
+            // Submission will fail safely if a CSRF token cannot be obtained.
+        }
     }
 
+    function setSubmitLoading(isLoading) {
+        if (!submitButton) return;
+
+        submitButton.disabled = isLoading;
+        submitButton.setAttribute("aria-busy", String(isLoading));
+        submitButton.classList.toggle("loading", isLoading);
+
+        const buttonText = submitButton.querySelector("span");
+        if (buttonText) {
+            buttonText.textContent = isLoading ? "Sending..." : "Send Enquiry";
+        }
+    }
+
+    function showFormStatus(messageText, type) {
+        if (!formStatus) return;
+
+        formStatus.textContent = messageText;
+        formStatus.className = `form-status ${type}`;
+    }
+
+    if (form) {
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            clearFormStatus();
+
+            const website = document.getElementById("website");
+            if (website && website.value.trim() !== "") {
+                showFormStatus("Invalid submission.", "error");
+                return;
+            }
+
+            const validFirstName = validateName(firstName, "First name");
+            const validLastName = validateName(lastName, "Last name");
+            const validPhone = validatePhone();
+            const validEmail = validateEmail();
+            const validMessage = validateMessage();
+
+            if (!(validFirstName && validLastName && validPhone && validEmail && validMessage)) {
+                const firstInvalid = form.querySelector(".has-error input, .has-error textarea, .has-error select");
+                if (firstInvalid) {
+                    firstInvalid.focus({ preventScroll: true });
+                    firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+                return;
+            }
+
+            if (!csrfTokenInput || !csrfTokenInput.value) {
+                showFormStatus("Unable to securely submit the form. Please refresh the page and try again.", "error");
+                await loadCsrfToken();
+                return;
+            }
+
+            const captchaResponse = window.grecaptcha
+                ? window.grecaptcha.getResponse()
+                : "";
+
+            if (!captchaResponse) {
+                showFormStatus("Please complete the reCAPTCHA verification.", "error");
+                return;
+            }
+
+            setSubmitLoading(true);
+
+            try {
+                const response = await fetch(formAction || "/backend/contact-submit.php", {
+                    method: "POST",
+                    credentials: "same-origin",
+                    headers: {
+                        "Accept": "application/json",
+                        "X-Requested-With": "XMLHttpRequest"
+                    },
+                    body: new FormData(form)
+                });
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    throw new Error("Invalid server response.");
+                }
+
+                if (!response.ok || !data.success) {
+                    showFormStatus(
+                        data.message || "Something went wrong. Please try again later.",
+                        "error"
+                    );
+
+                    if (window.grecaptcha) {
+                        window.grecaptcha.reset();
+                    }
+
+                    if (response.status === 403) {
+                        await loadCsrfToken();
+                    }
+
+                    return;
+                }
+
+                showFormStatus(
+                    data.message || "Thank you! Your enquiry has been submitted successfully.",
+                    "success"
+                );
+
+                form.reset();
+                updateMessageCount();
+
+                form.querySelectorAll(".has-error, .has-success").forEach((group) => {
+                    group.classList.remove("has-error", "has-success");
+                });
+
+                if (window.grecaptcha) {
+                    window.grecaptcha.reset();
+                }
+
+                await loadCsrfToken();
+            } catch (error) {
+                showFormStatus(
+                    "Something went wrong. Please try again later.",
+                    "error"
+                );
+
+                if (window.grecaptcha) {
+                    window.grecaptcha.reset();
+                }
+            } finally {
+                setSubmitLoading(false);
+            }
+        });
+
+        loadCsrfToken();
+    }
 
     /* =========================================================
        6. SCROLL TO TOP

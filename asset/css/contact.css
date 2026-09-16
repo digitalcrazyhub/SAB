@@ -2160,3 +2160,62 @@ img {
     }
 
 }
+
+/* ==============================================================
+   CONTACT BACKEND STATES
+   Scoped additions only; existing visual design is unchanged.
+   ============================================================== */
+
+.contact-form-wrapper .contact-recaptcha {
+    margin: 0 0 18px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.contact-form-wrapper .contact-recaptcha .g-recaptcha {
+    max-width: 100%;
+}
+
+.contact-form-wrapper .contact-recaptcha iframe {
+    max-width: 100%;
+}
+
+.contact-form-wrapper .contact-submit-btn:disabled {
+    cursor: wait;
+    opacity: 0.75;
+}
+
+.contact-form-wrapper #formStatus {
+    min-height: 1.5em;
+    margin-top: 12px;
+}
+
+.contact-form-wrapper #formStatus.success,
+.contact-form-wrapper #formStatus.error {
+    padding: 10px 12px;
+    border-radius: 6px;
+}
+
+.contact-form-wrapper #formStatus.success {
+    color: #b8f5c5;
+    background: rgba(46, 125, 50, 0.14);
+}
+
+.contact-form-wrapper #formStatus.error {
+    color: #ffb8b8;
+    background: rgba(198, 40, 40, 0.14);
+}
+
+@media (max-width: 480px) {
+    .contact-form-wrapper .contact-recaptcha {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-form-wrapper .contact-submit-btn {
+        transition: none;
+    }
+}

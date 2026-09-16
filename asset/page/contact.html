@@ -412,7 +412,7 @@
 
 
                     <form id="contactForm"
-                        action="mail.php"
+                        action="/backend/contact-submit.php"
                         method="POST"
                         novalidate>
 
@@ -450,7 +450,7 @@
                                         name="firstName"
                                         placeholder="Enter first name"
                                         autocomplete="given-name"
-                                        maxlength="50"
+                                        maxlength="100"
                                         required>
 
                                 </div>
@@ -478,7 +478,7 @@
                                         name="lastName"
                                         placeholder="Enter last name"
                                         autocomplete="family-name"
-                                        maxlength="50"
+                                        maxlength="100"
                                         required>
 
                                 </div>
@@ -510,7 +510,7 @@
                                         name="email"
                                         placeholder="your@email.com"
                                         autocomplete="email"
-                                        maxlength="120"
+                                        maxlength="190"
                                         required>
 
                                 </div>
@@ -539,7 +539,7 @@
                                         placeholder="10-digit mobile number"
                                         autocomplete="tel"
                                         inputmode="numeric"
-                                        maxlength="10"
+                                        maxlength="13"
                                         required>
 
                                 </div>
@@ -600,7 +600,7 @@
                                     id="message"
                                     name="message"
                                     rows="5"
-                                    maxlength="1000"
+                                    maxlength="3000"
                                     placeholder="Tell us about your project..."
                                     required></textarea>
                             </div>
@@ -609,6 +609,13 @@
                                 <span id="messageCount">0 / 1000</span>
                             </div>
                         </div>
+                        <!-- Security -->
+                        <input type="hidden" id="csrfToken" name="csrf_token" value="">
+
+                        <div class="contact-recaptcha" aria-label="Spam protection">
+                            <div class="g-recaptcha" data-sitekey="ADD_RECAPTCHA_SITE_KEY_HERE"></div>
+                        </div>
+
                         <!-- Submit -->
                         <button
                             type="submit"
@@ -833,6 +840,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
      <script src="/asset/js/common.js"></script>
     <script src="/asset/js/float.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="/asset/js/contact.js"></script>
 
     <!-- Existing Navbar -->
