@@ -2,72 +2,27 @@
    SAIDPL FLOATING ACTION BUTTONS
    ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
+    'use strict';
 
-    const toTopButton =
-        document.getElementById('saidplToTop');
+    function initializeFloatingActions() {
+        const toTopButton = document.getElementById('saidplToTop');
+        if (!toTopButton || toTopButton.dataset.initialized === 'true') return;
 
+        toTopButton.dataset.initialized = 'true';
+        const updateVisibility = () => {
+            toTopButton.classList.toggle('saidpl-show', window.scrollY > 400);
+        };
 
-    if (!toTopButton) {
-        return;
-    }
-
-
-    /* ========================================================
-       SCROLL TO TOP VISIBILITY
-       ======================================================== */
-
-    const updateToTopButton = () => {
-
-        if (window.scrollY > 400) {
-
-            toTopButton.classList.add(
-                'saidpl-show'
-            );
-
-        } else {
-
-            toTopButton.classList.remove(
-                'saidpl-show'
-            );
-
-        }
-
-    };
-
-
-    /* ========================================================
-       SCROLL EVENT
-       ======================================================== */
-
-    window.addEventListener(
-        'scroll',
-        updateToTopButton,
-        {
-            passive: true
-        }
-    );
-
-
-    /* Run once when page loads */
-
-    updateToTopButton();
-
-
-    /* ========================================================
-       SCROLL TO TOP
-       ======================================================== */
-
-    toTopButton.addEventListener(
-        'click',
-        () => {
-
+        window.addEventListener('scroll', updateVisibility, { passive: true });
+        toTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
-                behavior: 'smooth'
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
             });
+        });
+        updateVisibility();
+    }
 
-        }
-    );
-
-});
+    document.addEventListener('saidpl:components-ready', initializeFloatingActions);
+})();

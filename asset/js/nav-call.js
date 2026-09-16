@@ -1,44 +1,36 @@
-/**
- * NAV-CALL.JS - Component Loader
- * 
- * Loads navbar and footer components dynamically from includes folder.
- * Ensures proper initialization order:
- * 1. Components are loaded
- * 2. Components are injected into placeholders
- * 3. navbar.js initializes after injection
- */
+(() => {
+    'use strict';
 
-document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        // Load both components
-        await loadComponent("#saidplNavHeader", "/asset/includes/navbar.html");
-        await loadComponent("#saidplFooter", "/asset/includes/footer.html");
-        
-        // After components are loaded, trigger navbar initialization
-        // navbar.js will check for elements and initialize
-    } catch (error) {
-        console.error('Error loading components:', error);
-    }
-});
+    async function loadComponent(selector, url) {
+        const host = document.querySelector(selector);
+        if (!host) return;
 
-async function loadComponent(selector, file) {
-    const element = document.querySelector(selector);
+        host.setAttribute('aria-busy', 'true');
+        const response = await fetch(url, { credentials: 'same-origin' });
+        if (!response.ok) throw new Error(`${url} returned HTTP ${response.status}`);
 
-    if (!element) {
-        console.warn(`Placeholder not found: ${selector}`);
-        return;
+        host.innerHTML = await response.text();
+        host.removeAttribute('aria-busy');
     }
 
-    try {
-        const response = await fetch(file);
+    function finishSharedComponents() {
+        const year = document.getElementById('saidplCurrentYear');
+        if (year) year.textContent = String(new Date().getFullYear());
 
-        if (!response.ok) {
-            throw new Error(`Failed to load: ${file} (Status: ${response.status})`);
+        if (window.lucide) window.lucide.createIcons();
+        document.dispatchEvent(new CustomEvent('saidpl:components-ready'));
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        try {
+            await Promise.all([
+                loadComponent('#saidplNavHeader', '/asset/includes/navbar.html'),
+                loadComponent('#saidplFooter', '/asset/includes/footer.html'),
+                loadComponent('#saidplFloatingActions', '/asset/includes/floating-actions.html')
+            ]);
+            finishSharedComponents();
+        } catch (error) {
+            console.error('Unable to load a shared site component:', error);
         }
-
-        element.innerHTML = await response.text();
-
-    } catch (error) {
-        console.error(`Failed to load navbar/footer: ${error.message}`);
-    }
-}
+    }, { once: true });
+})();

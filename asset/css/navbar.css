@@ -155,6 +155,20 @@
     color: var(--accent-color);
 }
 
+body.saidpl-nav-open {
+    overflow: hidden;
+}
+
+.saidpl-nav-item--current-section > .saidpl-nav-link-box .saidpl-nav-link {
+    color: var(--accent-color);
+}
+
+.saidpl-nav-header a:focus-visible,
+.saidpl-nav-header button:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 4px;
+}
+
 .saidpl-nav-dropdown-toggle {
     background: none;
     border: none;
@@ -247,7 +261,8 @@
 
 /* Desktop Hover & Focus */
 .saidpl-nav-item--has-dropdown:hover > .saidpl-nav-dropdown-menu,
-.saidpl-nav-item--has-dropdown:focus-within > .saidpl-nav-dropdown-menu {
+.saidpl-nav-item--has-dropdown:focus-within > .saidpl-nav-dropdown-menu,
+.saidpl-nav-item--has-dropdown.saidpl-nav-item--open > .saidpl-nav-dropdown-menu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

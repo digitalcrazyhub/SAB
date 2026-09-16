@@ -1,92 +1,89 @@
-/**
- * NAVBAR.JS - Component Loader & Event Initializer
- * 
- * This script:
- * 1. Waits for navbar HTML to be injected via nav-call.js
- * 2. Initializes navbar event listeners AFTER injection
- * 3. Preserves all existing navbar functionality
- */
+(() => {
+    'use strict';
 
-// Initialize navbar only after components are loaded
-function initializeNavbar() {
-    const siteHeader = document.getElementById('saidplNavHeaderElement');
-    const menuToggle = document.getElementById('saidplNavHamburger');
-    const navMenu = document.getElementById('saidplNavMenu');
-    const navBackdrop = document.getElementById('saidplNavBackdrop');
-    const dropdownItems = document.querySelectorAll('.saidpl-nav-item--has-dropdown');
-
-    // Safety check: if elements don't exist, retry after a short delay
-    if (!siteHeader || !menuToggle || !navMenu || !navBackdrop) {
-        console.warn('Navbar elements not found yet, retrying initialization...');
-        setTimeout(initializeNavbar, 100);
-        return;
+    function normalizePath(pathname) {
+        return pathname.replace(/\/index\.html$/, '/').replace(/\/$/, '') || '/';
     }
 
-    // 1. Header scroll blur & border shadow on scroll
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 30) {
-            siteHeader.classList.add('saidpl-nav-header--scrolled');
-        } else {
-            siteHeader.classList.remove('saidpl-nav-header--scrolled');
-        }
-    });
+    function initializeNavbar() {
+        const header = document.getElementById('saidplNavHeaderElement');
+        const menuToggle = document.getElementById('saidplNavHamburger');
+        const navMenu = document.getElementById('saidplNavMenu');
+        const backdrop = document.getElementById('saidplNavBackdrop');
+        if (!header || !menuToggle || !navMenu || !backdrop || header.dataset.initialized === 'true') return;
 
-    // 2. Mobile Off-Canvas Drawer Toggle
-    function toggleMobileMenu() {
-        const isOpen = navMenu.classList.toggle('saidpl-nav-menu--open');
-        menuToggle.classList.toggle('saidpl-nav-hamburger--active');
-        navBackdrop.classList.toggle('saidpl-nav-backdrop--visible');
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-    }
+        header.dataset.initialized = 'true';
+        const dropdownItems = [...header.querySelectorAll('.saidpl-nav-item--has-dropdown')];
+        const currentPath = normalizePath(window.location.pathname);
 
-    function closeMobileMenu() {
-        navMenu.classList.remove('saidpl-nav-menu--open');
-        menuToggle.classList.remove('saidpl-nav-hamburger--active');
-        navBackdrop.classList.remove('saidpl-nav-backdrop--visible');
-        document.body.style.overflow = '';
-        dropdownItems.forEach(item => item.classList.remove('saidpl-nav-item--open'));
-    }
+        const setExpanded = (item, expanded) => {
+            item.classList.toggle('saidpl-nav-item--open', expanded);
+            const toggle = item.querySelector('.saidpl-nav-dropdown-toggle');
+            if (toggle) toggle.setAttribute('aria-expanded', String(expanded));
+        };
 
-    menuToggle.addEventListener('click', toggleMobileMenu);
-    navBackdrop.addEventListener('click', closeMobileMenu);
+        const closeDropdowns = () => dropdownItems.forEach((item) => setExpanded(item, false));
+        const setMenuOpen = (open) => {
+            navMenu.classList.toggle('saidpl-nav-menu--open', open);
+            menuToggle.classList.toggle('saidpl-nav-hamburger--active', open);
+            backdrop.classList.toggle('saidpl-nav-backdrop--visible', open);
+            menuToggle.setAttribute('aria-expanded', String(open));
+            document.body.classList.toggle('saidpl-nav-open', open);
+            if (!open) closeDropdowns();
+        };
 
-    // 3. Mobile Accordion Submenu Trigger
-    dropdownItems.forEach(item => {
-        const trigger = item.querySelector('.saidpl-nav-dropdown-toggle');
-        if (trigger) {
-            trigger.addEventListener('click', (e) => {
-                if (window.innerWidth <= 1024) {
-                    e.preventDefault();
-                    e.stopPropagation();
+        header.querySelectorAll('a[href]').forEach((link) => {
+            const linkPath = normalizePath(new URL(link.href, window.location.origin).pathname);
+            if (linkPath === currentPath) {
+                link.classList.add('saidpl-nav-link--active');
+                link.setAttribute('aria-current', 'page');
+                const parentDropdown = link.closest('.saidpl-nav-item--has-dropdown');
+                if (parentDropdown) parentDropdown.classList.add('saidpl-nav-item--current-section');
+            } else {
+                link.classList.remove('saidpl-nav-link--active');
+                link.removeAttribute('aria-current');
+            }
+        });
 
-                    dropdownItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('saidpl-nav-item--open');
-                        }
-                    });
+        const updateHeader = () => header.classList.toggle('saidpl-nav-header--scrolled', window.scrollY > 30);
+        window.addEventListener('scroll', updateHeader, { passive: true });
+        updateHeader();
 
-                    item.classList.toggle('saidpl-nav-item--open');
-                }
+        menuToggle.addEventListener('click', () => setMenuOpen(!navMenu.classList.contains('saidpl-nav-menu--open')));
+        backdrop.addEventListener('click', () => setMenuOpen(false));
+
+        dropdownItems.forEach((item) => {
+            const toggle = item.querySelector('.saidpl-nav-dropdown-toggle');
+            if (!toggle) return;
+            toggle.addEventListener('click', () => {
+                const willOpen = !item.classList.contains('saidpl-nav-item--open');
+                closeDropdowns();
+                setExpanded(item, willOpen);
             });
-        }
-    });
+        });
 
-    // 4. Close drawer on window resize above mobile breakpoint
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024) {
-            closeMobileMenu();
-        }
-    });
+        document.addEventListener('click', (event) => {
+            if (!header.contains(event.target)) closeDropdowns();
+        });
 
-    // 5. Close drawer when Escape key is pressed
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('saidpl-nav-menu--open')) {
-            closeMobileMenu();
-        }
-    });
-}
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') return;
+            const menuWasOpen = navMenu.classList.contains('saidpl-nav-menu--open');
+            setMenuOpen(false);
+            closeDropdowns();
+            if (menuWasOpen) menuToggle.focus();
+        });
 
-// Call initialization when DOM is ready
-document.addEventListener('DOMContentLoaded', initializeNavbar);
+        navMenu.addEventListener('click', (event) => {
+            if (event.target.closest('a') && window.innerWidth <= 1024) setMenuOpen(false);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) setMenuOpen(false);
+        }, { passive: true });
+    }
+
+    document.addEventListener('saidpl:components-ready', initializeNavbar);
+})();
 
 

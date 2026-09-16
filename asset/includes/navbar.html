@@ -4,7 +4,7 @@
 <header class="saidpl-nav-header" id="saidplNavHeaderElement">
     <div class="saidpl-nav-container">
         <!-- Brand Logo -->
-        <a href="/" class="saidpl-nav-brand">
+        <a href="/" class="saidpl-nav-brand" aria-label="Sri Amma Industrial Developers home">
             <img src="/asset/img/Nav_logo.png" alt="Sri Amma Industrial Developer Pvt Ltd" class="saidpl-nav-brand-logo">
         </a>
 
@@ -19,11 +19,11 @@
                 <li class="saidpl-nav-item saidpl-nav-item--has-dropdown">
                     <div class="saidpl-nav-link-box">
                         <a href="/asset/page/about.html" class="saidpl-nav-link">About Us</a>
-                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle About Submenu">
-                            <i class="fa-solid fa-chevron-down"></i>
+                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle About submenu" aria-controls="saidplAboutMenu" aria-expanded="false">
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <ul class="saidpl-nav-dropdown-menu">
+                    <ul class="saidpl-nav-dropdown-menu" id="saidplAboutMenu">
                         <li class="saidpl-nav-dropdown-item">
                             <a href="/asset/page/team.html" class="saidpl-nav-dropdown-link">Our Team</a>
                         </li>
@@ -34,11 +34,11 @@
                 <li class="saidpl-nav-item saidpl-nav-item--has-dropdown">
                     <div class="saidpl-nav-link-box">
                         <a href="/asset/page/service.html" class="saidpl-nav-link">Service</a>
-                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle Services Submenu">
-                            <i class="fa-solid fa-chevron-down"></i>
+                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle Services submenu" aria-controls="saidplServicesMenu" aria-expanded="false">
+                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <ul class="saidpl-nav-dropdown-menu">
+                    <ul class="saidpl-nav-dropdown-menu" id="saidplServicesMenu">
                         <li class="saidpl-nav-dropdown-item">
                             <a href="/asset/page/industrial-building-construction.html" class="saidpl-nav-dropdown-link">Industrial Building Construction</a>
                         </li>
@@ -81,7 +81,7 @@
                 <span class="saidpl-nav-cta-text">+91 94444 05505</span>
             </a>
 
-            <button class="saidpl-nav-hamburger" id="saidplNavHamburger" type="button" aria-label="Toggle Mobile Navigation">
+            <button class="saidpl-nav-hamburger" id="saidplNavHamburger" type="button" aria-label="Toggle mobile navigation" aria-controls="saidplNavMenu" aria-expanded="false">
                 <span class="saidpl-nav-bar saidpl-nav-bar--1"></span>
                 <span class="saidpl-nav-bar saidpl-nav-bar--2"></span>
                 <span class="saidpl-nav-bar saidpl-nav-bar--3"></span>
