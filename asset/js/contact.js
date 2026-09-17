@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const slideElements =
         document.querySelectorAll(".slide-on-scroll");
 
-
     if ("IntersectionObserver" in window) {
 
         const revealObserver =
@@ -39,19 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             );
 
-
         slideElements.forEach((element) => {
-
             revealObserver.observe(element);
-
         });
 
     } else {
 
         slideElements.forEach((element) => {
-
             element.classList.add("is-visible");
-
         });
 
     }
@@ -84,9 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "contactHeroPrev"
         );
 
-
     let currentSlide = 0;
-
     let heroTimer = null;
 
 
@@ -96,19 +88,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         currentSlide =
             (index + heroSlides.length) %
             heroSlides.length;
-
 
         if (heroTrack) {
 
             heroTrack.style.transform =
                 `translate3d(-${currentSlide * 100}%, 0, 0)`;
-
         }
-
 
         heroDots.forEach((dot, dotIndex) => {
 
@@ -118,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
         });
-
 
         heroSlides.forEach((slide, slideIndex) => {
 
@@ -133,16 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     function nextHero() {
-
         updateHero(currentSlide + 1);
-
     }
 
 
     function previousHero() {
-
         updateHero(currentSlide - 1);
-
     }
 
 
@@ -150,18 +133,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         stopHeroTimer();
 
-
         if (heroSlides.length <= 1) {
             return;
         }
-
 
         heroTimer =
             setInterval(
                 nextHero,
                 6000
             );
-
     }
 
 
@@ -172,9 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
             clearInterval(heroTimer);
 
             heroTimer = null;
-
         }
-
     }
 
 
@@ -234,7 +212,6 @@ document.addEventListener("DOMContentLoaded", () => {
             stopHeroTimer
         );
 
-
         heroSection.addEventListener(
             "mouseleave",
             startHeroTimer
@@ -255,7 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
-
             if (event.key === "ArrowLeft") {
 
                 previousHero();
@@ -269,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     updateHero(0);
-
     startHeroTimer();
 
 
@@ -299,12 +274,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         "nav-open"
                     );
 
-
                 mobileToggle.setAttribute(
                     "aria-expanded",
                     String(isOpen)
                 );
-
 
                 document.body.classList.toggle(
                     "no-scroll",
@@ -338,11 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         ".nav-dropdown"
                     );
 
-
                 if (!dropdown) {
                     return;
                 }
-
 
                 if (window.innerWidth <= 768) {
 
@@ -352,7 +323,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         dropdown.classList.toggle(
                             "is-open"
                         );
-
 
                     toggle.setAttribute(
                         "aria-expanded",
@@ -375,7 +345,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(
             "contactForm"
         );
-
 
     const firstName =
         document.getElementById(
@@ -412,18 +381,15 @@ document.addEventListener("DOMContentLoaded", () => {
             "service"
         );
 
-
     const submitButton =
         document.getElementById(
             "contactSubmit"
         );
 
-
     const formStatus =
         document.getElementById(
             "formStatus"
         );
-
 
     const messageCount =
         document.getElementById(
@@ -450,12 +416,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         const group =
             field.closest(
                 ".form-group"
             );
-
 
         if (group) {
 
@@ -465,10 +429,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
         const error =
             getErrorElement(field.id);
-
 
         if (error) {
 
@@ -488,12 +450,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         const group =
             field.closest(
                 ".form-group"
             );
-
 
         if (group) {
 
@@ -507,10 +467,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
         const error =
             getErrorElement(field.id);
-
 
         if (error) {
 
@@ -528,12 +486,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         const group =
             field.closest(
                 ".form-group"
             );
-
 
         if (group) {
 
@@ -556,7 +512,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         formStatus.textContent = "";
 
         formStatus.className =
@@ -575,10 +530,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
-
         const value =
             field.value.trim();
-
 
         if (!value) {
 
@@ -591,7 +544,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
         if (value.length < 2) {
 
             setFieldError(
@@ -603,7 +555,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
         if (!/^[A-Za-zÀ-ÿ\s.'-]+$/.test(value)) {
 
             setFieldError(
@@ -614,7 +565,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
 
         }
-
 
         setFieldSuccess(field);
 
@@ -632,7 +582,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!phone) {
             return false;
         }
-
 
         const normalized =
             phone.value.trim().replace(/[\s()-]/g, "");
@@ -655,7 +604,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
-
         setFieldSuccess(phone);
 
         return true;
@@ -673,14 +621,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
-
         const value =
             email.value.trim();
 
-
         const emailRegex =
             /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
 
         if (!emailRegex.test(value)) {
 
@@ -692,7 +637,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
 
         }
-
 
         setFieldSuccess(email);
 
@@ -711,10 +655,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return false;
         }
 
-
         const value =
             message.value.trim();
-
 
         if (value.length < 10) {
 
@@ -727,6 +669,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
 
+        if (value.length > 3000) {
+
+            setFieldError(
+                message,
+                "Message must not exceed 3000 characters"
+            );
+
+            return false;
+
+        }
 
         setFieldSuccess(message);
 
@@ -744,7 +696,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!message || !messageCount) {
             return;
         }
-
 
         messageCount.textContent =
             `${message.value.length} / 1000`;
@@ -774,11 +725,25 @@ document.addEventListener("DOMContentLoaded", () => {
             "input",
             () => {
 
-                const raw = phone.value.trim();
+                const raw =
+                    phone.value.trim();
+
                 if (raw.startsWith("+91")) {
-                    phone.value = "+91" + raw.slice(3).replace(/\D/g, "").slice(0, 10);
+
+                    phone.value =
+                        "+91" +
+                        raw
+                            .slice(3)
+                            .replace(/\D/g, "")
+                            .slice(0, 10);
+
                 } else {
-                    phone.value = raw.replace(/\D/g, "").slice(0, 10);
+
+                    phone.value =
+                        raw
+                            .replace(/\D/g, "")
+                            .slice(0, 10);
+
                 }
 
                 clearFieldError(phone);
@@ -806,9 +771,17 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         field.addEventListener(
             "input",
+            () => {
+
+                clearFieldError(field);
+
+            }
+        );
+
+        field.addEventListener(
+            "change",
             () => {
 
                 clearFieldError(field);
@@ -820,161 +793,597 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
+       FORM SECURITY
+       ========================================================== */
+
+    const csrfTokenInput =
+        document.getElementById("csrfToken");
+
+    const recaptchaTokenInput =
+        document.getElementById("recaptchaToken");
+
+    const formAction =
+        form
+            ? form.getAttribute("action")
+            : "/backend/contact-submit.php";
+
+
+    /*
+     * IMPORTANT:
+     * Replace this with your Google reCAPTCHA v3 SITE KEY.
+     *
+     * Do NOT put your SECRET KEY here.
+     * The SECRET KEY belongs only in backend/config.php.
+     */
+    const RECAPTCHA_SITE_KEY =
+        "6LeIXsAtAAAAAPRGpzxI9bmuhZ1JnWo0jhZX5AaQ";
+
+    const RECAPTCHA_ACTION =
+        "contact_form";
+
+
+    /* =========================================================
+       LOAD CSRF TOKEN
+    ========================================================== */
+
+    async function loadCsrfToken() {
+
+        if (!csrfTokenInput || !formAction) {
+            return false;
+        }
+
+        try {
+
+            const response =
+                await fetch(
+                    formAction,
+                    {
+                        method: "GET",
+                        credentials: "same-origin",
+                        headers: {
+                            "Accept": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        cache: "no-store"
+                    }
+                );
+
+            const data =
+                await response.json();
+
+            if (
+                response.ok &&
+                data.success &&
+                data.message
+            ) {
+
+                csrfTokenInput.value =
+                    data.message;
+
+                return true;
+            }
+
+            return false;
+
+        } catch (error) {
+
+            console.error(
+                "Unable to load CSRF token:",
+                error
+            );
+
+            return false;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       GENERATE reCAPTCHA V3 TOKEN
+    ========================================================== */
+
+    async function generateRecaptchaToken() {
+
+        if (!recaptchaTokenInput) {
+
+            console.error(
+                "reCAPTCHA token input not found."
+            );
+
+            return false;
+        }
+
+        if (!window.grecaptcha) {
+
+            console.error(
+                "Google reCAPTCHA is not loaded."
+            );
+
+            return false;
+        }
+
+        if (
+            typeof window.grecaptcha.ready !== "function" ||
+            typeof window.grecaptcha.execute !== "function"
+        ) {
+
+            console.error(
+                "reCAPTCHA v3 is not available."
+            );
+
+            return false;
+        }
+
+        try {
+
+            const token =
+                await new Promise(
+                    (resolve, reject) => {
+
+                        window.grecaptcha.ready(
+                            async () => {
+
+                                try {
+
+                                    const result =
+                                        await window.grecaptcha.execute(
+                                            RECAPTCHA_SITE_KEY,
+                                            {
+                                                action:
+                                                    RECAPTCHA_ACTION
+                                            }
+                                        );
+
+                                    resolve(result);
+
+                                } catch (error) {
+
+                                    reject(error);
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
+
+            if (!token) {
+                return false;
+            }
+
+            recaptchaTokenInput.value =
+                token;
+
+            return true;
+
+        } catch (error) {
+
+            console.error(
+                "reCAPTCHA error:",
+                error
+            );
+
+            return false;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       SUBMIT BUTTON LOADING
+    ========================================================== */
+
+    function setSubmitLoading(isLoading) {
+
+        if (!submitButton) {
+            return;
+        }
+
+        submitButton.disabled =
+            isLoading;
+
+        submitButton.setAttribute(
+            "aria-busy",
+            String(isLoading)
+        );
+
+        submitButton.classList.toggle(
+            "loading",
+            isLoading
+        );
+
+        const buttonText =
+            submitButton.querySelector("span");
+
+        if (buttonText) {
+
+            buttonText.textContent =
+                isLoading
+                    ? "Sending..."
+                    : "Send Enquiry";
+
+        }
+
+    }
+
+
+    /* =========================================================
+       FORM STATUS
+    ========================================================== */
+
+    function showFormStatus(
+        messageText,
+        type
+    ) {
+
+        if (!formStatus) {
+            return;
+        }
+
+        formStatus.textContent =
+            messageText;
+
+        formStatus.className =
+            `form-status ${type}`;
+
+    }
+
+
+    /* =========================================================
        FORM SUBMISSION
     ========================================================== */
 
-    const csrfTokenInput = document.getElementById("csrfToken");
-    const formAction = form ? form.getAttribute("action") : "/backend/contact-submit.php";
-
-    async function loadCsrfToken() {
-        if (!csrfTokenInput || !formAction) return;
-
-        try {
-            const response = await fetch(formAction, {
-                method: "GET",
-                credentials: "same-origin",
-                headers: { "Accept": "application/json" }
-            });
-            const data = await response.json();
-            if (response.ok && data.success && data.message) {
-                csrfTokenInput.value = data.message;
-            }
-        } catch (error) {
-            // Submission will fail safely if a CSRF token cannot be obtained.
-        }
-    }
-
-    function setSubmitLoading(isLoading) {
-        if (!submitButton) return;
-
-        submitButton.disabled = isLoading;
-        submitButton.setAttribute("aria-busy", String(isLoading));
-        submitButton.classList.toggle("loading", isLoading);
-
-        const buttonText = submitButton.querySelector("span");
-        if (buttonText) {
-            buttonText.textContent = isLoading ? "Sending..." : "Send Enquiry";
-        }
-    }
-
-    function showFormStatus(messageText, type) {
-        if (!formStatus) return;
-
-        formStatus.textContent = messageText;
-        formStatus.className = `form-status ${type}`;
-    }
-
     if (form) {
-        form.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            clearFormStatus();
 
-            const website = document.getElementById("website");
-            if (website && website.value.trim() !== "") {
-                showFormStatus("Invalid submission.", "error");
-                return;
-            }
+        form.addEventListener(
+            "submit",
+            async (event) => {
 
-            const validFirstName = validateName(firstName, "First name");
-            const validLastName = validateName(lastName, "Last name");
-            const validPhone = validatePhone();
-            const validEmail = validateEmail();
-            const validMessage = validateMessage();
+                event.preventDefault();
 
-            if (!(validFirstName && validLastName && validPhone && validEmail && validMessage)) {
-                const firstInvalid = form.querySelector(".has-error input, .has-error textarea, .has-error select");
-                if (firstInvalid) {
-                    firstInvalid.focus({ preventScroll: true });
-                    firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
-                }
-                return;
-            }
+                clearFormStatus();
 
-            if (!csrfTokenInput || !csrfTokenInput.value) {
-                showFormStatus("Unable to securely submit the form. Please refresh the page and try again.", "error");
-                await loadCsrfToken();
-                return;
-            }
 
-            const captchaResponse = window.grecaptcha
-                ? window.grecaptcha.getResponse()
-                : "";
+                /* -----------------------------------------
+                   HONEYPOT
+                ----------------------------------------- */
 
-            if (!captchaResponse) {
-                showFormStatus("Please complete the reCAPTCHA verification.", "error");
-                return;
-            }
+                const website =
+                    document.getElementById("website");
 
-            setSubmitLoading(true);
+                if (
+                    website &&
+                    website.value.trim() !== ""
+                ) {
 
-            try {
-                const response = await fetch(formAction || "/backend/contact-submit.php", {
-                    method: "POST",
-                    credentials: "same-origin",
-                    headers: {
-                        "Accept": "application/json",
-                        "X-Requested-With": "XMLHttpRequest"
-                    },
-                    body: new FormData(form)
-                });
-
-                let data;
-                try {
-                    data = await response.json();
-                } catch (parseError) {
-                    throw new Error("Invalid server response.");
-                }
-
-                if (!response.ok || !data.success) {
+                    /*
+                     * Do not reveal that the honeypot
+                     * was detected.
+                     */
                     showFormStatus(
-                        data.message || "Something went wrong. Please try again later.",
-                        "error"
+                        "Thank you for your enquiry.",
+                        "success"
                     );
 
-                    if (window.grecaptcha) {
-                        window.grecaptcha.reset();
-                    }
+                    form.reset();
 
-                    if (response.status === 403) {
-                        await loadCsrfToken();
-                    }
+                    updateMessageCount();
 
                     return;
                 }
 
-                showFormStatus(
-                    data.message || "Thank you! Your enquiry has been submitted successfully.",
-                    "success"
-                );
 
-                form.reset();
-                updateMessageCount();
+                /* -----------------------------------------
+                   FRONTEND VALIDATION
+                ----------------------------------------- */
 
-                form.querySelectorAll(".has-error, .has-success").forEach((group) => {
-                    group.classList.remove("has-error", "has-success");
-                });
+                const validFirstName =
+                    validateName(
+                        firstName,
+                        "First name"
+                    );
 
-                if (window.grecaptcha) {
-                    window.grecaptcha.reset();
+                const validLastName =
+                    validateName(
+                        lastName,
+                        "Last name"
+                    );
+
+                const validPhone =
+                    validatePhone();
+
+                const validEmail =
+                    validateEmail();
+
+                const validMessage =
+                    validateMessage();
+
+
+                if (
+                    !(
+                        validFirstName &&
+                        validLastName &&
+                        validPhone &&
+                        validEmail &&
+                        validMessage
+                    )
+                ) {
+
+                    const firstInvalid =
+                        form.querySelector(
+                            ".has-error input, " +
+                            ".has-error textarea, " +
+                            ".has-error select"
+                        );
+
+                    if (firstInvalid) {
+
+                        firstInvalid.focus({
+                            preventScroll: true
+                        });
+
+                        firstInvalid.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+                    }
+
+                    showFormStatus(
+                        "Please correct the highlighted fields.",
+                        "error"
+                    );
+
+                    return;
                 }
 
-                await loadCsrfToken();
-            } catch (error) {
-                showFormStatus(
-                    "Something went wrong. Please try again later.",
-                    "error"
-                );
 
-                if (window.grecaptcha) {
-                    window.grecaptcha.reset();
+                /* -----------------------------------------
+                   CSRF TOKEN
+                ----------------------------------------- */
+
+                if (
+                    !csrfTokenInput ||
+                    !csrfTokenInput.value.trim()
+                ) {
+
+                    const csrfLoaded =
+                        await loadCsrfToken();
+
+                    if (!csrfLoaded) {
+
+                        showFormStatus(
+                            "Unable to securely submit the form. Please refresh the page and try again.",
+                            "error"
+                        );
+
+                        return;
+                    }
+
                 }
-            } finally {
-                setSubmitLoading(false);
+
+
+                /* -----------------------------------------
+                   reCAPTCHA V3
+                ----------------------------------------- */
+
+                const captchaVerified =
+                    await generateRecaptchaToken();
+
+                if (!captchaVerified) {
+
+                    showFormStatus(
+                        "Unable to verify security. Please refresh the page and try again.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                /* -----------------------------------------
+                   START SUBMISSION
+                ----------------------------------------- */
+
+                setSubmitLoading(true);
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            formAction ||
+                            "/backend/contact-submit.php",
+                            {
+                                method: "POST",
+                                credentials: "same-origin",
+                                headers: {
+                                    "Accept":
+                                        "application/json",
+
+                                    "X-Requested-With":
+                                        "XMLHttpRequest"
+                                },
+                                body:
+                                    new FormData(form)
+                            }
+                        );
+
+
+                    /* -------------------------------------
+                       PARSE SERVER RESPONSE
+                    ------------------------------------- */
+
+                    let data;
+
+                    try {
+
+                        data =
+                            await response.json();
+
+                    } catch (parseError) {
+
+                        console.error(
+                            "Invalid server response:",
+                            parseError
+                        );
+
+                        throw new Error(
+                            "Invalid server response."
+                        );
+
+                    }
+
+
+                    /* -------------------------------------
+                       CSRF ERROR
+                    ------------------------------------- */
+
+                    if (response.status === 403) {
+
+                        showFormStatus(
+                            data.message ||
+                            "Your session expired. Please refresh the page and try again.",
+                            "error"
+                        );
+
+                        await loadCsrfToken();
+
+                        return;
+                    }
+
+
+                    /* -------------------------------------
+                       SERVER ERROR
+                    ------------------------------------- */
+
+                    if (
+                        !response.ok ||
+                        !data.success
+                    ) {
+
+                        showFormStatus(
+                            data.message ||
+                            "Something went wrong. Please try again later.",
+                            "error"
+                        );
+
+                        /*
+                         * reCAPTCHA v3 tokens are
+                         * single-use. Clear the old token.
+                         */
+                        if (recaptchaTokenInput) {
+
+                            recaptchaTokenInput.value =
+                                "";
+
+                        }
+
+                        /*
+                         * If the backend rejected the
+                         * CSRF token, get a new one.
+                         */
+                        if (response.status === 403) {
+
+                            await loadCsrfToken();
+
+                        }
+
+                        return;
+                    }
+
+
+                    /* -------------------------------------
+                       SUCCESS
+                    ------------------------------------- */
+
+                    showFormStatus(
+                        data.message ||
+                        "Thank you! Your enquiry has been submitted successfully.",
+                        "success"
+                    );
+
+
+                    /* Clear form */
+
+                    form.reset();
+
+                    updateMessageCount();
+
+
+                    /* Clear validation states */
+
+                    form
+                        .querySelectorAll(
+                            ".has-error, .has-success"
+                        )
+                        .forEach((group) => {
+
+                            group.classList.remove(
+                                "has-error",
+                                "has-success"
+                            );
+
+                        });
+
+
+                    /* Clear reCAPTCHA token */
+
+                    if (recaptchaTokenInput) {
+
+                        recaptchaTokenInput.value =
+                            "";
+
+                    }
+
+
+                    /*
+                     * Get fresh CSRF token for
+                     * the next submission.
+                     */
+                    await loadCsrfToken();
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Contact form submission error:",
+                        error
+                    );
+
+                    showFormStatus(
+                        "Something went wrong. Please try again later.",
+                        "error"
+                    );
+
+                    if (recaptchaTokenInput) {
+
+                        recaptchaTokenInput.value =
+                            "";
+
+                    }
+
+                } finally {
+
+                    setSubmitLoading(false);
+
+                }
+
             }
-        });
+        );
+
+
+        /* -----------------------------------------
+           INITIAL CSRF TOKEN
+        ----------------------------------------- */
 
         loadCsrfToken();
+
     }
+
 
     /* =========================================================
        6. SCROLL TO TOP
@@ -991,7 +1400,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!scrollUp) {
             return;
         }
-
 
         if (window.scrollY > 400) {
 
@@ -1061,7 +1469,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 "nav-open"
                             );
 
-
                             if (mobileToggle) {
 
                                 mobileToggle.setAttribute(
@@ -1070,7 +1477,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 );
 
                             }
-
 
                             document.body.classList.remove(
                                 "no-scroll"
@@ -1105,20 +1511,16 @@ document.addEventListener("DOMContentLoaded", () => {
                             "contactForm"
                         );
 
-
                     if (!target) {
                         return;
                     }
 
-
                     event.preventDefault();
-
 
                     target.scrollIntoView({
                         behavior: "smooth",
                         block: "center"
                     });
-
 
                     setTimeout(() => {
 
@@ -1126,7 +1528,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             document.getElementById(
                                 "firstName"
                             );
-
 
                         if (firstField) {
                             firstField.focus();

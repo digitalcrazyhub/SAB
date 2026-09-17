@@ -613,8 +613,13 @@
                         <input type="hidden" id="csrfToken" name="csrf_token" value="">
 
                         <div class="contact-recaptcha" aria-label="Spam protection">
-                            <div class="g-recaptcha" data-sitekey="ADD_RECAPTCHA_SITE_KEY_HERE"></div>
-                        </div>
+    <input
+        type="hidden"
+        id="recaptchaToken"
+        name="recaptcha_token"
+        value=""
+    >
+</div>
 
                         <!-- Submit -->
                         <button
@@ -835,8 +840,11 @@
 
 <div id="saidplFloatingActions"></div>
     <!-- =========================================================
-         JAVASCRIPT
+         reCHAPTCHA
     ========================================================== -->
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LeIXsAtAAAAAPRGpzxI9bmuhZ1JnWo0jhZX5AaQ"></script>
+
 <script src="https://unpkg.com/lucide@latest"></script>
      <script src="/asset/js/common.js"></script>
     <script src="/asset/js/float.js"></script>
