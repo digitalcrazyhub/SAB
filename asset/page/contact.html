@@ -11,25 +11,23 @@
         content="Contact Sri Amma Industrial Developer PVT LTD for industrial construction, fabrication, engineering and project development solutions.">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- Existing Global Styles -->
-    <link rel="stylesheet" href="/asset/css/navbar.css">
-    <link rel="stylesheet" href="/asset/css/footer.css">
+    <link rel="stylesheet" href="../asset/css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
 
     <!-- Contact Page -->
-    <link rel="stylesheet" href="/asset/css/contact.css">
-     <link rel="stylesheet" href="/asset/css/float.css">
-    <link rel="icon" href="/asset/img/web_icon.png" sizes="192x192">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link rel="stylesheet" href="../css/float.css">
+    <link rel="icon" href="../img/web_icon.png" sizes="192x192">
 </head>
 
 <body>
@@ -48,8 +46,7 @@
         <div class="contact-hero-track" id="contactHeroTrack">
 
             <!-- Slide 1 -->
-            <div class="contact-hero-slide is-active"
-                style="background-image: url('/asset/img/contact_banner.png');">
+            <div class="contact-hero-slide is-active" style="background-image: url('../img/contact_banner.png');">
 
                 <div class="contact-hero-overlay"></div>
 
@@ -86,8 +83,7 @@
 
 
             <!-- Slide 2 -->
-            <div class="contact-hero-slide"
-                style="background-image: url('/asset/img/contact_banner1.png');">
+            <div class="contact-hero-slide" style="background-image: url('/asset/img/contact_banner1.png');">
 
                 <div class="contact-hero-overlay"></div>
 
@@ -122,27 +118,21 @@
         <!-- Hero Controls -->
         <div class="contact-hero-controls">
 
-            <button class="hero-arrow" id="contactHeroPrev"
-                aria-label="Previous slide">
+            <button class="hero-arrow" id="contactHeroPrev" aria-label="Previous slide">
                 <i class="fa-solid fa-arrow-left"></i>
             </button>
 
             <div class="contact-hero-dots" id="contactHeroDots">
 
-                <button class="contact-dot is-active"
-                    data-index="0"
-                    aria-label="Slide 1">
+                <button class="contact-dot is-active" data-index="0" aria-label="Slide 1">
                 </button>
 
-                <button class="contact-dot"
-                    data-index="1"
-                    aria-label="Slide 2">
+                <button class="contact-dot" data-index="1" aria-label="Slide 2">
                 </button>
 
             </div>
 
-            <button class="hero-arrow" id="contactHeroNext"
-                aria-label="Next slide">
+            <button class="hero-arrow" id="contactHeroNext" aria-label="Next slide">
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
 
@@ -161,8 +151,7 @@
             <div class="contact-info-grid">
 
                 <!-- Phone -->
-                <a href="tel:+919444405505"
-                    class="contact-info-card slide-on-scroll slide-up">
+                <a href="tel:+919444405505" class="contact-info-card slide-on-scroll slide-up">
 
                     <div class="contact-icon">
                         <i class="fa-solid fa-phone"></i>
@@ -190,8 +179,7 @@
 
 
                 <!-- Email -->
-                <a href="mailto:info@sriammaindustrial.com"
-                    class="contact-info-card slide-on-scroll slide-up">
+                <a href="mailto:info@sriammaindustrial.com" class="contact-info-card slide-on-scroll slide-up">
 
                     <div class="contact-icon">
                         <i class="fa-solid fa-envelope"></i>
@@ -411,10 +399,7 @@
                     </div>
 
 
-                    <form id="contactForm"
-                        action="/backend/contact-submit.php"
-                        method="POST"
-                        novalidate>
+                    <form id="contactForm" action="/backend/contact-submit.php" method="POST" novalidate>
 
 
                         <!-- Honeypot -->
@@ -423,11 +408,7 @@
                                 Website
                             </label>
 
-                            <input type="text"
-                                id="website"
-                                name="website"
-                                tabindex="-1"
-                                autocomplete="off">
+                            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                         </div>
 
 
@@ -444,19 +425,12 @@
 
                                     <i class="fa-regular fa-user"></i>
 
-                                    <input
-                                        type="text"
-                                        id="firstName"
-                                        name="firstName"
-                                        placeholder="Enter first name"
-                                        autocomplete="given-name"
-                                        maxlength="100"
-                                        required>
+                                    <input type="text" id="firstName" name="firstName" placeholder="Enter first name"
+                                        autocomplete="given-name" maxlength="100" required>
 
                                 </div>
 
-                                <small id="firstNameError"
-                                    class="form-error"></small>
+                                <small id="firstNameError" class="form-error"></small>
 
                             </div>
 
@@ -472,19 +446,12 @@
 
                                     <i class="fa-regular fa-user"></i>
 
-                                    <input
-                                        type="text"
-                                        id="lastName"
-                                        name="lastName"
-                                        placeholder="Enter last name"
-                                        autocomplete="family-name"
-                                        maxlength="100"
-                                        required>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Enter last name"
+                                        autocomplete="family-name" maxlength="100" required>
 
                                 </div>
 
-                                <small id="lastNameError"
-                                    class="form-error"></small>
+                                <small id="lastNameError" class="form-error"></small>
 
                             </div>
 
@@ -504,19 +471,12 @@
 
                                     <i class="fa-regular fa-envelope"></i>
 
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        placeholder="your@email.com"
-                                        autocomplete="email"
-                                        maxlength="190"
-                                        required>
+                                    <input type="email" id="email" name="email" placeholder="your@email.com"
+                                        autocomplete="email" maxlength="190" required>
 
                                 </div>
 
-                                <small id="emailError"
-                                    class="form-error"></small>
+                                <small id="emailError" class="form-error"></small>
 
                             </div>
 
@@ -532,20 +492,12 @@
 
                                     <i class="fa-solid fa-phone"></i>
 
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        name="phone"
-                                        placeholder="10-digit mobile number"
-                                        autocomplete="tel"
-                                        inputmode="numeric"
-                                        maxlength="13"
-                                        required>
+                                    <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number"
+                                        autocomplete="tel" inputmode="numeric" maxlength="13" required>
 
                                 </div>
 
-                                <small id="phoneError"
-                                    class="form-error"></small>
+                                <small id="phoneError" class="form-error"></small>
 
                             </div>
 
@@ -596,13 +548,8 @@
                             <label for="message"> Message <span>*</span></label>
                             <div class="textarea-wrapper">
                                 <i class="fa-regular fa-message"></i>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    rows="5"
-                                    maxlength="3000"
-                                    placeholder="Tell us about your project..."
-                                    required></textarea>
+                                <textarea id="message" name="message" rows="5" maxlength="3000"
+                                    placeholder="Tell us about your project..." required></textarea>
                             </div>
                             <div class="message-bottom">
                                 <small id="messageError" class="form-error"></small>
@@ -613,19 +560,11 @@
                         <input type="hidden" id="csrfToken" name="csrf_token" value="">
 
                         <div class="contact-recaptcha" aria-label="Spam protection">
-    <input
-        type="hidden"
-        id="recaptchaToken"
-        name="recaptcha_token"
-        value=""
-    >
-</div>
+                            <input type="hidden" id="recaptchaToken" name="recaptcha_token" value="">
+                        </div>
 
                         <!-- Submit -->
-                        <button
-                            type="submit"
-                            class="contact-submit-btn"
-                            id="contactSubmit">
+                        <button type="submit" class="contact-submit-btn" id="contactSubmit">
 
                             <span>
                                 Send Enquiry
@@ -643,10 +582,7 @@
 
 
                         <!-- Form Status -->
-                        <div id="formStatus"
-                            class="form-status"
-                            role="status"
-                            aria-live="polite">
+                        <div id="formStatus" class="form-status" role="status" aria-live="polite">
                         </div>
 
                     </form>
@@ -702,7 +638,7 @@
                                 </span>
 
                                 <p>
-                                   4/951, 33rd Street, TVS Colony, Annanagar West Extn, Chennai - 600101.
+                                    4/951, 33rd Street, TVS Colony, Annanagar West Extn, Chennai - 600101.
                                 </p>
                             </div>
 
@@ -721,7 +657,7 @@
                                 </span>
 
                                 <a href="tel:+919444405505">
-                                    +91 94444 05505 |  +91 93802 43013
+                                    +91 94444 05505 | +91 93802 43013
                                 </a>
                             </div>
 
@@ -750,10 +686,7 @@
                     </div>
 
 
-                    <a
-                        href="https://www.google.com/maps"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer"
                         class="direction-btn">
 
                         Get Directions
@@ -767,7 +700,10 @@
 
                 <!-- Map -->
                 <div class="map-wrapper slide-on-scroll slide-right">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11409.057692951057!2d80.18331679658466!3d13.092172069786116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52640896aaaaab%3A0xe3ac64bc3951eac2!2sSri%20Amma%20Industrial%20Developers%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1789545890626!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11409.057692951057!2d80.18331679658466!3d13.092172069786116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52640896aaaaab%3A0xe3ac64bc3951eac2!2sSri%20Amma%20Industrial%20Developers%20Pvt%20Ltd!5e1!3m2!1sen!2sin!4v1789545890626!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
 
                 </div>
 
@@ -810,8 +746,7 @@
 
                 <div class="cta-action slide-on-scroll slide-right">
 
-                    <a href="#contactForm"
-                        class="cta-btn">
+                    <a href="#contactForm" class="cta-btn">
 
                         Start Your Enquiry
 
@@ -833,36 +768,36 @@
     ========================================================== -->
     <div id="saidplFooter"></div>
 
-<!-- ============================================================
+    <!-- ============================================================
      SAIDPL FLOATING ACTION BUTTONS
      Scoped component - will not affect other page CSS
      ============================================================ -->
 
-<div id="saidplFloatingActions"></div>
+    <div id="saidplFloatingActions"></div>
     <!-- =========================================================
          reCHAPTCHA
     ========================================================== -->
 
-<script src="https://www.google.com/recaptcha/api.js?render=6LeIXsAtAAAAAPRGpzxI9bmuhZ1JnWo0jhZX5AaQ"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeIXsAtAAAAAPRGpzxI9bmuhZ1JnWo0jhZX5AaQ"></script>
 
-<script src="https://unpkg.com/lucide@latest"></script>
-     <script src="/asset/js/common.js"></script>
-    <script src="/asset/js/float.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/float.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script src="/asset/js/contact.js"></script>
+    <script src="../js/contact.js"></script>
 
     <!-- Existing Navbar -->
-    <script src="/asset/js/navbar.js"></script>
+    <script src="../js/navbar.js"></script>
 
     <!-- Existing component loader -->
-    <script src="/asset/js/nav-call.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    });
-</script>
+    <script src="../js/nav-call.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 
 </html>

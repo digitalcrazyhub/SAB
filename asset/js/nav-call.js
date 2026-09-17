@@ -24,9 +24,9 @@
     document.addEventListener('DOMContentLoaded', async () => {
         try {
             await Promise.all([
-                loadComponent('#saidplNavHeader', '/asset/includes/navbar.html'),
-                loadComponent('#saidplFooter', '/asset/includes/footer.html'),
-                loadComponent('#saidplFloatingActions', '/asset/includes/floating-actions.html')
+                loadComponent('#saidplNavHeader', './asset/includes/navbar.html'),
+                loadComponent('#saidplFooter', './asset/includes/footer.html'),
+                loadComponent('#saidplFloatingActions', './asset/includes/floating-actions.html')
             ]);
             finishSharedComponents();
         } catch (error) {
