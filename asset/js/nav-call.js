@@ -55,6 +55,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
+<<<<<<< HEAD
         const components = [
             ['#saidplNavHeader', './asset/includes/navbar.html'],
             ['#saidplFooter', './asset/includes/footer.html'],
@@ -77,5 +78,17 @@
         });
 
         finishSharedComponents();
+=======
+        try {
+            await Promise.all([
+                loadComponent('#saidplNavHeader', './asset/includes/navbar.html'),
+                loadComponent('#saidplFooter', './asset/includes/footer.html'),
+                loadComponent('#saidplFloatingActions', './asset/includes/floating-actions.html')
+            ]);
+            finishSharedComponents();
+        } catch (error) {
+            console.error('Unable to load a shared site component:', error);
+        }
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
     }, { once: true });
 })();

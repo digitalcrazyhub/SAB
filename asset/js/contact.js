@@ -805,7 +805,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const formAction =
         form
             ? form.getAttribute("action")
+<<<<<<< HEAD
             : "./backend/api/contact.php";
+=======
+            : "/backend/contact-submit.php";
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
 
 
     /*
@@ -816,7 +820,11 @@ document.addEventListener("DOMContentLoaded", () => {
      * The SECRET KEY belongs only in backend/config.php.
      */
     const RECAPTCHA_SITE_KEY =
+<<<<<<< HEAD
         "6LfAneYtAAAAANU3bIRTPAEF0n4f-TYEPmhxYsP7";
+=======
+        "6LeIXsAtAAAAAPRGpzxI9bmuhZ1JnWo0jhZX5AaQ";
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
 
     const RECAPTCHA_ACTION =
         "contact_form";
@@ -885,6 +893,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function generateRecaptchaToken() {
 
+<<<<<<< HEAD
         if (!RECAPTCHA_SITE_KEY) {
             if (recaptchaTokenInput) {
                 recaptchaTokenInput.value = "";
@@ -904,12 +913,43 @@ document.addEventListener("DOMContentLoaded", () => {
             );
             recaptchaTokenInput.value = "";
             return true;
+=======
+        if (!recaptchaTokenInput) {
+
+            console.error(
+                "reCAPTCHA token input not found."
+            );
+
+            return false;
+        }
+
+        if (!window.grecaptcha) {
+
+            console.error(
+                "Google reCAPTCHA is not loaded."
+            );
+
+            return false;
+        }
+
+        if (
+            typeof window.grecaptcha.ready !== "function" ||
+            typeof window.grecaptcha.execute !== "function"
+        ) {
+
+            console.error(
+                "reCAPTCHA v3 is not available."
+            );
+
+            return false;
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
         }
 
         try {
 
             const token =
                 await new Promise(
+<<<<<<< HEAD
                     (resolve) => {
 
                         // Fallback timeout so slow network or ad-blockers never hang the submit button
@@ -917,18 +957,24 @@ document.addEventListener("DOMContentLoaded", () => {
                             console.warn("reCAPTCHA execution timed out. Proceeding.");
                             resolve("");
                         }, 3000);
+=======
+                    (resolve, reject) => {
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
 
                         window.grecaptcha.ready(
                             async () => {
 
                                 try {
 
+<<<<<<< HEAD
                                     if (typeof window.grecaptcha.execute !== "function") {
                                         clearTimeout(timeoutId);
                                         resolve("");
                                         return;
                                     }
 
+=======
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
                                     const result =
                                         await window.grecaptcha.execute(
                                             RECAPTCHA_SITE_KEY,
@@ -938,6 +984,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                             }
                                         );
 
+<<<<<<< HEAD
                                     clearTimeout(timeoutId);
                                     resolve(result || "");
 
@@ -949,6 +996,13 @@ document.addEventListener("DOMContentLoaded", () => {
                                         error
                                     );
                                     resolve("");
+=======
+                                    resolve(result);
+
+                                } catch (error) {
+
+                                    reject(error);
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
 
                                 }
 
@@ -958,13 +1012,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 );
 
+<<<<<<< HEAD
             recaptchaTokenInput.value =
                 token || "";
+=======
+            if (!token) {
+                return false;
+            }
+
+            recaptchaTokenInput.value =
+                token;
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
 
             return true;
 
         } catch (error) {
 
+<<<<<<< HEAD
             console.warn(
                 "reCAPTCHA generation error:",
                 error
@@ -975,6 +1039,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             return true;
+=======
+            console.error(
+                "reCAPTCHA error:",
+                error
+            );
+
+            return false;
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
 
         }
 
@@ -1205,7 +1277,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     const response =
                         await fetch(
                             formAction ||
+<<<<<<< HEAD
                             "./backend/api/contact.php",
+=======
+                            "/backend/contact-submit.php",
+>>>>>>> 5d35c9f8a83d0b58d4d1ce9b0e805f174d5b7672
                             {
                                 method: "POST",
                                 credentials: "same-origin",
