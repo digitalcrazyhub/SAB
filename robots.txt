@@ -1,0 +1,11 @@
+# ==============================================================================
+# SRI AMMA BUILDER PVT LTD — ROBOTS EXCLUSION DIRECTIVES
+# Production Domain: https://sriammabuilders.com
+# ==============================================================================
+
+User-agent: *
+Allow: /
+Disallow: /backend/
+
+# XML Sitemap
+Sitemap: https://sriammabuilders.com/sitemap.xml

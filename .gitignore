@@ -1,0 +1,35 @@
+# Environment variables & private credentials
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/config/private/
+*.pem
+*.key
+
+# Composer dependencies
+/vendor/
+/backend/vendor/
+composer.phar
+
+# Application logs & cache
+*.log
+/backend/logs/*
+!/backend/logs/.gitkeep
+/logs/
+
+# Temporary, backup & OS files
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.swp
+*~
+*.zip
+
+# IDE & Editor files
+.idea/
+*.sublime-project
+*.sublime-workspace

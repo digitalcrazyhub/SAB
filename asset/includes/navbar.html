@@ -1,94 +1,195 @@
-<!-- ==========================================================================
-   ISOLATED NAVBAR COMPONENT (PREFIXED: saidpl-nav-)
-   ========================================================================== -->
+<!-- =========================================================
+     SRI AMMA INDUSTRIAL DEVELOPERS — RESPONSIVE NAVBAR
+     ========================================================= -->
 <header class="saidpl-nav-header" id="saidplNavHeaderElement">
     <div class="saidpl-nav-container">
-        <!-- Brand Logo -->
-        <a href="/" class="saidpl-nav-brand" aria-label="Sri Amma Industrial Developers home">
-            <img src="/asset/img/Nav_logo.png" alt="Sri Amma Industrial Developer Pvt Ltd" class="saidpl-nav-brand-logo">
+
+        <a href="./index.html" class="saidpl-nav-brand" aria-label="Sri Amma Industrial Developers home">
+            <img src="./asset/img/Nav_logo.png" alt="Sri Amma Industrial Developers" class="saidpl-nav-brand-logo">
         </a>
 
-        <!-- Desktop Navigation Menu -->
-        <nav class="saidpl-nav-menu" id="saidplNavMenu" aria-label="Main Navigation">
+        <nav class="saidpl-nav-menu" id="saidplNavMenu" aria-label="Main navigation">
+
+            <!-- Mobile Drawer Header -->
+            <div class="saidpl-drawer-header">
+                <a href="./index.html" class="saidpl-drawer-brand" aria-label="Sri Amma Industrial Developers home">
+                    <img src="./asset/img/Nav_logo.png" alt="Sri Amma Industrial Developers" class="saidpl-drawer-logo">
+                </a>
+                <button type="button" class="saidpl-drawer-close-btn" id="saidplNavDrawerClose"
+                    aria-label="Close navigation menu">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                </button>
+            </div>
+
             <ul class="saidpl-nav-list">
-                <li class="saidpl-nav-item">
-                    <a href="/" class="saidpl-nav-link saidpl-nav-link--active">Home</a>
+
+                <!-- HOME -->
+                <li class="saidpl-nav-item saidpl-nav-item--home">
+                    <a href="./index.html" class="saidpl-nav-link">
+                        <span>Home</span>
+                        <span class="saidpl-drawer-arrow" aria-hidden="true"><i
+                                class="fa-solid fa-arrow-right-long"></i></span>
+                    </a>
                 </li>
 
-                <!-- About Us (Page + Dropdown) -->
+                <!-- ABOUT US -->
                 <li class="saidpl-nav-item saidpl-nav-item--has-dropdown">
                     <div class="saidpl-nav-link-box">
-                        <a href="/asset/page/about.html" class="saidpl-nav-link">About Us</a>
-                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle About submenu" aria-controls="saidplAboutMenu" aria-expanded="false">
-                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        <a href="./about.html" class="saidpl-nav-link">
+                            <span>About Us</span>
+                        </a>
+
+                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle About Us submenu"
+                            aria-controls="saidplAboutMenu" aria-expanded="false">
+                            <i class="fa-solid fa-chevron-down saidpl-desktop-icon" aria-hidden="true"></i>
+                            <span class="saidpl-mobile-toggle-symbol" aria-hidden="true">
+                                <i class="fa-solid fa-plus saidpl-icon-plus"></i>
+                                <i class="fa-solid fa-minus saidpl-icon-minus"></i>
+                            </span>
                         </button>
                     </div>
+
                     <ul class="saidpl-nav-dropdown-menu" id="saidplAboutMenu">
                         <li class="saidpl-nav-dropdown-item">
-                            <a href="/asset/page/team.html" class="saidpl-nav-dropdown-link">Our Team</a>
+                            <a href="./team.html" class="saidpl-nav-dropdown-link">
+                                <span class="saidpl-nav-sub-num">01</span>
+                                <div class="saidpl-nav-sub-text">
+                                    <span class="saidpl-nav-sub-title">Our Team</span>
+                                    <span class="saidpl-nav-sub-desc">Meet the engineering directors</span>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </li>
 
-                <!-- Service (Page + Dropdown) -->
+                <!-- SERVICE -->
                 <li class="saidpl-nav-item saidpl-nav-item--has-dropdown">
                     <div class="saidpl-nav-link-box">
-                        <a href="/asset/page/service.html" class="saidpl-nav-link">Service</a>
-                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle Services submenu" aria-controls="saidplServicesMenu" aria-expanded="false">
-                            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                        <a href="./services.html" class="saidpl-nav-link">
+                            <span>Service</span>
+                        </a>
+
+                        <button class="saidpl-nav-dropdown-toggle" type="button" aria-label="Toggle Services submenu"
+                            aria-controls="saidplServicesMenu" aria-expanded="false">
+                            <i class="fa-solid fa-chevron-down saidpl-desktop-icon" aria-hidden="true"></i>
+                            <span class="saidpl-mobile-toggle-symbol" aria-hidden="true">
+                                <i class="fa-solid fa-plus saidpl-icon-plus"></i>
+                                <i class="fa-solid fa-minus saidpl-icon-minus"></i>
+                            </span>
                         </button>
                     </div>
+
                     <ul class="saidpl-nav-dropdown-menu" id="saidplServicesMenu">
+
                         <li class="saidpl-nav-dropdown-item">
-                            <a href="/asset/page/industrial-building-construction.html" class="saidpl-nav-dropdown-link">Industrial Building Construction</a>
+                            <a href="./industrial-building-construction.html" class="saidpl-nav-dropdown-link">
+                                <span class="saidpl-nav-sub-num">01</span>
+                                <div class="saidpl-nav-sub-text">
+                                    <span class="saidpl-nav-sub-title">Industrial Building Construction</span>
+                                    <span class="saidpl-nav-sub-desc">Factories, sheds, and processing plants</span>
+                                </div>
+                            </a>
                         </li>
+
                         <li class="saidpl-nav-dropdown-item">
-                            <a href="/asset/page/residential_building_construction.html" class="saidpl-nav-dropdown-link">Residential Building Construction</a>
+                            <a href="./residential_building_construction.html" class="saidpl-nav-dropdown-link">
+                                <span class="saidpl-nav-sub-num">02</span>
+                                <div class="saidpl-nav-sub-text">
+                                    <span class="saidpl-nav-sub-title">Residential Building Construction</span>
+                                    <span class="saidpl-nav-sub-desc">Premium villas and modern homes</span>
+                                </div>
+                            </a>
                         </li>
+
                         <li class="saidpl-nav-dropdown-item">
-                            <a href="/asset/page/commercial_building_construction.html" class="saidpl-nav-dropdown-link">Commercial Building Construction</a>
+                            <a href="./commercial_building_construction.html" class="saidpl-nav-dropdown-link">
+                                <span class="saidpl-nav-sub-num">03</span>
+                                <div class="saidpl-nav-sub-text">
+                                    <span class="saidpl-nav-sub-title">Commercial Building Construction</span>
+                                    <span class="saidpl-nav-sub-desc">Offices, retail spaces, and complexes</span>
+                                </div>
+                            </a>
                         </li>
+
                         <li class="saidpl-nav-dropdown-item">
-                            <a href="/asset/page/godown_building_construction.html" class="saidpl-nav-dropdown-link">Godown Building Construction</a>
+                            <a href="./godown_building_construction.html" class="saidpl-nav-dropdown-link">
+                                <span class="saidpl-nav-sub-num">04</span>
+                                <div class="saidpl-nav-sub-text">
+                                    <span class="saidpl-nav-sub-title">Godown Building Construction</span>
+                                    <span class="saidpl-nav-sub-desc">Warehouses and heavy storage facilities</span>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </li>
 
+                <!-- PROJECTS -->
                 <li class="saidpl-nav-item">
-                    <a href="/asset/page/project.html" class="saidpl-nav-link">Project</a>
+                    <a href="./projects.html" class="saidpl-nav-link">
+                        <span>Projects</span>
+                        <span class="saidpl-drawer-arrow" aria-hidden="true"><i
+                                class="fa-solid fa-arrow-right-long"></i></span>
+                    </a>
                 </li>
 
+                <!-- CONTACT US -->
                 <li class="saidpl-nav-item">
-                    <a href="/asset/page/contact.html" class="saidpl-nav-link">Contact</a>
+                    <a href="./contact.html" class="saidpl-nav-link">
+                        <span>Contact Us</span>
+                        <span class="saidpl-drawer-arrow" aria-hidden="true"><i
+                                class="fa-solid fa-arrow-right-long"></i></span>
+                    </a>
                 </li>
+
             </ul>
+
+            <!-- Mobile Drawer Footer -->
+            <div class="saidpl-drawer-footer">
+                <a href="https://wa.me/919444405505?text=Hi%2C%20could%20you%20please%20share%20more%20details"
+                    target="_blank" rel="noopener noreferrer" class="saidpl-drawer-whatsapp-btn"
+                    aria-label="Chat on WhatsApp with Sri Amma Developers">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                    <span>WHATSAPP: +91 94444 05505</span>
+                </a>
+
+                <a href="tel:+919444405505" class="saidpl-drawer-call-btn" aria-label="Call Sri Amma Developers">
+                    CALL: +91 94444 05505
+                </a>
+
+                <p class="saidpl-drawer-address">
+                    4/951, 33rd Street, TVS Colony, Annanagar West Extn, Chennai – 600101.
+                </p>
+            </div>
+
         </nav>
 
-        <!-- Right Side Action & Mobile Toggle -->
         <div class="saidpl-nav-action-area">
-            <a href="https://wa.me/919444405505?text=Hi%2C%20could%20you%20please%20share%20more%20details" target="_blank" rel="noopener noreferrer" class="saidpl-nav-cta-btn">
-                <span class="saidpl-nav-cta-icon"><svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 16 16"
-            width="24"
-            height="24"
-            fill="currentColor"
-            aria-hidden="true">
 
-            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+            <a href="https://wa.me/919444405505?text=Hi%2C%20could%20you%20please%20share%20more%20details"
+                target="_blank" rel="noopener noreferrer" class="saidpl-nav-cta-btn"
+                aria-label="Contact us on WhatsApp at +91 94444 05505">
 
-        </svg></span>
-                <span class="saidpl-nav-cta-text">+91 94444 05505</span>
+                <svg class="saidpl-nav-cta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                    aria-hidden="true">
+                    <path fill="currentColor"
+                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                </svg>
+
+                <span class="saidpl-nav-cta-text">
+                    +91 94444 05505
+                </span>
             </a>
 
-            <button class="saidpl-nav-hamburger" id="saidplNavHamburger" type="button" aria-label="Toggle mobile navigation" aria-controls="saidplNavMenu" aria-expanded="false">
+            <button class="saidpl-nav-hamburger" id="saidplNavHamburger" type="button" aria-label="Open navigation menu"
+                aria-controls="saidplNavMenu" aria-expanded="false">
+
                 <span class="saidpl-nav-bar saidpl-nav-bar--1"></span>
                 <span class="saidpl-nav-bar saidpl-nav-bar--2"></span>
                 <span class="saidpl-nav-bar saidpl-nav-bar--3"></span>
             </button>
+
         </div>
     </div>
 </header>
 
-<!-- Mobile Navigation Drawer Backdrop -->
-<div class="saidpl-nav-backdrop" id="saidplNavBackdrop"></div>
+<div class="saidpl-nav-backdrop" id="saidplNavBackdrop" aria-hidden="true"></div>

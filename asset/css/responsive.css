@@ -1,0 +1,1763 @@
+/* =========================================================
+   RESPONSIVE CSS - GLOBAL
+   Sri Amma Builder Pvt Ltd
+   Single authoritative source for all viewport-responsive overrides.
+   Desktop / Tablet / Mobile layout corrections.
+   This file is loaded AFTER all page-specific stylesheets.
+   ========================================================= */
+
+
+/* =========================================================
+   1. RESPONSIVE FOUNDATION AND OVERFLOW PROTECTION
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    min-width: 320px;
+    overflow-x: clip;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   2. GLOBAL CONTAINERS AND SECTION SPACING
+   ========================================================= */
+
+.section-padding {
+    padding-block: clamp(3rem, 6vw, 6.5rem);
+}
+
+
+/* =========================================================
+   3. TYPOGRAPHY AND TEXT WRAPPING
+   ========================================================= */
+
+.section-title,
+.section-title-dark,
+.hero-title,
+.contact-hero-title,
+.contact-main-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.section-desc,
+.hero-desc,
+.hero-subtitle,
+.director-quote,
+.history-text {
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   4. NAVBAR - handled in navbar.css (self-contained)
+   ========================================================= */
+
+
+/* =========================================================
+   5. HERO SECTIONS, BANNERS, AND SLIDERS
+   ========================================================= */
+
+.hero-slider-section {
+    height: 75vh;
+    min-height: 480px;
+}
+
+.team-hero,
+.team-style-hero {
+    height: 52vh;
+    min-height: 420px;
+}
+
+.contact-hero {
+    height: 58vh;
+    min-height: 480px;
+}
+
+.hero-nav-controls {
+    right: 4rem;
+    bottom: 3.5rem;
+}
+
+.hero-pagination-wrapper {
+    left: 4rem;
+    bottom: 3.5rem;
+}
+
+
+/* =========================================================
+   6. BUTTONS, LINKS, AND CTAs
+   ========================================================= */
+
+.btn {
+    white-space: nowrap;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   7. GENERAL GRIDS AND CARDS
+   ========================================================= */
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr 1.15fr;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.services-tabs-container {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 2rem;
+}
+
+.tab-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: center;
+}
+
+.process-header-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    gap: 3rem;
+}
+
+.saidpl-testimonial-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.85fr);
+    gap: 2rem;
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   8. IMAGES, GALLERIES, AND PROJECT PORTFOLIOS
+   ========================================================= */
+
+.image-frame img,
+.tab-img-box img,
+.project-img-box img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.project-img-box {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   9. FORMS AND CONTACT SECTIONS
+   ========================================================= */
+
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.contact-main-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 80px;
+    align-items: center;
+}
+
+
+/* =========================================================
+   10. ABOUT PAGE SPECIFIC SECTIONS
+   ========================================================= */
+
+.director-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: 4.5rem;
+    align-items: center;
+}
+
+.history-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: center;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.client-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.metrics-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.awards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.team-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+
+/* =========================================================
+   11. SERVICE PAGES
+   ========================================================= */
+
+.service-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 4.5rem;
+    align-items: center;
+    padding: 4.5rem 0;
+}
+
+.service-row.reverse {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+
+.band-grid,
+.features-process-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: center;
+}
+
+
+/* =========================================================
+   12. FOOTER - SHARED GRID
+   ========================================================= */
+
+.saidpl-footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr 1.1fr 1.3fr;
+    gap: clamp(2rem, 3.5vw, 4rem);
+}
+
+
+/* =========================================================
+   16. LARGE DESKTOP - >= 1536px
+   ========================================================= */
+
+@media (min-width: 1536px) {
+    .container {
+        max-width: 1540px;
+    }
+}
+
+
+/* =========================================================
+   17. TABLET - <= 1100px
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .saidpl-testimonial-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 1.5rem;
+    }
+
+    .saidpl-testimonial-card,
+    .saidpl-testimonial-cta {
+        padding: 2.5rem;
+    }
+
+    .service-row {
+        gap: 3rem;
+    }
+
+    .service-row.reverse {
+        gap: 3rem;
+    }
+
+    .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-main-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+    }
+
+    .location-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .map-wrapper {
+        min-height: 400px;
+    }
+
+    .map-wrapper iframe {
+        min-height: 400px;
+    }
+
+}
+
+
+/* =========================================================
+   18. TABLET - <= 1024px
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .section-padding {
+        padding-block: clamp(2.5rem, 5vw, 5rem);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-tabs-container {
+        grid-template-columns: 250px minmax(0, 1fr);
+        gap: 1.5rem;
+        padding: 1.25rem;
+    }
+
+    .tab-grid {
+        gap: 1.25rem;
+    }
+
+    .tab-img-box {
+        height: 350px;
+    }
+
+    .tab-btn {
+        padding: 1rem;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    .service-nav-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .director-grid,
+    .history-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+
+    .director-image-wrap {
+        max-width: 560px;
+        margin-inline: auto;
+    }
+
+    .director-img-container {
+        max-width: 520px;
+    }
+
+    .pillars-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pillar-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .client-logos-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .metrics-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .team-cards-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .team-photo {
+        height: 320px;
+    }
+
+    .service-row,
+    .service-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 3.5rem 0;
+    }
+
+    .service-row.reverse .service-image-col {
+        order: 1;
+    }
+
+    .service-row.reverse .service-content-col {
+        order: 2;
+    }
+
+    .image-frame {
+        aspect-ratio: 16 / 9;
+    }
+
+    .band-grid,
+    .band-grid.reverse,
+    .features-process-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .band-grid.reverse .band-media {
+        order: 1;
+    }
+
+    .band-grid.reverse .band-content {
+        order: 2;
+    }
+
+    .expertise-band {
+        padding: 3.5rem 0;
+    }
+
+    .media-frame img {
+        height: 280px;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .projects-section .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .saidpl-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   19. TABLET / MOBILE - <= 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .saidpl-testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .saidpl-testimonial-cta {
+        min-height: 380px;
+    }
+
+}
+
+
+/* =========================================================
+   20. MOBILE - <= 768px
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .section-header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-slider-section {
+        height: 70vh;
+        min-height: 420px;
+    }
+
+    .hero-nav-controls {
+        display: none;
+    }
+
+    .hero-pagination-wrapper {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2rem;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .hero-progress-track {
+        display: none;
+    }
+
+    .team-hero,
+    .team-style-hero {
+        height: 55vh;
+        min-height: 400px;
+    }
+
+    .contact-hero {
+        height: 55vh;
+        min-height: 430px;
+    }
+
+    .contact-hero-overlay {
+        background: linear-gradient(90deg,
+                rgba(5, 5, 5, 0.9),
+                rgba(5, 5, 5, 0.6));
+    }
+
+    .contact-hero-content {
+        padding-top: 40px;
+    }
+
+    .contact-hero-title {
+        font-size: clamp(2.7rem, 11vw, 4rem);
+        letter-spacing: -2px;
+    }
+
+    .contact-hero-subtitle {
+        max-width: 500px;
+        font-size: 0.9rem;
+    }
+
+    .hero-side-text {
+        display: none;
+    }
+
+    .contact-hero-controls {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-header-grid,
+    .tab-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-tabs-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .service-nav-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+    }
+
+    .tab-btn {
+        min-height: 65px;
+        padding: 0.85rem;
+        gap: 0.65rem;
+        font-size: 0.85rem;
+        transform: none;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+        transform: none;
+    }
+
+    .tab-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .tab-img-box {
+        height: 320px;
+    }
+
+    .tab-info-box h3 {
+        font-size: 1.5rem;
+    }
+
+    .saidpl-testimonial-section {
+        padding: 4rem 0;
+    }
+
+    .saidpl-testimonial-card {
+        padding: 2rem 1.5rem;
+        border-radius: 10px;
+    }
+
+    .saidpl-testimonial-header {
+        margin-bottom: 2rem;
+        gap: 1rem;
+    }
+
+    .saidpl-testimonial-title {
+        font-size: 1.7rem;
+    }
+
+    .saidpl-testimonial-quote-mark {
+        width: 45px;
+        height: 45px;
+        flex: 0 0 45px;
+    }
+
+    .saidpl-testimonial-logo {
+        width: 135px;
+        height: 72px;
+        margin-bottom: 1.25rem;
+    }
+
+    .saidpl-testimonial-text {
+        font-size: 0.92rem;
+        line-height: 1.75;
+    }
+
+    .saidpl-testimonial-navigation {
+        margin-top: 2rem;
+        padding-top: 1.25rem;
+    }
+
+    .saidpl-testimonial-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .saidpl-testimonial-cta {
+        min-height: auto;
+        padding: 2.5rem 1.5rem;
+        border-radius: 10px;
+    }
+
+    .container {
+        padding-inline: 1.25rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+
+    .hero-subtitle {
+        max-width: 600px;
+        font-size: 0.95rem;
+    }
+
+    .director-grid {
+        gap: 2.75rem;
+    }
+
+    .director-image-wrap {
+        width: 100%;
+    }
+
+    .director-img-container {
+        width: 100%;
+        max-width: 460px;
+    }
+
+    .director-quote {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .history-grid {
+        gap: 2.75rem;
+    }
+
+    .history-text {
+        text-align: left;
+    }
+
+    .pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .pillar-card:last-child {
+        grid-column: auto;
+    }
+
+    .client-logos-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .client-logo-item {
+        height: 90px;
+        padding: 0.75rem;
+    }
+
+    .metrics-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .metric-card {
+        padding: 2rem 1rem;
+    }
+
+    .metric-num {
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
+    }
+
+    .awards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .award-img {
+        height: 320px;
+    }
+
+    .team-cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin-inline: auto;
+    }
+
+    .team-photo {
+        height: 400px;
+    }
+
+    .support-card {
+        width: 100%;
+    }
+
+    .team-hero {
+        height: 46vh;
+        min-height: 360px;
+    }
+
+    .breadcrumbs {
+        font-size: 0.85rem;
+    }
+
+    .hero-dots {
+        bottom: 1.5rem;
+    }
+
+    .services-details-section {
+        padding: 3.5rem 0 5rem;
+    }
+
+    .service-row,
+    .service-row.reverse {
+        gap: 2rem;
+        padding: 3rem 0;
+    }
+
+    .service-heading {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-desc {
+        font-size: 0.94rem;
+        line-height: 1.75;
+        text-align: left;
+    }
+
+    .service-btn {
+        width: auto;
+        margin-top: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .industrial-hero {
+        height: 48vh;
+        min-height: 380px;
+    }
+
+    .expertise-band {
+        padding: 2.75rem 0;
+    }
+
+    .media-frame img {
+        height: auto;
+        aspect-ratio: 16 / 10;
+        min-height: 220px;
+    }
+
+    .band-title {
+        font-size: 1.55rem;
+    }
+
+    .band-text {
+        text-align: left;
+    }
+
+    .dark-sec-title {
+        font-size: 1.75rem;
+    }
+
+    .checklist-items {
+        gap: 1.15rem;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+    }
+
+    .main-nav.nav-open {
+        display: block;
+    }
+
+    .team-card {
+        width: 100%;
+        max-width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .team-hover-info {
+        bottom: 15px;
+        width: calc(100% - 30px);
+        opacity: 1;
+        transform: translate3d(-50%, 0, 0);
+        pointer-events: auto;
+    }
+
+    .team-card:hover {
+        transform: none;
+    }
+
+    .team-card:hover .team-img-box img {
+        transform: none;
+    }
+
+    .projects-section {
+        padding: 60px 0 75px;
+    }
+
+    .projects-heading {
+        margin-bottom: 35px;
+    }
+
+    .projects-section .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project-info {
+        padding: 18px 18px 21px;
+    }
+
+    .lightbox-modal {
+        padding: 12px;
+    }
+
+    .lightbox-container {
+        width: 100%;
+        max-height: 90vh;
+        border-radius: 14px;
+    }
+
+    .lightbox-image-wrap img {
+        max-height: 55vh;
+    }
+
+    .lightbox-content {
+        padding: 20px;
+    }
+
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        top: 40%;
+    }
+
+    .lightbox-prev {
+        left: 8px;
+    }
+
+    .lightbox-next {
+        right: 8px;
+    }
+
+    .contact-info-section {
+        padding: 20px 0 35px;
+    }
+
+    .contact-info-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .contact-info-card {
+        min-height: 120px;
+        padding: 17px;
+        gap: 11px;
+    }
+
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .contact-card-arrow {
+        display: none;
+    }
+
+    .contact-main-section {
+        padding: 70px 0 80px;
+    }
+
+    .contact-main-grid {
+        gap: 45px;
+    }
+
+    .contact-main-title {
+        font-size: clamp(2.1rem, 9vw, 3rem);
+    }
+
+    .contact-form-wrapper {
+        padding: 28px 22px;
+    }
+
+    .form-top-line {
+        left: 22px;
+    }
+
+    .location-section {
+        padding: 70px 0;
+    }
+
+    .cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cta-action {
+        width: 100%;
+    }
+
+    .cta-btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .slide-left,
+    .slide-right {
+        transform: translate3d(0, 40px, 0);
+    }
+
+}
+
+
+/* =========================================================
+   21. MOBILE - <= 640px
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .saidpl-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .saidpl-footer-bottom-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+}
+
+
+/* =========================================================
+   22. MOBILE - <= 600px (about page specific)
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .team-style-hero {
+        height: 52vh;
+        min-height: 360px;
+    }
+
+    .hero-content {
+        padding-inline: 0.5rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .hero-subtitle {
+        margin-bottom: 1.1rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .breadcrumbs {
+        font-size: 0.88rem;
+    }
+
+    .hero-dots {
+        bottom: 1.5rem;
+    }
+
+    .section-title,
+    .section-title-dark {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+    }
+
+    .director-grid {
+        gap: 2rem;
+    }
+
+    .director-quote {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+
+    .director-signature {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+    }
+
+    .features-checklist {
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+    }
+
+    .check-item {
+        align-items: flex-start;
+        font-size: 0.95rem;
+    }
+
+    .support-card {
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem;
+    }
+
+    .support-icon {
+        width: 50px;
+        height: 50px;
+        flex-basis: 50px;
+        font-size: 1.35rem;
+    }
+
+    .support-tag {
+        font-size: 0.72rem;
+    }
+
+    .support-numbers {
+        display: block;
+    }
+
+    .support-numbers a {
+        display: inline-block;
+        margin-bottom: 0.2rem;
+        font-size: 0.95rem;
+    }
+
+    .experience-badge {
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 1.25rem;
+    }
+
+    .exp-count {
+        font-size: 2.6rem;
+    }
+
+    .history-text {
+        font-size: 0.92rem;
+    }
+
+    .pillar-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .pillar-icon {
+        width: 58px;
+        height: 58px;
+        margin-bottom: 1.25rem;
+        font-size: 1.6rem;
+    }
+
+    .pillar-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .pillar-card p {
+        font-size: 0.9rem;
+    }
+
+    .client-logos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .client-logo-item {
+        height: 86px;
+    }
+
+    .client-logo-item img {
+        max-height: 42px;
+    }
+
+    .banner-metrics-section {
+        padding: 5rem 0 4rem;
+    }
+
+    .banner-content .section-desc {
+        margin-bottom: 2.5rem;
+    }
+
+    .metrics-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .metric-card {
+        padding: 1.5rem 0.75rem;
+        border-radius: 10px;
+    }
+
+    .metric-num {
+        font-size: 2.35rem;
+    }
+
+    .metric-title {
+        font-size: 0.82rem;
+    }
+
+    .award-img {
+        height: 280px;
+    }
+
+    .award-caption {
+        padding: 1.25rem;
+    }
+
+    .award-caption h3 {
+        font-size: 0.98rem;
+    }
+
+    .team-photo {
+        height: 350px;
+    }
+
+    .team-info {
+        padding: 1.5rem;
+    }
+
+    .member-name {
+        font-size: 1.15rem;
+    }
+
+}
+
+
+/* =========================================================
+   23. MOBILE - <= 560px (contact page specific)
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+    .contact-hero {
+        height: 52vh;
+        min-height: 390px;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+    }
+
+    .contact-hero-title {
+        font-size: clamp(2.4rem, 13vw, 3.2rem);
+    }
+
+    .contact-hero-subtitle {
+        font-size: 0.82rem;
+        line-height: 1.7;
+    }
+
+    .contact-breadcrumbs {
+        font-size: 0.72rem;
+    }
+
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-card {
+        min-height: 100px;
+    }
+
+    .contact-info-content h3 {
+        font-size: 0.9rem;
+    }
+
+    .contact-main-title {
+        letter-spacing: -1.5px;
+    }
+
+    .contact-main-description {
+        font-size: 0.83rem;
+        text-align: left;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-heading h2 {
+        font-size: 1.5rem;
+    }
+
+    .input-wrapper input,
+    .input-wrapper select {
+        height: 48px;
+    }
+
+    .textarea-wrapper textarea {
+        min-height: 120px;
+    }
+
+    .location-title {
+        font-size: 2.3rem;
+    }
+
+    .map-wrapper {
+        min-height: 330px;
+    }
+
+    .map-wrapper iframe {
+        min-height: 330px;
+    }
+
+    .map-overlay {
+        left: 12px;
+        top: 12px;
+    }
+
+    .map-card {
+        padding: 9px 11px;
+    }
+
+    .map-card strong {
+        font-size: 0.65rem;
+    }
+
+    .direct-contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+}
+
+
+/* =========================================================
+   24. SMALL MOBILE - <= 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .steps-grid,
+    .stats-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+    }
+
+    .service-nav-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .tab-btn {
+        min-height: 58px;
+    }
+
+    .tab-img-box {
+        height: 260px;
+    }
+
+    .saidpl-testimonial-section {
+        padding: 3.5rem 0;
+    }
+
+    .saidpl-testimonial-card {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .saidpl-testimonial-header {
+        align-items: flex-start;
+    }
+
+    .saidpl-testimonial-title {
+        font-size: 1.5rem;
+    }
+
+    .saidpl-testimonial-quote-mark {
+        display: none;
+    }
+
+    .saidpl-testimonial-logo {
+        width: 120px;
+        height: 65px;
+    }
+
+    .saidpl-testimonial-text {
+        font-size: 0.88rem;
+        line-height: 1.7;
+    }
+
+    .saidpl-testimonial-author h4 {
+        font-size: 0.92rem;
+    }
+
+    .saidpl-testimonial-author span {
+        font-size: 0.78rem;
+    }
+
+    .saidpl-testimonial-author small {
+        font-size: 0.7rem;
+    }
+
+    .saidpl-testimonial-counter {
+        font-size: 0.7rem;
+    }
+
+    .saidpl-testimonial-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .saidpl-testimonial-cta h3 {
+        font-size: 2rem;
+    }
+
+    .team-style-hero {
+        min-height: 340px;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.84rem;
+    }
+
+    .breadcrumbs {
+        font-size: 0.82rem;
+    }
+
+    .section-header.center {
+        margin-bottom: 2.5rem;
+    }
+
+    .support-card {
+        padding: 1rem;
+    }
+
+    .support-numbers a {
+        font-size: 0.9rem;
+    }
+
+    .award-img {
+        height: 250px;
+    }
+
+    .team-photo {
+        height: 320px;
+    }
+
+    .team-hero {
+        height: 42vh;
+        min-height: 320px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.88rem;
+    }
+
+    .breadcrumbs {
+        font-size: 0.78rem;
+    }
+
+    .services-details-section {
+        padding: 2.5rem 0 4rem;
+    }
+
+    .service-row,
+    .service-row.reverse {
+        gap: 1.5rem;
+        padding: 2.5rem 0;
+    }
+
+    .image-frame {
+        border-radius: 14px;
+    }
+
+    .image-frame img {
+        border-radius: 14px;
+    }
+
+    .service-tag {
+        font-size: 0.75rem;
+        letter-spacing: 1.5px;
+    }
+
+    .service-heading {
+        font-size: 1.7rem;
+    }
+
+    .service-desc {
+        font-size: 0.9rem;
+    }
+
+    .service-btn {
+        width: 100%;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .partner-btn {
+        width: 100%;
+        max-width: 380px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .expertise-band {
+        padding: 2.25rem 0;
+    }
+
+    .band-title {
+        font-size: 1.35rem;
+    }
+
+    .dark-sec-title {
+        font-size: 1.45rem;
+    }
+
+    .checklist-items {
+        gap: 0.9rem;
+    }
+
+    .checklist-items li {
+        font-size: 0.9rem;
+    }
+
+    .partner-heading {
+        font-size: 1.55rem;
+    }
+
+    .saidpl-fab-stack {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
+    }
+
+    .saidpl-fab-stack .saidpl-fab {
+        width: 44px;
+        height: 44px;
+    }
+
+    .section-padding {
+        padding-top: 3.5rem;
+        padding-bottom: 4rem;
+    }
+
+    .team-hover-info {
+        padding: 0.9rem;
+    }
+
+    .member-name {
+        font-size: 0.95rem;
+    }
+
+    .member-role {
+        font-size: 0.8rem;
+    }
+
+    .projects-title {
+        font-size: 1.8rem;
+    }
+
+    .projects-description {
+        font-size: 0.88rem;
+    }
+
+    .project-img-box {
+        aspect-ratio: 16 / 11;
+    }
+
+    .project-title {
+        font-size: 1.05rem;
+    }
+
+    .project-desc {
+        font-size: 0.84rem;
+    }
+
+    .lightbox-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .lightbox-content p {
+        font-size: 0.85rem;
+    }
+
+}
+
+
+/* =========================================================
+   25. VERY SMALL MOBILE - <= 360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .container {
+        padding-inline: 0.85rem;
+    }
+
+    .team-style-hero {
+        min-height: 320px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .client-logos-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .client-logo-item {
+        height: 78px;
+        padding: 0.5rem;
+    }
+
+    .metrics-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-card {
+        padding: 1.4rem 1rem;
+    }
+
+    .support-card {
+        gap: 0.75rem;
+    }
+
+    .support-icon {
+        width: 46px;
+        height: 46px;
+        flex-basis: 46px;
+    }
+
+    .support-numbers a {
+        font-size: 0.85rem;
+    }
+
+    .award-img {
+        height: 220px;
+    }
+
+    .team-photo {
+        height: 290px;
+    }
+
+    .hero-slider-section {
+        min-height: 380px;
+    }
+
+}
+
+
+/* =========================================================
+   26. LANDSCAPE AND ORIENTATION CORRECTIONS
+   ========================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+
+    .hero-slider-section {
+        height: 100vmin;
+        min-height: 320px;
+    }
+
+    .team-hero,
+    .team-style-hero,
+    .contact-hero {
+        height: 80vmin;
+        min-height: 280px;
+    }
+
+}
+
+
+/* =========================================================
+   27. ACCESSIBILITY - REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .slide-on-scroll,
+    .slide-left,
+    .slide-right,
+    .slide-up,
+    .slide-zoom {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .staggered-slide>* {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .hero-slider-track {
+        transition: none !important;
+    }
+
+    .saidpl-fab-stack .saidpl-fab {
+        transition: none;
+    }
+
+    .saidpl-fab-stack .saidpl-fab-whatsapp {
+        animation: none;
+    }
+
+    .saidpl-testimonial-track,
+    .saidpl-testimonial-progress span,
+    .saidpl-testimonial-arrow,
+    .saidpl-cta-button {
+        transition: none;
+    }
+
+}
+
+
+/* =========================================================
+   28. TOUCH DEVICES WITHOUT HOVER (Tablets, Touchscreens)
+   ========================================================= */
+
+@media (hover: none) {
+
+    .team-hover-info {
+        opacity: 1 !important;
+        transform: translate3d(-50%, 0, 0) !important;
+        pointer-events: auto !important;
+    }
+
+}

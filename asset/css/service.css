@@ -3,24 +3,26 @@
    ========================================================================== */
 
 :root {
+    /* Brand */
     --primary-color: #0A0A0A;
     --secondary-color: #A5000D;
     --accent-color: #A5000D;
 
+    /* Text */
     --text-color: #1E1E1E;
-    --text-light: #666666;
+    --text-light: #CACACA;
 
+    /* Background */
     --bg-color: #FFFFFF;
     --bg-light: #F5F5F5;
     --bg-dark: #0A0A0A;
 
+    /* Border */
     --border-color: #E5E5E5;
 
+    /* Common */
     --white: #FFFFFF;
     --black: #000000;
-
-    --container-width: 1240px;
-    --section-padding: 7rem;
 }
 
 
@@ -88,7 +90,7 @@ ul {
 
 .container {
     width: 100%;
-    max-width: var(--container-width);
+    max-width: 1240px;
     margin: 0 auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -185,11 +187,9 @@ ul {
     inset: 0;
 
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(10, 10, 10, 0.45) 0%,
-            rgba(10, 10, 10, 0.72) 100%
-        );
+            rgba(10, 10, 10, 0.72) 100%);
 
     pointer-events: none;
 }
@@ -215,11 +215,9 @@ ul {
 .hero-title {
     color: var(--white);
 
-    font-size: clamp(
-        2.5rem,
-        5vw,
-        4rem
-    );
+    font-size: clamp(2.5rem,
+            5vw,
+            4rem);
 
     font-weight: 800;
     line-height: 1.15;
@@ -237,11 +235,9 @@ ul {
 
     color: #D0D0D0;
 
-    font-size: clamp(
-        0.95rem,
-        2vw,
-        1.15rem
-    );
+    font-size: clamp(0.95rem,
+            2vw,
+            1.15rem);
 
     font-weight: 400;
 
@@ -367,8 +363,7 @@ ul {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr)
-        minmax(0, 1.15fr);
+        minmax(0, 1fr) minmax(0, 1.15fr);
 
     gap: 4.5rem;
 
@@ -393,8 +388,7 @@ ul {
 
 .service-row.reverse {
     grid-template-columns:
-        minmax(0, 1.15fr)
-        minmax(0, 1fr);
+        minmax(0, 1.15fr) minmax(0, 1fr);
 }
 
 
@@ -482,11 +476,9 @@ ul {
 
     color: var(--white);
 
-    font-size: clamp(
-        1.85rem,
-        3vw,
-        2.5rem
-    );
+    font-size: clamp(1.85rem,
+            3vw,
+            2.5rem);
 
     font-weight: 800;
 
@@ -552,7 +544,7 @@ ul {
     transform: translateY(-3px);
 
     box-shadow:
-        0 8px 20px rgba(255, 183, 3, 0.3);
+        0 8px 20px rgba(165, 0, 13, 0.3);
 }
 
 
@@ -564,421 +556,4 @@ ul {
 .service-btn:focus-visible {
     outline: 2px solid var(--white);
     outline-offset: 4px;
-}
-
-
-/* ==========================================================================
-   FLOATING SCROLL BUTTON
-   ========================================================================== */
-
-.scroll-to-top {
-    position: fixed;
-
-    right: 2rem;
-    bottom: 2rem;
-
-    z-index: 99;
-
-    width: 46px;
-    height: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: none;
-    border-radius: 50%;
-
-    background-color: var(--accent-color);
-
-    color: var(--primary-color);
-
-    font-size: 1.1rem;
-
-    cursor: pointer;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(20px);
-
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease,
-        transform 0.35s ease,
-        background-color 0.35s ease;
-}
-
-
-.scroll-to-top.is-visible {
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: translateY(0);
-}
-
-
-.scroll-to-top:hover {
-    background-color: var(--white);
-
-    color: var(--black);
-
-    transform: translateY(-4px);
-}
-
-
-.scroll-to-top:focus-visible {
-    outline: 2px solid var(--white);
-    outline-offset: 4px;
-}
-
-
-/* ==========================================================================
-   WHATSAPP
-   ========================================================================== */
-
-.whatsapp-float {
-    position: fixed;
-
-    left: 2rem;
-    bottom: 2rem;
-
-    z-index: 99;
-
-    width: 52px;
-    height: 52px;
-
-    display: block;
-
-    transition:
-        transform 0.3s ease;
-}
-
-
-.whatsapp-float img {
-    width: 52px;
-    height: 52px;
-
-    object-fit: contain;
-}
-
-
-.whatsapp-float:hover {
-    transform: scale(1.12);
-}
-
-
-.whatsapp-float:focus-visible {
-    outline: 2px solid var(--white);
-    outline-offset: 4px;
-}
-
-
-/* ==========================================================================
-   LARGE TABLET
-   ========================================================================== */
-
-@media (max-width: 1100px) {
-
-    .service-row {
-        gap: 3rem;
-    }
-
-    .service-row.reverse {
-        gap: 3rem;
-    }
-
-}
-
-
-/* ==========================================================================
-   TABLET
-   ========================================================================== */
-
-@media (max-width: 1024px) {
-
-    .container {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-    }
-
-
-    .team-hero {
-        height: 48vh;
-        min-height: 390px;
-    }
-
-
-    .service-row,
-    .service-row.reverse {
-
-        grid-template-columns: 1fr;
-
-        gap: 2.5rem;
-
-        padding: 3.5rem 0;
-    }
-
-
-    .service-row.reverse .service-image-col {
-        order: 1;
-    }
-
-
-    .service-row.reverse .service-content-col {
-        order: 2;
-    }
-
-
-    .image-frame {
-        aspect-ratio: 16 / 9;
-    }
-
-}
-
-
-/* ==========================================================================
-   MOBILE
-   ========================================================================== */
-
-@media (max-width: 768px) {
-
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-
-    .team-hero {
-        height: 46vh;
-        min-height: 360px;
-    }
-
-
-    .hero-title {
-        font-size: clamp(
-            2.15rem,
-            9vw,
-            3rem
-        );
-    }
-
-
-    .hero-subtitle {
-        font-size: 0.95rem;
-
-        line-height: 1.6;
-
-        padding: 0 0.5rem;
-    }
-
-
-    .breadcrumbs {
-        font-size: 0.85rem;
-    }
-
-
-    .hero-dots {
-        bottom: 1.5rem;
-    }
-
-
-    .services-details-section {
-        padding: 3.5rem 0 5rem;
-    }
-
-
-    .service-row,
-    .service-row.reverse {
-
-        gap: 2rem;
-
-        padding: 3rem 0;
-    }
-
-
-    .service-heading {
-        font-size: 2rem;
-
-        margin-bottom: 1rem;
-    }
-
-
-    .service-desc {
-        font-size: 0.94rem;
-
-        line-height: 1.75;
-
-        text-align: left;
-    }
-
-
-    .service-btn {
-        width: auto;
-
-        margin-top: 1rem;
-
-        padding:
-            0.8rem
-            1.5rem;
-    }
-
-
-    .scroll-to-top {
-        right: 1rem;
-        bottom: 1rem;
-
-        width: 44px;
-        height: 44px;
-    }
-
-
-    .whatsapp-float {
-        left: 1rem;
-        bottom: 1rem;
-
-        width: 50px;
-        height: 50px;
-    }
-
-
-    .whatsapp-float img {
-        width: 50px;
-        height: 50px;
-    }
-
-}
-
-
-/* ==========================================================================
-   SMALL MOBILE
-   ========================================================================== */
-
-@media (max-width: 480px) {
-
-    .team-hero {
-        height: 42vh;
-        min-height: 320px;
-    }
-
-
-    .hero-title {
-        font-size: 2rem;
-    }
-
-
-    .hero-subtitle {
-        font-size: 0.88rem;
-    }
-
-
-    .breadcrumbs {
-        font-size: 0.78rem;
-    }
-
-
-    .services-details-section {
-        padding: 2.5rem 0 4rem;
-    }
-
-
-    .service-row,
-    .service-row.reverse {
-
-        gap: 1.5rem;
-
-        padding: 2.5rem 0;
-    }
-
-
-    .image-frame {
-        border-radius: 14px;
-    }
-
-
-    .image-frame img {
-        border-radius: 14px;
-    }
-
-
-    .service-tag {
-        font-size: 0.75rem;
-
-        letter-spacing: 1.5px;
-    }
-
-
-    .service-heading {
-        font-size: 1.7rem;
-    }
-
-
-    .service-desc {
-        font-size: 0.9rem;
-    }
-
-
-    .service-btn {
-        width: 100%;
-    }
-
-
-    .scroll-to-top {
-        width: 42px;
-        height: 42px;
-
-        right: 0.75rem;
-        bottom: 0.75rem;
-    }
-
-
-    .whatsapp-float {
-        width: 48px;
-        height: 48px;
-
-        left: 0.75rem;
-        bottom: 0.75rem;
-    }
-
-
-    .whatsapp-float img {
-        width: 48px;
-        height: 48px;
-    }
-
-}
-
-
-/* ==========================================================================
-   REDUCED MOTION
-   ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
-
-        scroll-behavior: auto !important;
-    }
-
-
-    .slide-on-scroll {
-        opacity: 1;
-
-        transform: none;
-    }
-
 }

@@ -1,0 +1,21 @@
+# Protect backend environment and credentials
+.env
+.env.*
+!.env.example
+config/private/
+*.pem
+*.key
+
+# Composer dependencies
+vendor/
+composer.phar
+
+# Logs
+logs/*
+!logs/.gitkeep
+*.log
+
+# Cache & backups
+*.bak
+*.tmp
+*.swp

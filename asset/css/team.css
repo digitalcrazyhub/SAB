@@ -11,7 +11,7 @@
 
     /* Text */
     --text-color: #1E1E1E;
-    --text-light: #666666;
+    --text-light: #CACACA;
 
     /* Background */
     --bg-color: #FFFFFF;
@@ -24,9 +24,6 @@
     /* Common */
     --white: #FFFFFF;
     --black: #000000;
-
-    /* Layout */
-    --container-width: 1240px;
 
 }
 
@@ -45,7 +42,6 @@
 
 }
 
-
 html {
 
     scroll-behavior: smooth;
@@ -53,123 +49,77 @@ html {
 
 }
 
-
 body {
-
     font-family: "Plus Jakarta Sans", sans-serif;
-
     background-color: var(--bg-dark);
-
     color: var(--white);
-
     line-height: 1.6;
-
     overflow-x: hidden;
-
 }
-
 
 body,
 button,
 a {
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
-
 
 a {
-
     text-decoration: none;
-
     color: inherit;
-
 }
-
 
 button {
-
     font-family: inherit;
-
 }
-
 
 ul,
 ol {
-
     list-style: none;
-
 }
-
 
 img {
-
     display: block;
-
     width: 100%;
-
     max-width: 100%;
-
 }
-
 
 .container {
-
     width: 100%;
-
-    max-width: var(--container-width);
-
+    max-width: 1240px;
     margin: 0 auto;
-
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-
 }
-
 
 .section-padding {
-
     padding-top: 5.5rem;
-
     padding-bottom: 6.5rem;
-
 }
-
 
 /* ============================================================
    SCROLL REVEAL
 ============================================================ */
 
 .slide-on-scroll {
-
     opacity: 0;
-
     transform: translate3d(0, 50px, 0);
-
     will-change: transform, opacity;
-
     transition:
         opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
         transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-
 }
 
 
 .slide-on-scroll.is-visible {
-
     opacity: 1;
-
     transform: translate3d(0, 0, 0);
-
 }
-
 
 /* ============================================================
    STAGGERED TEAM ANIMATION
 ============================================================ */
-
-.staggered-slide > * {
+.staggered-slide>* {
 
     opacity: 0;
 
@@ -182,7 +132,7 @@ img {
 }
 
 
-.staggered-slide.is-visible > *:nth-child(3n + 1) {
+.staggered-slide.is-visible>*:nth-child(3n + 1) {
 
     opacity: 1;
 
@@ -193,7 +143,7 @@ img {
 }
 
 
-.staggered-slide.is-visible > *:nth-child(3n + 2) {
+.staggered-slide.is-visible>*:nth-child(3n + 2) {
 
     opacity: 1;
 
@@ -204,7 +154,7 @@ img {
 }
 
 
-.staggered-slide.is-visible > *:nth-child(3n + 3) {
+.staggered-slide.is-visible>*:nth-child(3n + 3) {
 
     opacity: 1;
 
@@ -284,11 +234,9 @@ img {
     inset: 0;
 
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(10, 10, 10, 0.82),
-            rgba(10, 10, 10, 0.68)
-        );
+            rgba(10, 10, 10, 0.68));
 
 }
 
@@ -670,8 +618,7 @@ img {
 }
 
 
-.team-card:hover
-.social-dots span:nth-child(1) {
+.team-card:hover .social-dots span:nth-child(1) {
 
     transform: scale(1.2);
 
@@ -680,8 +627,7 @@ img {
 }
 
 
-.team-card:hover
-.social-dots span:nth-child(2) {
+.team-card:hover .social-dots span:nth-child(2) {
 
     transform: scale(1.2);
 
@@ -690,267 +636,10 @@ img {
 }
 
 
-.team-card:hover
-.social-dots span:nth-child(3) {
+.team-card:hover .social-dots span:nth-child(3) {
 
     transform: scale(1.2);
 
     transition-delay: 0.3s;
-
-}
-
-/* ============================================================
-   TABLET
-============================================================ */
-
-@media (max-width: 1024px) {
-
-    .team-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 1.5rem;
-
-    }
-
-    .section-padding {
-
-        padding-top: 4.5rem;
-
-        padding-bottom: 5rem;
-
-    }
-
-}
-
-
-/* ============================================================
-   MOBILE NAVIGATION
-============================================================ */
-
-@media (max-width: 768px) {
-
-    .container {
-
-        padding-left: 1.25rem;
-
-        padding-right: 1.25rem;
-
-    }
-
-
-    .team-hero {
-
-        height: 60vh;
-
-        min-height: 400px;
-
-    }
-
-
-    .hero-title {
-
-        font-size: clamp(2.2rem, 9vw, 3.2rem);
-
-    }
-
-
-    .hero-subtitle {
-
-        font-size: 0.95rem;
-
-        line-height: 1.6;
-
-    }
-
-
-    .team-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 1.5rem;
-
-    }
-
-
-    .team-card {
-
-        width: 100%;
-
-        max-width: 440px;
-
-        margin-left: auto;
-
-        margin-right: auto;
-
-    }
-
-
-    /*
-       On touch devices there is no reliable :hover.
-       Keep the information visible so team details
-       are still accessible.
-    */
-
-    .team-hover-info {
-
-        bottom: 15px;
-
-        width: calc(100% - 30px);
-
-        opacity: 1;
-
-        transform:
-            translate3d(-50%, 0, 0);
-
-        pointer-events: auto;
-
-    }
-
-
-    .team-card:hover {
-
-        transform: none;
-
-    }
-
-
-    .team-card:hover .team-img-box img {
-
-        transform: none;
-
-    }
-
-
-    .scroll-to-top {
-
-        right: 1rem;
-
-        bottom: 1rem;
-
-        width: 44px;
-
-        height: 44px;
-
-    }
-
-
-    .whatsapp-float {
-
-        left: 1rem;
-
-        bottom: 1rem;
-
-        width: 50px;
-
-        height: 50px;
-
-    }
-
-}
-
-
-/* ============================================================
-   SMALL MOBILE
-============================================================ */
-
-@media (max-width: 480px) {
-
-    .section-padding {
-
-        padding-top: 3.5rem;
-
-        padding-bottom: 4rem;
-
-    }
-
-
-    .team-hero {
-
-        height: 58vh;
-
-        min-height: 380px;
-
-    }
-
-
-    .hero-title {
-
-        font-size: 2.25rem;
-
-    }
-
-
-    .hero-subtitle {
-
-        font-size: 0.88rem;
-
-    }
-
-
-    .breadcrumbs {
-
-        font-size: 0.85rem;
-
-    }
-
-
-    .hero-dots {
-
-        bottom: 1.5rem;
-
-    }
-
-
-    .team-hover-info {
-
-        padding: 0.9rem;
-
-    }
-
-
-    .member-name {
-
-        font-size: 0.95rem;
-
-    }
-
-
-    .member-role {
-
-        font-size: 0.8rem;
-
-    }
-
-}
-
-
-/* ============================================================
-   REDUCE MOTION
-============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-
-        scroll-behavior: auto;
-
-    }
-
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
-
-        scroll-behavior: auto !important;
-
-    }
 
 }

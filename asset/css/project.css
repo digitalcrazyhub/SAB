@@ -9,19 +9,24 @@
 
 :root {
 
+    /* Brand */
     --primary-color: #0A0A0A;
-    --secondary-color: #FFB703;
-    --accent-color: #FFB703;
+    --secondary-color: #A5000D;
+    --accent-color: #A5000D;
 
+    /* Text */
     --text-color: #1E1E1E;
-    --text-light: #666666;
+    --text-light: #CACACA;
 
+    /* Background */
     --bg-color: #FFFFFF;
     --bg-light: #F5F5F5;
     --bg-dark: #0A0A0A;
 
+    /* Border */
     --border-color: #E5E5E5;
 
+    /* Common */
     --white: #FFFFFF;
     --black: #000000;
 
@@ -201,8 +206,7 @@ a {
     height: 100%;
 
     transition:
-        transform .9s
-        cubic-bezier(.77, 0, .175, 1);
+        transform .9s cubic-bezier(.77, 0, .175, 1);
 
 }
 
@@ -235,11 +239,9 @@ a {
     inset: 0;
 
     background:
-        linear-gradient(
-            180deg,
+        linear-gradient(180deg,
             rgba(10, 10, 10, .80),
-            rgba(10, 10, 10, .80)
-        );
+            rgba(10, 10, 10, .80));
 
 }
 
@@ -304,14 +306,15 @@ a {
     font-weight: 600;
 
 }
+
 .breadcrumbs a {
-    color:var(--accent-color);
+    color: var(--accent-color);
 }
 
 
 .breadcrumbs span {
     margin-inline: .5rem;
-    color:rgba(255, 255, 255, .4);
+    color: rgba(255, 255, 255, .4);
 }
 
 
@@ -508,7 +511,7 @@ a {
         translateY(-8px);
 
     border-color:
-        rgba(255, 183, 3, .35);
+        rgba(165, 0, 13, .35);
 
     box-shadow:
         0 25px 55px rgba(0, 0, 0, .55);
@@ -557,11 +560,9 @@ a {
     pointer-events: none;
 
     background:
-        linear-gradient(
-            to top,
+        linear-gradient(to top,
             rgba(0, 0, 0, .65),
-            transparent 55%
-        );
+            transparent 55%);
 
 }
 
@@ -574,14 +575,12 @@ a {
     object-fit: cover;
 
     transition:
-        transform .7s
-        cubic-bezier(.16, 1, .3, 1);
+        transform .7s cubic-bezier(.16, 1, .3, 1);
 
 }
 
 
-.project-card:hover
-.project-img-box img {
+.project-card:hover .project-img-box img {
 
     transform:
         scale(1.07);
@@ -732,8 +731,7 @@ a {
         0 30px 100px rgba(0, 0, 0, .7);
 
     transform:
-        scale(.95)
-        translateY(20px);
+        scale(.95) translateY(20px);
 
     transition:
         transform .35s ease;
@@ -741,12 +739,10 @@ a {
 }
 
 
-.lightbox-modal.is-active
-.lightbox-container {
+.lightbox-modal.is-active .lightbox-container {
 
     transform:
-        scale(1)
-        translateY(0);
+        scale(1) translateY(0);
 
 }
 
@@ -950,316 +946,4 @@ a {
 .lightbox-nav.is-hidden {
 
     display: none;
-
-}
-
-/* ============================================================
-   TABLET
-   ============================================================ */
-
-@media (max-width: 1024px) {
-
-    .projects-grid {
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 22px;
-
-    }
-
-
-    .projects-section {
-
-        padding:
-            75px 0 90px;
-
-    }
-
-}
-
-
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
-@media (max-width: 768px) {
-
-    .container {
-
-        padding-inline: 18px;
-
-    }
-
-
-    .team-hero {
-
-        height: 46vh;
-
-        min-height: 360px;
-
-    }
-
-
-    .hero-title {
-
-        font-size:
-            clamp(2rem, 9vw, 3rem);
-
-    }
-
-
-    .hero-subtitle {
-
-        padding-inline: 15px;
-
-        font-size: .92rem;
-
-    }
-
-
-    .hero-dots {
-
-        bottom: 1.5rem;
-
-    }
-
-
-    .projects-section {
-
-        padding:
-            60px 0 75px;
-
-    }
-
-
-    .projects-heading {
-
-        margin-bottom: 35px;
-
-    }
-
-
-    .projects-grid {
-
-        grid-template-columns:
-            1fr;
-
-        gap: 20px;
-
-    }
-
-
-    .project-info {
-
-        padding:
-            18px 18px 21px;
-
-    }
-
-
-    .lightbox-modal {
-
-        padding: 12px;
-
-    }
-
-
-    .lightbox-container {
-
-        width: 100%;
-
-        max-height: 90vh;
-
-        border-radius: 14px;
-
-    }
-
-
-    .lightbox-image-wrap img {
-
-        max-height: 55vh;
-
-    }
-
-
-    .lightbox-content {
-
-        padding:
-            20px;
-
-    }
-
-
-    .lightbox-nav {
-
-        width: 40px;
-
-        height: 40px;
-
-        top: 40%;
-
-    }
-
-
-    .lightbox-prev {
-
-        left: 8px;
-
-    }
-
-
-    .lightbox-next {
-
-        right: 8px;
-
-    }
-
-
-    .scroll-to-top {
-
-        right: 16px;
-
-        bottom: 16px;
-
-        width: 42px;
-
-        height: 42px;
-
-    }
-
-
-    .whatsapp-float {
-
-        left: 16px;
-
-        bottom: 16px;
-
-        width: 48px;
-
-        height: 48px;
-
-    }
-
-}
-
-
-/* ============================================================
-   SMALL MOBILE
-   ============================================================ */
-
-@media (max-width: 480px) {
-
-    .team-hero {
-
-        height: 42vh;
-
-        min-height: 320px;
-
-    }
-
-
-    .hero-title {
-
-        font-size: 2rem;
-
-    }
-
-
-    .hero-subtitle {
-
-        font-size: .85rem;
-
-    }
-
-
-    .breadcrumbs {
-
-        font-size: .82rem;
-
-    }
-
-
-    .projects-title {
-
-        font-size: 1.8rem;
-
-    }
-
-
-    .projects-description {
-
-        font-size: .88rem;
-
-    }
-
-
-    .project-img-box {
-
-        aspect-ratio: 16 / 11;
-
-    }
-
-
-    .project-title {
-
-        font-size: 1.05rem;
-
-    }
-
-
-    .project-desc {
-
-        font-size: .84rem;
-
-    }
-
-
-    .lightbox-content h2 {
-
-        font-size: 1.2rem;
-
-    }
-
-
-    .lightbox-content p {
-
-        font-size: .85rem;
-
-    }
-
-}
-
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-
-        scroll-behavior: auto;
-
-    }
-
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration:
-            .01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            .01ms !important;
-
-        scroll-behavior:
-            auto !important;
-
-    }
-
 }

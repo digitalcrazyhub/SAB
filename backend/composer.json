@@ -1,0 +1,31 @@
+{
+  "name": "sriammabuilders/backend",
+  "description": "Sri Amma Builder Pvt Ltd - Lead Management & Enquiry Backend",
+  "type": "project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Sri Amma Builder Engineering",
+      "email": "mkrishsab@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "ext-pdo": "*",
+    "ext-pdo_mysql": "*",
+    "ext-json": "*",
+    "ext-curl": "*",
+    "phpmailer/phpmailer": "^6.9",
+    "google/apiclient": "^2.15"
+  },
+  "autoload": {
+    "psr-4": {
+      "SriAmma\\Backend\\": "services/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {}
+  }
+}

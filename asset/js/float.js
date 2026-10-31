@@ -25,4 +25,10 @@
     }
 
     document.addEventListener('saidpl:components-ready', initializeFloatingActions);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeFloatingActions, { once: true });
+    } else {
+        initializeFloatingActions();
+    }
 })();
