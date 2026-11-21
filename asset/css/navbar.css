@@ -1,14 +1,13 @@
-/* =========================================================
-   SRI AMMA INDUSTRIAL DEVELOPERS
-   COMPLETE RESPONSIVE NAVBAR CSS
-   Prefix: saidpl-nav-
-   ========================================================= */
+/* ==============================================================================
+   SRI AMMA BUILDER PVT LTD — CLEAN PRODUCTION NAVBAR STYLESHEET
+   Predictable Stacking Order: Page Content < Header < Backdrop < Drawer
+   ============================================================================== */
 
 @import url('./root.css');
 
-/* =========================================================
-   2. BASE RESET AND OVERFLOW PROTECTION
-   ========================================================= */
+/* ==========================================================================
+   1. BASE RESET & OVERFLOW GUARDS
+   ========================================================================== */
 
 html {
     width: 100%;
@@ -24,34 +23,49 @@ body {
     overflow-x: clip !important;
 }
 
+body.saidpl-nav-locked {
+    overflow: hidden !important;
+    touch-action: none !important;
+}
+
 .saidpl-nav-header,
 .saidpl-nav-header *,
 .saidpl-nav-header *::before,
 .saidpl-nav-header *::after,
-.saidpl-nav-backdrop {
+.saidpl-mobile-backdrop,
+.saidpl-mobile-drawer,
+.saidpl-mobile-drawer *,
+.saidpl-mobile-drawer *::before,
+.saidpl-mobile-drawer *::after {
     box-sizing: border-box;
 }
 
 .saidpl-nav-header a,
-.saidpl-nav-header button {
+.saidpl-nav-header button,
+.saidpl-mobile-drawer a,
+.saidpl-mobile-drawer button {
     -webkit-tap-highlight-color: transparent;
-}
-
-.saidpl-nav-header button {
-    font: inherit;
-}
-
-.saidpl-nav-header ul {
-    list-style: none;
-}
-
-.saidpl-nav-header a {
     text-decoration: none;
 }
 
-/* =========================================================
-   3. STICKY HEADER (FLOATING BLACK PILL ON DESKTOP, PINNED ON MOBILE)
-   ========================================================= */
+.saidpl-nav-header button,
+.saidpl-mobile-drawer button {
+    font: inherit;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.saidpl-nav-header ul,
+.saidpl-mobile-drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   2. STICKY HOST CONTAINER & FLOATING DESKTOP PILL
+   ========================================================================== */
 
 #saidplNavHeader {
     position: sticky;
@@ -69,27 +83,20 @@ body {
     position: relative;
     max-width: 1240px;
     margin: 0 auto;
-    z-index: 10020;
     background: rgba(20, 20, 20, 0.96);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: 9999px;
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
-    transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .saidpl-nav-header.saidpl-nav-header--scrolled {
     background: rgba(14, 14, 14, 0.98);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
     border-color: rgba(255, 255, 255, 0.18);
 }
-
-/* =========================================================
-   4. MAIN NAVBAR CONTAINER
-   ========================================================= */
 
 .saidpl-nav-container {
     display: flex;
@@ -97,80 +104,60 @@ body {
     justify-content: space-between;
     gap: clamp(14px, 2vw, 32px);
     width: 100%;
-    min-width: 0;
     min-height: 66px;
     margin-inline: auto;
     padding: 6px 14px 6px 26px;
 }
 
-/* =========================================================
-   5. BRAND LOGO
-   ========================================================= */
-
+/* Brand Logo */
 .saidpl-nav-brand {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    flex: 0 1 auto;
-    min-width: 0;
-    color: var(--white);
-    text-decoration: none;
+    flex: 0 0 auto;
 }
 
 .saidpl-nav-brand-logo {
     display: block;
     width: auto;
     height: auto;
-    max-width: min(200px, 24vw);
+    max-width: 200px;
     max-height: 44px;
     object-fit: contain;
-    object-position: left center;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.25s ease;
 }
 
 .saidpl-nav-brand:hover .saidpl-nav-brand-logo {
     opacity: 0.9;
 }
 
-/* =========================================================
-   6. DESKTOP NAVIGATION
-   ========================================================= */
+/* ==========================================================================
+   3. DESKTOP NAVIGATION BAR (>= 1025px)
+   ========================================================================== */
 
-.saidpl-nav-menu {
+.saidpl-desktop-nav {
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1 1 auto;
-    min-width: 0;
 }
 
-.saidpl-nav-list {
+.saidpl-desktop-list {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: clamp(18px, 2.2vw, 34px);
-    width: auto;
-    min-width: 0;
-    margin: 0;
-    padding: 0;
 }
 
-.saidpl-nav-item {
+.saidpl-desktop-item {
     position: relative;
-    display: block;
-    min-width: 0;
-    margin: 0;
-    padding: 0;
 }
 
-/* =========================================================
-   7. NAVIGATION LINKS
-   ========================================================= */
-
-.saidpl-nav-link {
+.saidpl-desktop-link {
     position: relative;
     display: inline-flex;
     align-items: center;
+    gap: 6px;
     min-height: 46px;
     padding: 8px 0;
     color: var(--white);
@@ -183,7 +170,7 @@ body {
     transition: color 0.25s ease;
 }
 
-.saidpl-nav-link::after {
+.saidpl-desktop-link::after {
     content: "";
     position: absolute;
     left: 0;
@@ -194,63 +181,30 @@ body {
     transition: width 0.25s ease;
 }
 
-.saidpl-nav-link:hover::after,
-.saidpl-nav-link:focus-visible::after,
-.saidpl-nav-link--active::after {
+.saidpl-desktop-link:hover::after,
+.saidpl-desktop-link:focus-visible::after,
+.saidpl-desktop-link.saidpl-desktop-link--active::after {
     width: 100%;
 }
 
-.saidpl-nav-link:hover,
-.saidpl-nav-link:focus-visible,
-.saidpl-nav-link--active {
+.saidpl-desktop-link:hover,
+.saidpl-desktop-link:focus-visible,
+.saidpl-desktop-link.saidpl-desktop-link--active {
     color: var(--white);
 }
 
-.saidpl-nav-link-box {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-/* =========================================================
-   8. DROPDOWN TOGGLE BUTTON
-   ========================================================= */
-
-.saidpl-nav-dropdown-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 25px;
-    width: 25px;
-    height: 40px;
-    padding: 0;
-    color: var(--text-light);
-    background: transparent;
-    border: 0;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.saidpl-nav-dropdown-toggle:hover,
-.saidpl-nav-dropdown-toggle:focus-visible {
-    color: var(--white);
-}
-
-.saidpl-nav-dropdown-toggle i {
+.saidpl-desktop-caret {
     font-size: 11px;
     transition: transform 0.25s ease;
 }
 
-.saidpl-nav-item--open .saidpl-nav-dropdown-toggle i.saidpl-desktop-icon {
+.saidpl-desktop-item--dropdown:hover .saidpl-desktop-caret,
+.saidpl-desktop-item--dropdown:focus-within .saidpl-desktop-caret {
     transform: rotate(180deg);
 }
 
-/* =========================================================
-   9. DESKTOP DROPDOWN MENU
-   ========================================================= */
-
-.saidpl-nav-dropdown-menu {
+/* Desktop Dropdown Submenu */
+.saidpl-desktop-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -266,19 +220,18 @@ body {
     transform: translateY(10px);
     transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
     z-index: 10030;
+    pointer-events: none;
 }
 
-.saidpl-nav-item--open .saidpl-nav-dropdown-menu {
+.saidpl-desktop-item--dropdown:hover .saidpl-desktop-dropdown,
+.saidpl-desktop-item--dropdown:focus-within .saidpl-desktop-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
-.saidpl-nav-dropdown-item {
-    margin: 4px 0;
-}
-
-.saidpl-nav-dropdown-link {
+.saidpl-desktop-dropdown-link {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -288,41 +241,59 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.saidpl-nav-dropdown-link:hover,
-.saidpl-nav-dropdown-link:focus-visible {
+.saidpl-desktop-dropdown-link:hover,
+.saidpl-desktop-dropdown-link:focus-visible {
     background: rgba(255, 255, 255, 0.06);
     color: var(--white);
     transform: translateX(4px);
 }
 
-.saidpl-nav-sub-num {
-    font-size: 30px;
-    font-weight: 400;
-    color: var(--accent-color);
-    letter-spacing: 0.5px;
+.saidpl-desktop-dropdown-link.saidpl-desktop-dropdown-link--active {
+    background: rgba(165, 0, 13, 0.12);
+    color: var(--white);
 }
 
-.saidpl-nav-sub-title {
+.saidpl-dropdown-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-color);
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    width: 26px;
+}
+
+.saidpl-dropdown-num i {
+    font-size: 15px;
+}
+
+.saidpl-dropdown-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.saidpl-dropdown-title {
     display: block;
     font-size: 13px;
     font-weight: 600;
     color: var(--white);
 }
 
-.saidpl-nav-sub-desc {
+.saidpl-dropdown-desc {
     display: block;
     font-size: 11px;
     color: var(--text-dim);
 }
 
-/* =========================================================
-   10. ACTION AREA (CTA & HAMBURGER)
-   ========================================================= */
+/* ==========================================================================
+   4. ACTION AREA (CTA BUTTON & HAMBURGER)
+   ========================================================================== */
 
 .saidpl-nav-action-area {
     display: flex;
     align-items: center;
     gap: 14px;
+    flex-shrink: 0;
 }
 
 .saidpl-nav-cta-btn {
@@ -336,8 +307,8 @@ body {
     font-size: 13.5px;
     font-weight: 700;
     letter-spacing: 0.3px;
-    transition: all 0.25s ease;
     box-shadow: 0 4px 14px rgba(165, 0, 13, 0.35);
+    transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .saidpl-nav-cta-btn:hover {
@@ -348,56 +319,75 @@ body {
 }
 
 .saidpl-nav-cta-icon {
-    width: 16px;
-    height: 16px;
+    font-size: 16px;
 }
 
+/* Hamburger Button (Hidden on Desktop) */
 .saidpl-nav-hamburger {
     display: none;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     width: 42px;
     height: 42px;
-    padding: 8px;
+    padding: 0;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
 .saidpl-nav-hamburger:hover {
     background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-.saidpl-nav-bar {
-    width: 100%;
+.saidpl-nav-hamburger:active {
+    transform: scale(0.95);
+}
+
+.saidpl-hamburger-bar {
+    width: 20px;
     height: 2px;
     background: var(--white);
     border-radius: 2px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    transform-origin: center;
 }
 
-.saidpl-drawer-header,
-.saidpl-drawer-footer,
-.saidpl-drawer-arrow,
-.saidpl-mobile-toggle-symbol {
+/* Hamburger Active 'X' Morph */
+.saidpl-nav-hamburger.saidpl-nav-hamburger--active .saidpl-hamburger-bar--1 {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.saidpl-nav-hamburger.saidpl-nav-hamburger--active .saidpl-hamburger-bar--2 {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.saidpl-nav-hamburger.saidpl-nav-hamburger--active .saidpl-hamburger-bar--3 {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Default state for Mobile Elements (Hidden on Desktop) */
+.saidpl-mobile-backdrop,
+.saidpl-mobile-drawer {
     display: none;
 }
 
-/* =========================================================
-   11. MOBILE RESPONSIVE DRAWER (< 1024px)
-   ========================================================= */
+/* ==========================================================================
+   5. MOBILE & TABLET RESPONSIVE ARCHITECTURE (< 1024px)
+   Predictable Stacking Order:
+   - Header Bar:      z-index: 10020
+   - Mobile Backdrop: z-index: 10030
+   - Mobile Drawer:   z-index: 10040 (PHYSICALLY ABOVE BACKDROP)
+   ========================================================================== */
 
 @media (max-width: 1024px) {
-    /* Prevent body scroll when drawer is open */
-    body.saidpl-nav-menu-open {
-        overflow: hidden !important;
-        touch-action: none;
-    }
 
-    /* Fixed top navigation bar */
+    /* Fixed full-width header bar */
     #saidplNavHeader {
         top: 0;
         padding: 0;
@@ -413,8 +403,6 @@ body {
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         background: rgba(12, 12, 12, 0.98);
         box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
     }
 
     .saidpl-nav-container {
@@ -428,159 +416,118 @@ body {
         max-width: 170px;
     }
 
-    /* Action Area */
-    .saidpl-nav-action-area {
-        gap: 10px;
+    /* Hide desktop nav, reveal hamburger */
+    .saidpl-desktop-nav {
+        display: none !important;
     }
 
-    /* Mobile Header CTA Button */
-    .saidpl-nav-cta-btn {
-        padding: 8px 12px;
-        min-height: 38px;
-        border-radius: 9999px;
-        box-shadow: 0 2px 10px rgba(165, 0, 13, 0.3);
+    .saidpl-nav-hamburger {
+        display: flex !important;
     }
 
     .saidpl-nav-cta-text {
         display: none;
     }
 
-    .saidpl-nav-cta-btn svg {
-        width: 18px;
-        height: 18px;
+    .saidpl-nav-cta-btn {
+        padding: 8px 12px;
+        min-height: 38px;
     }
 
-    /* Mobile Hamburger Button */
-    .saidpl-nav-hamburger {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-    }
-
-    .saidpl-nav-hamburger:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .saidpl-nav-hamburger:active {
-        transform: scale(0.95);
-    }
-
-    .saidpl-nav-bar {
-        width: 20px;
-        height: 2px;
-        background: var(--white);
-        border-radius: 2px;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-        transform-origin: center;
-    }
-
-    /* Hamburger Morph to 'X' */
-    .saidpl-nav-hamburger--active .saidpl-nav-bar--1 {
-        transform: translateY(7px) rotate(45deg);
-    }
-
-    .saidpl-nav-hamburger--active .saidpl-nav-bar--2 {
-        opacity: 0;
-        transform: scaleX(0);
-    }
-
-    .saidpl-nav-hamburger--active .saidpl-nav-bar--3 {
-        transform: translateY(-7px) rotate(-45deg);
-    }
-
-    /* Backdrop Overlay */
-    .saidpl-nav-backdrop {
+    /* ----------------------------------------------------------------------
+       A. MOBILE BACKDROP (Layer 3: z-index 10030)
+       Sits BEHIND the drawer, darkening the page
+       ---------------------------------------------------------------------- */
+    .saidpl-mobile-backdrop {
+        display: block;
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(0, 0, 0, 0.72);
         backdrop-filter: blur(8px);
         -webkit-backdrop-filter: blur(8px);
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        z-index: 10035;
-        transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s ease;
+        z-index: 10030;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s ease;
     }
 
-    .saidpl-nav-backdrop.saidpl-nav-backdrop--open,
-    .saidpl-nav-backdrop.saidpl-nav-backdrop--visible {
+    .saidpl-mobile-backdrop.saidpl-mobile-backdrop--visible {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
 
-    /* Mobile Drawer Surface */
-    .saidpl-nav-menu {
+    /* ----------------------------------------------------------------------
+       B. MOBILE DRAWER PANEL (Layer 4: z-index 10040)
+       CRITICAL: Sits ABOVE backdrop with ZERO blur applied to itself!
+       ---------------------------------------------------------------------- */
+    .saidpl-mobile-drawer {
+        display: flex;
         position: fixed;
         top: 0;
         right: 0;
+        bottom: 0;
         width: 100vw;
         max-width: 100vw;
         height: 100vh;
         height: 100dvh;
         max-height: 100dvh;
         background: #0D0D0D;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        padding: 0;
         z-index: 10040;
-        transform: translateX(100%);
-        transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
         box-shadow: -10px 0 40px rgba(0, 0, 0, 0.85);
+        transform: translateX(100%);
+        transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: auto;
     }
 
-    .saidpl-nav-menu.saidpl-nav-menu--open {
+    .saidpl-mobile-drawer.saidpl-mobile-drawer--open {
         transform: translateX(0);
     }
 
-    /* Tablets: elegant partial drawer with backdrop */
+    /* Tablets (641px - 1024px): partial drawer width */
     @media (min-width: 641px) and (max-width: 1024px) {
-        .saidpl-nav-menu {
+        .saidpl-mobile-drawer {
             width: 380px;
             max-width: 85vw;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
         }
     }
 
-    /* Scrollbar for Drawer */
-    .saidpl-nav-menu::-webkit-scrollbar {
+    /* Drawer Scrollbar */
+    .saidpl-mobile-drawer::-webkit-scrollbar {
         width: 4px;
     }
-    .saidpl-nav-menu::-webkit-scrollbar-track {
+
+    .saidpl-mobile-drawer::-webkit-scrollbar-track {
         background: transparent;
     }
-    .saidpl-nav-menu::-webkit-scrollbar-thumb {
+
+    .saidpl-mobile-drawer::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.15);
         border-radius: 4px;
     }
 
-    /* Drawer Header */
+    /* ----------------------------------------------------------------------
+       C. DRAWER HEADER (Sticky Top inside Drawer)
+       ---------------------------------------------------------------------- */
     .saidpl-drawer-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 16px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         background: #141414;
-        flex-shrink: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         position: sticky;
         top: 0;
         z-index: 2;
+        flex-shrink: 0;
     }
 
     .saidpl-drawer-brand {
@@ -605,15 +552,15 @@ body {
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 10px;
         color: var(--white);
-        font-size: 17px;
+        font-size: 18px;
         cursor: pointer;
-        transition: all 0.22s ease;
+        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
 
     .saidpl-drawer-close-btn:hover {
         background: rgba(165, 0, 13, 0.2);
         border-color: rgba(165, 0, 13, 0.45);
-        color: #ffffff;
+        color: var(--white);
         transform: rotate(90deg);
     }
 
@@ -621,174 +568,144 @@ body {
         transform: scale(0.92) rotate(90deg);
     }
 
-    /* Drawer Navigation List */
-    .saidpl-nav-list {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-        gap: 8px !important;
-        padding: 18px 18px !important;
-        margin: 0 !important;
-        flex: 0 0 auto !important;
+    /* ----------------------------------------------------------------------
+       D. DRAWER NAVIGATION LIST & ACCESSIBLE TOUCH CARDS
+       ---------------------------------------------------------------------- */
+    .saidpl-drawer-nav-container {
+        padding: 18px 20px;
+        flex: 0 0 auto;
     }
 
-    .saidpl-nav-item {
-        margin: 0 !important;
-        border-radius: 10px !important;
+    .saidpl-drawer-nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .saidpl-drawer-item {
+        border-radius: 10px;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.07);
-        transition: all 0.2s ease;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
-    .saidpl-nav-item:hover {
-        background: rgba(255, 255, 255, 0.07);
-        border-color: rgba(255, 255, 255, 0.15);
+    .saidpl-drawer-item:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.14);
     }
 
-    .saidpl-nav-link {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        padding: 14px 18px !important;
-        width: 100% !important;
-        min-height: 52px !important;
-        font-size: 15.5px !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.3px !important;
+    .saidpl-drawer-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        width: 100%;
+        min-height: 52px;
+        font-size: 15.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
         color: #FFFFFF !important;
-        text-decoration: none !important;
-        border-radius: 10px !important;
+        border-radius: 10px;
         transition: color 0.2s ease;
     }
 
-    .saidpl-nav-link span {
-        color: #FFFFFF !important;
-    }
-
-    .saidpl-nav-link::after {
-        display: none !important;
-    }
-
-    .saidpl-drawer-arrow {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 13px !important;
-        color: rgba(255, 255, 255, 0.5) !important;
+    .saidpl-drawer-link-arrow {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.45);
         transition: transform 0.2s ease, color 0.2s ease;
     }
 
-    .saidpl-nav-link:hover .saidpl-drawer-arrow {
+    .saidpl-drawer-link:hover .saidpl-drawer-link-arrow {
         transform: translateX(4px);
-        color: var(--primary-color) !important;
+        color: var(--accent-color);
     }
 
-    /* Active Link State */
-    .saidpl-nav-item--active {
-        background: linear-gradient(90deg, rgba(165, 0, 13, 0.22) 0%, rgba(165, 0, 13, 0.05) 100%) !important;
-        border-color: rgba(165, 0, 13, 0.45) !important;
-        border-left: 4px solid var(--primary-color) !important;
+    /* Active Page Highlight */
+    .saidpl-drawer-item.saidpl-drawer-item--active {
+        background: linear-gradient(90deg, rgba(165, 0, 13, 0.22) 0%, rgba(165, 0, 13, 0.05) 100%);
+        border-color: rgba(165, 0, 13, 0.45);
+        border-left: 4px solid var(--accent-color);
     }
 
-    .saidpl-nav-item--active .saidpl-nav-link,
-    .saidpl-nav-item--active .saidpl-nav-link span {
+    .saidpl-drawer-item.saidpl-drawer-item--active .saidpl-drawer-link {
+        font-weight: 700;
         color: #FFFFFF !important;
-        font-weight: 700 !important;
     }
 
-    .saidpl-nav-item--active .saidpl-drawer-arrow {
-        color: var(--primary-color) !important;
+    .saidpl-drawer-item.saidpl-drawer-item--active .saidpl-drawer-link-arrow {
+        color: var(--accent-color);
     }
 
-    /* Services Dropdown Accordion */
-    .saidpl-nav-link-box {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        width: 100% !important;
-        border-radius: 10px !important;
+    /* ----------------------------------------------------------------------
+       E. SERVICES ACCORDION
+       ---------------------------------------------------------------------- */
+    .saidpl-drawer-accordion-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
     }
 
-    .saidpl-nav-link-box .saidpl-nav-link {
-        flex: 1 1 auto !important;
-    }
-
-    .saidpl-nav-dropdown-toggle {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 48px !important;
-        height: 48px !important;
-        margin-right: 4px !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 8px !important;
+    .saidpl-drawer-accordion-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 18px;
+        width: 100%;
+        min-height: 52px;
+        font-size: 15.5px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
         color: #FFFFFF !important;
-        cursor: pointer !important;
-        transition: all 0.2s ease !important;
-        flex-shrink: 0 !important;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.2s ease;
     }
 
-    .saidpl-nav-dropdown-toggle:hover {
-        background: rgba(165, 0, 13, 0.2) !important;
-        border-color: var(--primary-color) !important;
+    .saidpl-accordion-icon-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 13px;
+        color: #FFFFFF;
+        transition: all 0.2s ease;
     }
 
-    .saidpl-desktop-icon {
-        display: none !important;
+    .saidpl-accordion-minus {
+        display: none;
     }
 
-    .saidpl-mobile-toggle-symbol {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 14px !important;
-        color: #FFFFFF !important;
-        transition: transform 0.2s ease;
+    .saidpl-drawer-item--open .saidpl-accordion-plus {
+        display: none;
     }
 
-    .saidpl-icon-minus {
-        display: none !important;
+    .saidpl-drawer-item--open .saidpl-accordion-minus {
+        display: inline-block;
+        color: var(--accent-color);
     }
 
-    .saidpl-nav-item--open .saidpl-icon-plus {
-        display: none !important;
+    .saidpl-drawer-item--open .saidpl-accordion-icon-wrap {
+        background: rgba(165, 0, 13, 0.15);
+        border-color: rgba(165, 0, 13, 0.4);
     }
 
-    .saidpl-nav-item--open .saidpl-icon-minus {
-        display: inline-block !important;
-        color: var(--primary-color) !important;
-    }
-
-    .saidpl-nav-item--open .saidpl-nav-dropdown-toggle {
-        background: rgba(165, 0, 13, 0.18) !important;
-        border-color: rgba(165, 0, 13, 0.4) !important;
-        color: var(--primary-color) !important;
-    }
-
-    /* Submenu Accordion Drawer */
-    .saidpl-nav-dropdown-menu {
-        position: static !important;
-        width: 100% !important;
-        min-width: unset !important;
-        box-shadow: none !important;
-        background: #070707 !important;
-        border-radius: 0 0 10px 10px !important;
-        border: none !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
-        border-left: 3px solid var(--primary-color) !important;
-        margin: 0 !important;
-        padding: 8px 10px 10px 14px !important;
-        display: none !important;
-        transform: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-
-    .saidpl-nav-item--open .saidpl-nav-dropdown-menu {
-        display: block !important;
+    /* Submenu Accordion Body */
+    .saidpl-drawer-submenu {
+        display: none;
+        background: #080808;
+        border-radius: 0 0 10px 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-left: 3px solid var(--accent-color);
+        padding: 8px 10px 12px 14px;
         animation: saidplAccordionSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .saidpl-drawer-item--open .saidpl-drawer-submenu {
+        display: block;
     }
 
     @keyframes saidplAccordionSlide {
@@ -796,108 +713,104 @@ body {
             opacity: 0;
             transform: translateY(-6px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
 
-    .saidpl-nav-dropdown-item {
-        margin: 4px 0 !important;
+    .saidpl-drawer-subitem {
+        margin: 4px 0;
     }
 
-    .saidpl-nav-dropdown-link {
-        display: flex !important;
-        align-items: center !important;
-        gap: 12px !important;
-        padding: 10px 12px !important;
-        border-radius: 8px !important;
-        color: #D1D5DB !important;
-        text-decoration: none !important;
-        transition: all 0.2s ease !important;
+    .saidpl-drawer-sublink {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        color: var(--text-light);
+        transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
     }
 
-    .saidpl-nav-dropdown-link:hover,
-    .saidpl-nav-dropdown-link:focus-visible {
-        background: rgba(255, 255, 255, 0.06) !important;
-        color: #FFFFFF !important;
+    .saidpl-drawer-sublink:hover,
+    .saidpl-drawer-sublink:focus-visible {
+        background: rgba(255, 255, 255, 0.06);
+        color: #FFFFFF;
         transform: translateX(3px);
     }
 
-    .saidpl-nav-dropdown-link.saidpl-nav-dropdown-link--active {
-        background: rgba(165, 0, 13, 0.15) !important;
-        color: #FFFFFF !important;
+    .saidpl-drawer-sublink.saidpl-drawer-sublink--active {
+        background: rgba(165, 0, 13, 0.15);
+        color: #FFFFFF;
     }
 
-    .saidpl-nav-dropdown-link.saidpl-nav-dropdown-link--active .saidpl-nav-sub-title {
-        color: #FFFFFF !important;
+    .saidpl-sublink-num {
+        font-size: 15px;
         font-weight: 700;
-    }
-
-    .saidpl-nav-sub-num {
-        font-size: 15px !important;
-        font-weight: 700 !important;
-        color: var(--primary-color) !important;
-        letter-spacing: 0.5px !important;
-        flex-shrink: 0 !important;
+        color: var(--accent-color);
+        letter-spacing: 0.5px;
+        flex-shrink: 0;
         width: 24px;
         text-align: center;
     }
 
-    .saidpl-nav-sub-num i {
+    .saidpl-sublink-num i {
         font-size: 13px;
     }
 
-    .saidpl-nav-sub-text {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 2px !important;
+    .saidpl-sublink-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
     }
 
-    .saidpl-nav-sub-title {
-        display: block !important;
-        font-size: 13.5px !important;
-        font-weight: 600 !important;
-        color: #FFFFFF !important;
-        line-height: 1.3 !important;
+    .saidpl-sublink-title {
+        display: block;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #FFFFFF;
+        line-height: 1.3;
     }
 
-    .saidpl-nav-sub-desc {
-        display: block !important;
-        font-size: 11.5px !important;
-        color: #9CA3AF !important;
-        line-height: 1.25 !important;
+    .saidpl-sublink-desc {
+        display: block;
+        font-size: 11.5px;
+        color: #9CA3AF;
+        line-height: 1.25;
     }
 
-    /* Drawer Footer */
+    /* ----------------------------------------------------------------------
+       F. DRAWER FOOTER (High-Converting CTAs & Contact Strip)
+       ---------------------------------------------------------------------- */
     .saidpl-drawer-footer {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 12px !important;
-        padding: 20px 18px calc(20px + env(safe-area-inset-bottom, 0px)) !important;
-        margin-top: auto !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-        background: #0E0E0E !important;
-        flex-shrink: 0 !important;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+        margin-top: auto;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        background: #0A0A0A;
+        flex-shrink: 0;
     }
 
     .saidpl-drawer-cta-primary {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        width: 100% !important;
-        min-height: 48px !important;
-        padding: 13px 18px !important;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
-        color: #FFFFFF !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.3px !important;
-        border-radius: 10px !important;
-        text-decoration: none !important;
-        box-shadow: 0 4px 16px rgba(165, 0, 13, 0.4) !important;
-        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 48px;
+        padding: 13px 18px;
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+        color: #FFFFFF;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(165, 0, 13, 0.4);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .saidpl-drawer-cta-primary:hover {
@@ -910,110 +823,110 @@ body {
         transform: translateY(0);
     }
 
-    .saidpl-drawer-quick-actions {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 10px !important;
-        width: 100% !important;
+    .saidpl-drawer-actions-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        width: 100%;
     }
 
-    .saidpl-drawer-whatsapp-btn {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        min-height: 44px !important;
-        padding: 10px 12px !important;
-        background: rgba(37, 211, 102, 0.12) !important;
-        border: 1px solid rgba(37, 211, 102, 0.35) !important;
-        color: #25D366 !important;
-        font-weight: 600 !important;
-        font-size: 13px !important;
-        border-radius: 8px !important;
-        text-decoration: none !important;
-        transition: all 0.2s ease !important;
+    .saidpl-drawer-action-whatsapp {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 12px;
+        background: rgba(37, 211, 102, 0.12);
+        border: 1px solid rgba(37, 211, 102, 0.35);
+        color: #25D366;
+        font-weight: 600;
+        font-size: 13px;
+        border-radius: 8px;
+        transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    .saidpl-drawer-whatsapp-btn:hover {
-        background: #25D366 !important;
-        color: #0A0A0A !important;
-        border-color: #25D366 !important;
+    .saidpl-drawer-action-whatsapp:hover {
+        background: #25D366;
+        color: #0A0A0A;
     }
 
-    .saidpl-drawer-whatsapp-btn i {
+    .saidpl-drawer-action-whatsapp i {
         font-size: 15px;
     }
 
-    .saidpl-drawer-call-btn {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        min-height: 44px !important;
-        padding: 10px 12px !important;
-        background: rgba(255, 255, 255, 0.06) !important;
-        border: 1px solid rgba(255, 255, 255, 0.14) !important;
-        color: var(--white) !important;
-        font-weight: 600 !important;
-        font-size: 13px !important;
-        border-radius: 8px !important;
-        text-decoration: none !important;
-        transition: all 0.2s ease !important;
-    }
-
-    .saidpl-drawer-call-btn:hover {
-        background: rgba(255, 255, 255, 0.12) !important;
-        border-color: rgba(255, 255, 255, 0.25) !important;
-        color: #FFFFFF !important;
-    }
-
-    .saidpl-drawer-call-btn i {
+    .saidpl-drawer-action-call {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 12px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: var(--white);
+        font-weight: 600;
         font-size: 13px;
-        color: var(--primary-color);
+        border-radius: 8px;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
-    .saidpl-drawer-contact-info {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 6px !important;
-        padding-top: 4px !important;
+    .saidpl-drawer-action-call:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #FFFFFF;
     }
 
-    .saidpl-drawer-phone-display {
-        display: flex !important;
-        align-items: center !important;
-        gap: 8px !important;
-        font-size: 11.5px !important;
-        color: #9CA3AF !important;
-        margin: 0 !important;
-        line-height: 1.4 !important;
+    .saidpl-drawer-action-call i {
+        font-size: 13px;
+        color: var(--accent-color);
     }
 
-    .saidpl-drawer-phone-display i {
-        color: var(--primary-color);
+    .saidpl-drawer-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding-top: 4px;
+    }
+
+    .saidpl-drawer-phone-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11.5px;
+        color: #9CA3AF;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .saidpl-drawer-phone-row i {
+        color: var(--accent-color);
         font-size: 11px;
         flex-shrink: 0;
     }
 
-    .saidpl-drawer-address {
-        display: flex !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
-        font-size: 11px !important;
-        color: #6B7280 !important;
-        line-height: 1.4 !important;
-        margin: 0 !important;
+    .saidpl-drawer-address-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 11px;
+        color: #6B7280;
+        line-height: 1.4;
+        margin: 0;
     }
 
-    .saidpl-drawer-address i {
-        color: var(--primary-color);
+    .saidpl-drawer-address-row i {
+        color: var(--accent-color);
         font-size: 11px;
         flex-shrink: 0;
         margin-top: 2px;
     }
 }
 
-/* Extra small mobile screens (<= 380px) */
+/* ==========================================================================
+   6. EXTRA SMALL MOBILE SCREENS (<= 380px)
+   ========================================================================== */
+
 @media (max-width: 380px) {
     .saidpl-nav-container {
         padding: 8px 12px;
@@ -1025,12 +938,47 @@ body {
         padding-right: 14px;
     }
 
-    .saidpl-nav-list {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
+    .saidpl-drawer-nav-container {
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
-    .saidpl-drawer-quick-actions {
-        grid-template-columns: 1fr !important;
+    .saidpl-drawer-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   7. PREFERS-REDUCED-MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .saidpl-nav-header,
+    .saidpl-mobile-drawer,
+    .saidpl-mobile-backdrop,
+    .saidpl-hamburger-bar,
+    .saidpl-desktop-dropdown,
+    .saidpl-drawer-submenu {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==========================================================================
+   7. PREFERS-REDUCED-MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .saidpl-nav-header,
+    .saidpl-mobile-drawer,
+    .saidpl-mobile-backdrop,
+    .saidpl-hamburger-bar,
+    .saidpl-desktop-dropdown,
+    .saidpl-drawer-submenu {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
     }
 }

@@ -1,364 +1,219 @@
-
-/* =========================================================
-   SRI AMMA INDUSTRIAL DEVELOPERS
-   COMPLETE RESPONSIVE NAVBAR JAVASCRIPT
-   Prefix: saidpl-nav-
-   ========================================================= */
+/**
+ * ==============================================================================
+ * SRI AMMA BUILDER PVT LTD — COMPLETE REWRITTEN NAVBAR CONTROLLER
+ * Authoritative Controller for Desktop Navigation and Mobile Drawer.
+ * Clean State Manager, Strict ARIA Accessibility, Focus Trap & Scroll Locking.
+ * ==============================================================================
+ */
 
 (() => {
     "use strict";
 
     function initSaidplNavbar() {
         const header = document.getElementById("saidplNavHeaderElement");
-        const menu = document.getElementById("saidplNavMenu");
         const hamburger = document.getElementById("saidplNavHamburger");
-        const backdrop = document.getElementById("saidplNavBackdrop");
+        const backdrop = document.getElementById("saidplMobileBackdrop");
+        const drawer = document.getElementById("saidplMobileDrawer");
+        const drawerClose = document.getElementById("saidplDrawerClose");
+        const servicesToggle = document.getElementById("saidplDrawerServicesToggle");
 
-        /* Stop safely if navbar markup is unavailable */
-        if (!header || !menu || !hamburger || !backdrop) {
+        /* Safety guard: verify all critical DOM elements are present */
+        if (!header || !hamburger || !backdrop || !drawer) {
             return;
         }
 
-        /* Prevent duplicate initialization */
-        if (header.dataset.saidplNavInitialized === "true") {
+        /* Prevent duplicate initialization if lifecycle triggers multiple times */
+        if (header.dataset.saidplNavInit === "true") {
             return;
         }
-
-        header.dataset.saidplNavInitialized = "true";
+        header.dataset.saidplNavInit = "true";
 
         const mobileQuery = window.matchMedia("(max-width: 1024px)");
+        let previousActiveElement = null;
+        let isScrollTicking = false;
 
-        const dropdownItems = Array.from(
-            menu.querySelectorAll(".saidpl-nav-item--has-dropdown")
-        );
+        /* ==========================================================================
+           1. UNIFIED STATE MANAGER
+           ========================================================================== */
+        const state = {
+            isOpen: false,
 
-        /*
-         * Dropdown timing configuration
-         *
-         * HOVER_OPEN_DELAY:
-         * Wait before opening a desktop dropdown on hover.
-         *
-         * HOVER_CLOSE_DELAY:
-         * Wait before closing when the pointer leaves.
-         *
-         * Set either value to 0 to disable its delay.
-         */
-        const HOVER_OPEN_DELAY = 180;
-        const HOVER_CLOSE_DELAY = 250;
+            open() {
+                if (this.isOpen) return;
+                this.isOpen = true;
 
-        const timers = new Map();
+                previousActiveElement = document.activeElement;
 
-        let previousFocusedElement = null;
-        let scrollTicking = false;
+                /* Visual and animation states */
+                drawer.classList.add("saidpl-mobile-drawer--open");
+                backdrop.classList.add("saidpl-mobile-backdrop--visible");
+                hamburger.classList.add("saidpl-nav-hamburger--active");
+                document.body.classList.add("saidpl-nav-locked");
 
-        /* =================================================
-           1. HEADER SCROLL EFFECT
-           ================================================= */
+                /* ARIA accessibility state */
+                hamburger.setAttribute("aria-expanded", "true");
+                hamburger.setAttribute("aria-label", "Close mobile navigation menu");
+                drawer.setAttribute("aria-hidden", "false");
+                backdrop.setAttribute("aria-hidden", "false");
 
-        function updateHeaderScrollState() {
-            header.classList.toggle(
-                "saidpl-nav-header--scrolled",
-                window.scrollY > 10
-            );
+                /* Focus initial interactive control */
+                if (drawerClose) {
+                    drawerClose.focus({ preventScroll: true });
+                }
+            },
 
-            scrollTicking = false;
-        }
+            close(returnFocus = false) {
+                if (!this.isOpen) return;
+                this.isOpen = false;
 
-        function onScroll() {
-            if (scrollTicking) return;
+                /* Visual states */
+                drawer.classList.remove("saidpl-mobile-drawer--open");
+                backdrop.classList.remove("saidpl-mobile-backdrop--visible");
+                hamburger.classList.remove("saidpl-nav-hamburger--active");
+                document.body.classList.remove("saidpl-nav-locked");
 
-            scrollTicking = true;
+                /* ARIA accessibility state */
+                hamburger.setAttribute("aria-expanded", "false");
+                hamburger.setAttribute("aria-label", "Open mobile navigation menu");
+                drawer.setAttribute("aria-hidden", "true");
+                backdrop.setAttribute("aria-hidden", "true");
 
-            window.requestAnimationFrame(updateHeaderScrollState);
-        }
+                /* Restore keyboard focus */
+                if (returnFocus && previousActiveElement && typeof previousActiveElement.focus === "function") {
+                    previousActiveElement.focus({ preventScroll: true });
+                } else if (returnFocus && hamburger) {
+                    hamburger.focus({ preventScroll: true });
+                }
+            },
 
-        window.addEventListener("scroll", onScroll, {
-            passive: true
+            toggle() {
+                if (this.isOpen) {
+                    this.close(true);
+                } else {
+                    this.open();
+                }
+            }
+        };
+
+        /* ==========================================================================
+           2. EVENT LISTENERS: OPEN, CLOSE, BACKDROP & ESCAPE
+           ========================================================================== */
+
+        hamburger.addEventListener("click", (e) => {
+            e.preventDefault();
+            state.toggle();
         });
 
-        updateHeaderScrollState();
-
-        /* =================================================
-           2. DROPDOWN HELPERS
-           ================================================= */
-
-        function clearDropdownTimer(item) {
-            const timer = timers.get(item);
-
-            if (timer !== undefined) {
-                window.clearTimeout(timer);
-                timers.delete(item);
-            }
-        }
-
-        function setDropdownState(item, open) {
-            const toggle = item.querySelector(
-                ".saidpl-nav-dropdown-toggle"
-            );
-
-            item.classList.toggle("saidpl-nav-item--open", open);
-
-            if (toggle) {
-                toggle.setAttribute("aria-expanded", String(open));
-            }
-        }
-
-        function closeDropdown(item) {
-            clearDropdownTimer(item);
-            setDropdownState(item, false);
-        }
-
-        function closeAllDropdowns(exceptItem = null) {
-            dropdownItems.forEach((item) => {
-                if (item !== exceptItem) {
-                    closeDropdown(item);
-                }
+        if (drawerClose) {
+            drawerClose.addEventListener("click", (e) => {
+                e.preventDefault();
+                state.close(true);
             });
         }
 
-        function openDropdown(item) {
-            clearDropdownTimer(item);
-            closeAllDropdowns(item);
-            setDropdownState(item, true);
-        }
-
-        function toggleDropdown(item) {
-            const isOpen = item.classList.contains(
-                "saidpl-nav-item--open"
-            );
-
-            clearDropdownTimer(item);
-
-            if (isOpen) {
-                closeDropdown(item);
-            } else {
-                openDropdown(item);
-            }
-        }
-
-        /* =================================================
-           3. DESKTOP HOVER DELAYS
-           ================================================= */
-
-        function scheduleDropdownOpen(item) {
-            clearDropdownTimer(item);
-
-            const timer = window.setTimeout(() => {
-                if (
-                    !mobileQuery.matches &&
-                    item.matches(":hover")
-                ) {
-                    openDropdown(item);
-                }
-
-                timers.delete(item);
-            }, HOVER_OPEN_DELAY);
-
-            timers.set(item, timer);
-        }
-
-        function scheduleDropdownClose(item) {
-            clearDropdownTimer(item);
-
-            const timer = window.setTimeout(() => {
-                const pointerInside = item.matches(":hover");
-                const focusInside = item.contains(
-                    document.activeElement
-                );
-
-                if (!pointerInside && !focusInside) {
-                    closeDropdown(item);
-                }
-
-                timers.delete(item);
-            }, HOVER_CLOSE_DELAY);
-
-            timers.set(item, timer);
-        }
-
-        dropdownItems.forEach((item) => {
-            const toggle = item.querySelector(
-                ".saidpl-nav-dropdown-toggle"
-            );
-
-            if (!toggle) return;
-
-            /* Mouse hover: desktop only */
-            item.addEventListener("mouseenter", () => {
-                if (!mobileQuery.matches) {
-                    scheduleDropdownOpen(item);
-                }
-            });
-
-            item.addEventListener("mouseleave", () => {
-                if (!mobileQuery.matches) {
-                    scheduleDropdownClose(item);
-                }
-            });
-
-            /* Keyboard focus */
-            item.addEventListener("focusin", () => {
-                if (!mobileQuery.matches) {
-                    clearDropdownTimer(item);
-                    openDropdown(item);
-                }
-            });
-
-            item.addEventListener("focusout", () => {
-                if (!mobileQuery.matches) {
-                    scheduleDropdownClose(item);
-                }
-            });
-
-            /*
-             * Click/tap toggle:
-             * Works on both desktop and mobile.
-             */
-            toggle.addEventListener("click", (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-
-                toggleDropdown(item);
-            });
-
-            /* Mobile-friendly toggle on the main link when in drawer */
-            const mainServicesLink = item.querySelector(
-                ".saidpl-nav-link-box > .saidpl-nav-link"
-            );
-            if (mainServicesLink) {
-                mainServicesLink.addEventListener("click", (event) => {
-                    if (mobileQuery.matches) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                        toggleDropdown(item);
-                    }
-                });
-            }
+        backdrop.addEventListener("click", () => {
+            state.close(true);
         });
 
-        /* =================================================
-           4. MOBILE DRAWER OPEN/CLOSE
-           ================================================= */
+        /* Close drawer when following any navigation link */
+        drawer.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+                if (mobileQuery.matches) {
+                    state.close(false);
+                }
+            });
+        });
 
-        function isMobileMenuOpen() {
-            return menu.classList.contains(
-                "saidpl-nav-menu--open"
-            );
+        /* ==========================================================================
+           3. SERVICES ACCORDION FUNCTIONALITY
+           ========================================================================== */
+        if (servicesToggle) {
+            servicesToggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                const parentItem = servicesToggle.closest(".saidpl-drawer-item");
+                if (!parentItem) return;
+
+                const isExpanded = parentItem.classList.contains("saidpl-drawer-item--open");
+                parentItem.classList.toggle("saidpl-drawer-item--open", !isExpanded);
+                servicesToggle.setAttribute("aria-expanded", String(!isExpanded));
+            });
         }
 
-        function openMobileMenu() {
-            if (!mobileQuery.matches || isMobileMenuOpen()) {
+        /* ==========================================================================
+           4. KEYBOARD TRAP & ESCAPE ACCESSIBILITY
+           ========================================================================== */
+        document.addEventListener("keydown", (e) => {
+            if (!state.isOpen) return;
+
+            /* Escape key closes the drawer immediately */
+            if (e.key === "Escape") {
+                e.preventDefault();
+                state.close(true);
                 return;
             }
 
-            previousFocusedElement = document.activeElement;
+            /* Focus trap within open drawer */
+            if (e.key === "Tab") {
+                const focusables = drawer.querySelectorAll(
+                    'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                );
 
-            menu.classList.add("saidpl-nav-menu--open");
+                if (!focusables.length) return;
 
-            hamburger.classList.add(
-                "saidpl-nav-hamburger--active"
-            );
+                const firstFocusable = focusables[0];
+                const lastFocusable = focusables[focusables.length - 1];
 
-            backdrop.classList.add(
-                "saidpl-nav-backdrop--visible"
-            );
-            backdrop.classList.add(
-                "saidpl-nav-backdrop--open"
-            );
-
-            document.body.classList.add("saidpl-nav-menu-open");
-
-            hamburger.setAttribute("aria-expanded", "true");
-            hamburger.setAttribute(
-                "aria-label",
-                "Close navigation menu"
-            );
-
-            backdrop.setAttribute("aria-hidden", "false");
-
-            /*
-             * Move keyboard focus into the drawer.
-             * Use the first link as the initial focus target.
-             */
-            const firstLink = menu.querySelector(
-                ".saidpl-nav-link"
-            );
-
-            if (firstLink) {
-                firstLink.focus({ preventScroll: true });
+                if (e.shiftKey) {
+                    if (document.activeElement === firstFocusable) {
+                        e.preventDefault();
+                        lastFocusable.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastFocusable) {
+                        e.preventDefault();
+                        firstFocusable.focus();
+                    }
+                }
             }
-        }
-
-        function closeMobileMenu(options = {}) {
-            const { returnFocus = false } = options;
-
-            menu.classList.remove("saidpl-nav-menu--open");
-
-            hamburger.classList.remove(
-                "saidpl-nav-hamburger--active"
-            );
-
-            backdrop.classList.remove(
-                "saidpl-nav-backdrop--visible"
-            );
-            backdrop.classList.remove(
-                "saidpl-nav-backdrop--open"
-            );
-
-            document.body.classList.remove("saidpl-nav-menu-open");
-
-            hamburger.setAttribute("aria-expanded", "false");
-            hamburger.setAttribute(
-                "aria-label",
-                "Open navigation menu"
-            );
-
-            backdrop.setAttribute("aria-hidden", "true");
-
-            closeAllDropdowns();
-
-            if (returnFocus && mobileQuery.matches) {
-                hamburger.focus({ preventScroll: true });
-            }
-        }
-
-        function toggleMobileMenu() {
-            if (isMobileMenuOpen()) {
-                closeMobileMenu({ returnFocus: true });
-            } else {
-                openMobileMenu();
-            }
-        }
-
-        hamburger.addEventListener("click", toggleMobileMenu);
-
-        /* Dedicated drawer close button */
-        const drawerClose = document.getElementById("saidplNavDrawerClose");
-        if (drawerClose) {
-            drawerClose.addEventListener("click", () => {
-                closeMobileMenu({ returnFocus: true });
-            });
-        }
-
-        /* Backdrop closes the drawer */
-        backdrop.addEventListener("click", () => {
-            closeMobileMenu({ returnFocus: true });
         });
 
-        /* Close drawer after following a navigation link */
-        menu.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                if (link.closest(".saidpl-nav-link-box") && mobileQuery.matches) {
-                    return;
-                }
-                if (mobileQuery.matches) {
-                    closeMobileMenu();
-                }
-            });
-        });
+        /* ==========================================================================
+           5. RESPONSIVE BREAKPOINT RESET
+           ========================================================================== */
+        function onBreakpointChange(e) {
+            if (!e.matches && state.isOpen) {
+                state.close(false);
+            }
+        }
 
-        function getPageFilename(path) {
-            const clean = (path || "").split("?")[0].split("#")[0].replace(/\/$/, "");
+        if (typeof mobileQuery.addEventListener === "function") {
+            mobileQuery.addEventListener("change", onBreakpointChange);
+        } else {
+            mobileQuery.addListener(onBreakpointChange);
+        }
+
+        /* ==========================================================================
+           6. STICKY HEADER SCROLL SHADOW EFFECT
+           ========================================================================== */
+        function updateHeaderScrollState() {
+            header.classList.toggle("saidpl-nav-header--scrolled", window.scrollY > 10);
+            isScrollTicking = false;
+        }
+
+        window.addEventListener("scroll", () => {
+            if (!isScrollTicking) {
+                isScrollTicking = true;
+                window.requestAnimationFrame(updateHeaderScrollState);
+            }
+        }, { passive: true });
+
+        updateHeaderScrollState();
+
+        /* ==========================================================================
+           7. ACTIVE PAGE HIGHLIGHTER
+           ========================================================================== */
+        function getPageFilename(url) {
+            const clean = (url || "").split("?")[0].split("#")[0].replace(/\/$/, "");
             const parts = clean.split("/").filter(Boolean);
             const last = parts.length > 0 ? parts[parts.length - 1].toLowerCase() : "";
             if (!last || last === "index.html" || last.indexOf(".") === -1) {
@@ -367,155 +222,66 @@
             return last;
         }
 
-        /* Mark active menu item based on current location */
-        const currentPage = getPageFilename(window.location.pathname);
-        menu.querySelectorAll(".saidpl-nav-item").forEach((item) => {
-            const mainLink = item.querySelector(".saidpl-nav-link");
-            if (mainLink) {
-                const href = mainLink.getAttribute("href") || "";
-                const linkPage = getPageFilename(href);
-                if (currentPage === linkPage) {
-                    item.classList.add("saidpl-nav-item--active");
-                }
-            }
-        });
-
-        /* =================================================
-           5. OUTSIDE CLICK
-           ================================================= */
-
-        document.addEventListener("click", (event) => {
-            if (!header.contains(event.target)) {
-                closeAllDropdowns();
-            }
-        });
-
-        /* =================================================
-           6. ESCAPE KEY
-           ================================================= */
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key !== "Escape") return;
-
-            if (isMobileMenuOpen()) {
-                closeMobileMenu({ returnFocus: true });
-                return;
-            }
-
-            const openItem = dropdownItems.find((item) =>
-                item.classList.contains("saidpl-nav-item--open")
-            );
-
-            if (openItem) {
-                const toggle = openItem.querySelector(
-                    ".saidpl-nav-dropdown-toggle"
-                );
-
-                closeDropdown(openItem);
-
-                if (toggle) {
-                    toggle.focus();
-                }
-            }
-        });
-
-        /* =================================================
-           7. RESPONSIVE BREAKPOINT CHANGES
-           ================================================= */
-
-        function handleBreakpointChange() {
-            dropdownItems.forEach(clearDropdownTimer);
-            closeAllDropdowns();
-
-            /*
-             * Reset mobile-only classes when switching layouts.
-             */
-            menu.classList.remove("saidpl-nav-menu--open");
-
-            hamburger.classList.remove(
-                "saidpl-nav-hamburger--active"
-            );
-
-            backdrop.classList.remove(
-                "saidpl-nav-backdrop--visible"
-            );
-            backdrop.classList.remove(
-                "saidpl-nav-backdrop--open"
-            );
-
-            document.body.classList.remove("saidpl-nav-menu-open");
-
-            hamburger.setAttribute("aria-expanded", "false");
-            hamburger.setAttribute(
-                "aria-label",
-                "Open navigation menu"
-            );
-
-            backdrop.setAttribute("aria-hidden", "true");
-        }
-
-        if (typeof mobileQuery.addEventListener === "function") {
-            mobileQuery.addEventListener(
-                "change",
-                handleBreakpointChange
-            );
-        } else {
-            /* Legacy Safari support */
-            mobileQuery.addListener(handleBreakpointChange);
-        }
-
-        /* =================================================
-           8. CLEAN INITIAL STATE & ACTIVE LINK
-           ================================================= */
-
-        closeAllDropdowns();
-
-        hamburger.setAttribute("aria-expanded", "false");
-        hamburger.setAttribute(
-            "aria-label",
-            "Open navigation menu"
-        );
-
-        backdrop.setAttribute("aria-hidden", "true");
-
-        function highlightActiveNavLinks() {
+        function highlightActiveLinks() {
             const currentPage = getPageFilename(window.location.pathname);
-            const links = menu.querySelectorAll(".saidpl-nav-link, .saidpl-nav-dropdown-link");
-            links.forEach((link) => {
-                link.classList.remove("saidpl-nav-link--active", "saidpl-nav-dropdown-link--active");
-                const href = link.getAttribute("href");
-                if (!href) return;
-                const linkPage = getPageFilename(href);
-                if (currentPage === linkPage) {
-                    if (link.classList.contains("saidpl-nav-dropdown-link")) {
-                        link.classList.add("saidpl-nav-dropdown-link--active");
-                        const parentItem = link.closest(".saidpl-nav-item--has-dropdown");
-                        if (parentItem) {
-                            const parentLink = parentItem.querySelector(".saidpl-nav-link");
-                            if (parentLink) parentLink.classList.add("saidpl-nav-link--active");
+
+            /* 1. Desktop Links */
+            header.querySelectorAll(".saidpl-desktop-link, .saidpl-desktop-dropdown-link").forEach((link) => {
+                link.classList.remove("saidpl-desktop-link--active", "saidpl-desktop-dropdown-link--active");
+                link.removeAttribute("aria-current");
+
+                const href = link.getAttribute("href") || "";
+                if (getPageFilename(href) === currentPage) {
+                    if (link.classList.contains("saidpl-desktop-dropdown-link")) {
+                        link.classList.add("saidpl-desktop-dropdown-link--active");
+                        const parentDropdownItem = link.closest(".saidpl-desktop-item--dropdown");
+                        if (parentDropdownItem) {
+                            const parentLink = parentDropdownItem.querySelector(".saidpl-desktop-link");
+                            if (parentLink) parentLink.classList.add("saidpl-desktop-link--active");
                         }
                     } else {
-                        link.classList.add("saidpl-nav-link--active");
+                        link.classList.add("saidpl-desktop-link--active");
                     }
+                    link.setAttribute("aria-current", "page");
+                }
+            });
+
+            /* 2. Mobile Drawer Links */
+            drawer.querySelectorAll(".saidpl-drawer-link, .saidpl-drawer-sublink").forEach((link) => {
+                link.classList.remove("saidpl-drawer-link--active", "saidpl-drawer-sublink--active");
+                link.removeAttribute("aria-current");
+
+                const parentItem = link.closest(".saidpl-drawer-item");
+                if (parentItem) parentItem.classList.remove("saidpl-drawer-item--active");
+
+                const href = link.getAttribute("href") || "";
+                if (getPageFilename(href) === currentPage) {
+                    if (link.classList.contains("saidpl-drawer-sublink")) {
+                        link.classList.add("saidpl-drawer-sublink--active");
+                        const parentAccordion = link.closest(".saidpl-drawer-item--has-submenu");
+                        if (parentAccordion) {
+                            parentAccordion.classList.add("saidpl-drawer-item--open", "saidpl-drawer-item--active");
+                            if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "true");
+                        }
+                    } else {
+                        link.classList.add("saidpl-drawer-link--active");
+                        if (parentItem) parentItem.classList.add("saidpl-drawer-item--active");
+                    }
+                    link.setAttribute("aria-current", "page");
                 }
             });
         }
 
-        highlightActiveNavLinks();
+        highlightActiveLinks();
     }
 
-    /* =====================================================
-       INITIALIZE AFTER DOM IS READY & COMPONENTS ARE LOADED
-       ===================================================== */
-
+    /* ==========================================================================
+       8. LIFECYCLE DISPATCH INITIALIZATION
+       ========================================================================== */
     document.addEventListener("saidpl:components-ready", initSaidplNavbar);
 
     if (document.readyState === "loading") {
-        document.addEventListener(
-            "DOMContentLoaded",
-            initSaidplNavbar,
-            { once: true }
-        );
+        document.addEventListener("DOMContentLoaded", initSaidplNavbar, { once: true });
     } else {
         initSaidplNavbar();
     }
