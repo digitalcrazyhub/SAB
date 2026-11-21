@@ -1,11 +1,15 @@
-/* ============================================================
-   ROOT COMPONENT
-   ============================================================ */
+/* ==============================================================================
+   SRI AMMA BUILDER PVT LTD — FLOATING ACTION CONTROLS
+   Global WhatsApp, Phone and Scroll-to-Top Floating Buttons
+   ============================================================================== */
+
+@import url('./root.css');
+
 .saidpl-fab-stack {
     position: fixed;
     right: 24px;
     bottom: 24px;
-    z-index: 9999;
+    z-index: var(--z-floating);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,224 +17,100 @@
     isolation: isolate;
 }
 
-
-/* ============================================================
-   COMMON BUTTON
-   ============================================================ */
 .saidpl-fab-stack .saidpl-fab {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     border: none;
-    border-radius: 50%;
+    border-radius: var(--border-radius-full);
     text-decoration: none;
     cursor: pointer;
     position: relative;
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        opacity 0.3s ease,
-        visibility 0.3s ease;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast), visibility var(--transition-fast);
     -webkit-tap-highlight-color: transparent;
 }
 
-/* ============================================================
-   ICON
-   ============================================================ */
-
-.saidpl-fab-stack .saidpl-fab i {
-    width: 21px;
-    height: 21px;
-
-    stroke-width: 2.2;
-}
-
-
+.saidpl-fab-stack .saidpl-fab i,
 .saidpl-fab-stack .saidpl-fab svg {
-    width: 24px;
-    height: 24px;
-
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.2;
     display: block;
 }
 
-
-/* ============================================================
-   HOVER
-   ============================================================ */
-
 @media (hover: hover) {
-
     .saidpl-fab-stack .saidpl-fab:hover {
-        transform: translateY(-4px) scale(1.04);
+        transform: translateY(-4px) scale(1.05);
     }
-
 }
 
-
-/* ============================================================
-   FOCUS
-   ============================================================ */
-
 .saidpl-fab-stack .saidpl-fab:focus-visible {
-    outline: 3px solid rgba(165, 0, 13, 0.45);
+    outline: 3px solid var(--accent-color);
     outline-offset: 4px;
 }
 
-
-/* ============================================================
-   SCROLL TO TOP
-   ============================================================ */
-
+/* Scroll To Top */
 .saidpl-fab-stack .saidpl-fab-top {
-    background: #FFFFFF;
-    color: #111111;
-
-    border: 1px solid #E5E5E5;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.14);
-
+    background: var(--surface-dark-2);
+    color: var(--white);
+    border: 1px solid var(--border-dark-subtle);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     opacity: 0;
     visibility: hidden;
-
     pointer-events: none;
-
-    transform: translateY(15px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-
-/* Visible state */
-
+.saidpl-fab-stack .saidpl-fab-top.is-visible,
 .saidpl-fab-stack .saidpl-fab-top.saidpl-show {
     opacity: 1;
     visibility: visible;
-
     pointer-events: auto;
-
-    transform: translateY(0);
 }
 
-
-/* Hover */
-
-@media (hover: hover) {
-
-    .saidpl-fab-stack .saidpl-fab-top.saidpl-show:hover {
-        background: #A5000D;
-        color: #FFFFFF;
-
-        border-color: #A5000D;
-
-        box-shadow:
-            0 12px 30px rgba(165, 0, 13, 0.30);
-    }
-
+.saidpl-fab-stack .saidpl-fab-top:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--white);
 }
 
-
-/* ============================================================
-   CALL BUTTON
-   ============================================================ */
-
+/* Call Button */
 .saidpl-fab-stack .saidpl-fab-call {
-    background: #A5000D;
-    color: #FFFFFF;
-
-    box-shadow:
-        0 10px 28px rgba(0, 0, 0, 0.25);
+    background: var(--surface-dark-2);
+    color: var(--white);
+    border: 1px solid var(--border-dark-subtle);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-
-/* Call hover */
-
-@media (hover: hover) {
-
-    .saidpl-fab-stack .saidpl-fab-call:hover {
-        background: #83000A;
-        color: #FFFFFF;
-
-        box-shadow:
-            0 12px 32px rgba(165, 0, 13, 0.35);
-    }
-
+.saidpl-fab-stack .saidpl-fab-call:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--white);
 }
 
-
-/* ============================================================
-   WHATSAPP
-   ============================================================ */
-
+/* WhatsApp Button */
 .saidpl-fab-stack .saidpl-fab-whatsapp {
-    background: #18A85B;
+    background: #25D366;
     color: #FFFFFF;
-
-    box-shadow:
-        0 12px 35px rgba(24, 168, 91, 0.35);
-
-    animation:
-        saidpl-whatsapp-pulse 2.5s ease-out infinite;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
 }
 
-
-/* WhatsApp hover */
-
-@media (hover: hover) {
-
-    .saidpl-fab-stack .saidpl-fab-whatsapp:hover {
-        background: #128C4A;
-
-        box-shadow:
-            0 15px 40px rgba(24, 168, 91, 0.45);
-
-        animation-play-state: paused;
-    }
-
+.saidpl-fab-stack .saidpl-fab-whatsapp:hover {
+    background: #20BA5A;
 }
 
-
-/* ============================================================
-   WHATSAPP PULSE
-   Unique animation name prevents conflicts.
-   ============================================================ */
-
-@keyframes saidpl-whatsapp-pulse {
-
-    0% {
-        box-shadow:
-            0 0 0 0 rgba(24, 168, 91, 0.55),
-            0 12px 35px rgba(24, 168, 91, 0.30);
+@media (max-width: 575px) {
+    .saidpl-fab-stack {
+        right: 16px;
+        bottom: 16px;
+        gap: 10px;
     }
-
-    60% {
-        box-shadow:
-            0 0 0 14px rgba(24, 168, 91, 0),
-            0 12px 35px rgba(24, 168, 91, 0.30);
-    }
-
-    100% {
-        box-shadow:
-            0 0 0 0 rgba(24, 168, 91, 0),
-            0 12px 35px rgba(24, 168, 91, 0.30);
-    }
-
-}
-
-/* ============================================================
-   REDUCED MOTION ACCESSIBILITY
-   ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
 
     .saidpl-fab-stack .saidpl-fab {
-        transition: none;
+        width: 44px;
+        height: 44px;
     }
-
-
-    .saidpl-fab-stack .saidpl-fab-whatsapp {
-        animation: none;
-    }
-
 }

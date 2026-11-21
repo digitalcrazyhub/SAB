@@ -4,32 +4,8 @@
 ============================================================ */
 
 
-/* ============================================================
-   1. ROOT
-============================================================ */
-
-:root {
-    /* Brand */
-    --primary-color: #0A0A0A;
-    --secondary-color: #A5000D;
-    --accent-color: #A5000D;
-
-    /* Text */
-    --text-color: #1E1E1E;
-    --text-light: #CACACA;
-
-    /* Background */
-    --bg-color: #FFFFFF;
-    --bg-light: #F5F5F5;
-    --bg-dark: #0A0A0A;
-
-    /* Border */
-    --border-color: #E5E5E5;
-
-    /* Common */
-    --white: #FFFFFF;
-    --black: #000000;
-}
+@import url('./root.css');
+@import url('./global.css');
 
 /* ============================================================
    2. RESET
@@ -52,9 +28,9 @@ html {
 body {
     min-width: 320px;
     overflow-x: hidden;
-    font-family: "Plus Jakarta Sans", sans-serif;
-    color: var(--white);
-    background: var(--bg-dark);
+    font-family: "Montserrat", sans-serif;
+    color: #D1D5DB;
+    background: #0A0A0A;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -65,7 +41,7 @@ button,
 input,
 textarea,
 select {
-    font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 a {
@@ -113,7 +89,7 @@ section {
 
 .section-title {
     margin-bottom: 1.25rem;
-    color: var(--white);
+    color: #FFFFFF;
     font-size: clamp(2rem, 3.5vw, 2.75rem);
     font-weight: 800;
     line-height: 1.25;
@@ -122,7 +98,7 @@ section {
 
 .section-title-dark {
     margin-bottom: 1.25rem;
-    color: var(--primary-color);
+    color: #FFFFFF;
     font-size: clamp(2rem, 3.5vw, 2.75rem);
     font-weight: 800;
     line-height: 1.25;
@@ -130,7 +106,7 @@ section {
 
 .section-desc {
     max-width: 680px;
-    color: #A3A3A3;
+    color: #CACACA;
     font-size: 1rem;
     line-height: 1.7;
 }
@@ -170,171 +146,7 @@ section {
     overflow-wrap: anywhere;
 }
 
-/* ============================================================
-   4. TEAM PAGE STYLE HERO
-============================================================ */
-.team-style-hero {
-    position: relative;
-    width: 100%;
-    height: 52vh;
-    min-height: 420px;
-    overflow: hidden;
-    background-color: var(--primary-color);
-}
 
-.hero-slider-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
-    will-change: transform;
-}
-
-.hero-slide {
-    position: relative;
-    display: flex;
-    flex: 0 0 100%;
-    align-items: center;
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    background: linear-gradient(180deg, rgba(10, 10, 10, 0.84), rgba(10, 10, 10, 0.70));
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    margin-inline: auto;
-    text-align: center;
-}
-
-.hero-title {
-    margin-bottom: 0.9rem;
-    color: var(--white);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-}
-
-.hero-subtitle {
-    max-width: 760px;
-    margin: 0 auto 1.4rem;
-    color: #D0D0D0;
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    font-style: italic;
-    line-height: 1.7;
-}
-
-.breadcrumbs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    color: var(--accent-color);
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-.breadcrumbs a {
-    color: var(--accent-color);
-    transition: color 0.3s ease;
-}
-
-.breadcrumbs a:hover {
-    color: var(--white);
-}
-
-.breadcrumbs span {
-    color: rgba(255, 255, 255, 0.4);
-
-}
-
-.breadcrumbs .current {
-    color: #A3A3A3;
-}
-
-/* ============================================================
-   5. HERO DOTS
-============================================================ */
-
-.hero-dots {
-
-    position: absolute;
-
-    left: 50%;
-
-    bottom: 2rem;
-
-    z-index: 10;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 0.6rem;
-
-    transform:
-        translateX(-50%);
-
-}
-
-
-.dot {
-
-    width: 12px;
-
-    height: 8px;
-
-    padding: 0;
-
-    border: 0;
-
-    border-radius: 20px;
-
-    background:
-        rgba(255,
-            255,
-            255,
-            0.3);
-
-    cursor: pointer;
-
-    transition:
-        width 0.4s ease,
-        background-color 0.4s ease;
-
-}
-
-
-.dot:hover {
-
-    background:
-        rgba(255,
-            255,
-            255,
-            0.75);
-
-}
-
-
-.dot.is-active {
-
-    width: 38px;
-
-    background:
-        var(--accent-color);
-
-}
 
 
 /* ============================================================
@@ -438,10 +250,7 @@ section {
 ============================================================ */
 
 .director-section {
-
-    background:
-        var(--bg-dark);
-
+    background: #0A0A0A;
 }
 
 
@@ -505,17 +314,11 @@ section {
 
 
 .director-quote {
-
     margin-bottom: 1.5rem;
-
-    color: #D2D2D2;
-
+    color: #E5E7EB;
     font-size: 1.05rem;
-
     line-height: 1.8;
-
     text-align: justify;
-
 }
 
 
@@ -606,32 +409,15 @@ section {
 ============================================================ */
 
 .support-card {
-
     display: flex;
-
     align-items: center;
-
     gap: 1.5rem;
-
     width: fit-content;
-
     max-width: 100%;
-
-    padding:
-        1.5rem 2rem;
-
-    background:
-        #141414;
-
-    border:
-        1px solid rgba(255,
-            255,
-            255,
-            0.08);
-
-    border-radius:
-        10px;
-
+    padding: 1.5rem 2rem;
+    background: #141414;
+    border: 1px solid #262626;
+    border-radius: 18px;
 }
 
 
@@ -720,51 +506,31 @@ section {
 ============================================================ */
 
 .history-section {
-
-    background:
-        #0E0E0E;
-
+    background: #0A0A0A;
+    border-top: 1px solid #1F1F1F;
+    border-bottom: 1px solid #1F1F1F;
 }
-
 
 .history-grid {
-
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr) minmax(0, 1fr);
-
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 4rem;
-
     align-items: center;
-
 }
-
 
 .history-img-box {
-
     position: relative;
-
     overflow: hidden;
-
-    border-radius:
-        10px;
-
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid #E5E7EB;
 }
 
-
 .history-img-box img {
-
     width: 100%;
-
     height: auto;
-
-    border-radius:
-        10px;
-
-    transition:
-        transform 0.6s ease;
-
+    border-radius: 20px;
+    transition: transform 0.6s ease;
 }
 
 
@@ -864,127 +630,62 @@ section {
 ============================================================ */
 
 .pillars-section {
-
-    background:
-        var(--bg-dark);
-
+    background: #0A0A0A;
 }
-
 
 .pillars-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3,
-            minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
-
 }
-
 
 .pillar-card {
-
-    padding:
-        3rem 2.25rem;
-
-    background:
-        #141414;
-
-    border:
-        1px solid rgba(255,
-            255,
-            255,
-            0.06);
-
-    border-radius:
-        10px;
-
-    transition:
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.4s ease;
-
+    padding: 3rem 2.25rem;
+    background: #141414;
+    border: 1px solid #262626;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease, box-shadow 0.4s ease;
 }
-
 
 .pillar-card:hover {
-
-    transform:
-        translateY(-8px);
-
-    border-color:
-        var(--accent-color);
-
+    background: #1A1A1A;
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 16px 36px rgba(165, 0, 13, 0.2);
 }
-
 
 .pillar-icon {
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     width: 65px;
-
     height: 65px;
-
     margin-bottom: 1.75rem;
-
-    color:
-        var(--accent-color);
-
-    background:
-        rgba(165,
-            0,
-            13,
-            0.12);
-
-    border-radius:
-        10px;
-
+    color: var(--accent-color);
+    background: rgba(165, 0, 13, 0.12);
+    border-radius: 14px;
     font-size: 1.85rem;
-
-    transition:
-        transform 0.4s ease;
-
+    transition: transform 0.4s ease;
 }
-
 
 .pillar-card:hover .pillar-icon {
-
-    transform:
-        scale(1.12) rotate(6deg);
-
+    transform: scale(1.12) rotate(6deg);
 }
-
 
 .pillar-card h3 {
-
     margin-bottom: 1.15rem;
-
-    color: var(--white);
-
+    color: #FFFFFF;
     font-size: 1.45rem;
-
     font-weight: 800;
-
     line-height: 1.3;
-
 }
 
-
 .pillar-card p {
-
-    color:
-        #A3A3A3;
-
+    color: #CACACA;
     font-size: 0.95rem;
-
     line-height: 1.75;
-
 }
 
 
@@ -995,7 +696,7 @@ section {
 .clients-strip {
 
     background:
-        var(--white);
+        #0A0A0A;
 
 }
 
@@ -1027,8 +728,7 @@ section {
 
     padding: 1rem;
 
-    background:
-        var(--bg-light);
+    background: #343434;
 
     border:
         1px solid var(--border-color);
@@ -1050,8 +750,8 @@ section {
 
     max-width: 100%;
 
-    max-height: 48px;
-
+    max-height: 84px;
+    border-radius: 6px;
     object-fit: contain;
 
     filter:
@@ -1246,8 +946,7 @@ section {
 
     display: block;
 
-    color:
-        var(--text-light);
+    color: #070707;
 
     font-size: 0.95rem;
 
@@ -1261,177 +960,92 @@ section {
 /* ============================================================
    15. AWARDS
 ============================================================ */
-
 .awards-section {
-
-    background:
-        var(--bg-dark);
-
+    background: #0A0A0A;
+    border-top: 1px solid #1F1F1F;
+    border-bottom: 1px solid #1F1F1F;
 }
-
 
 .awards-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2,
-            minmax(0, 1fr));
-
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
-
 }
-
 
 .award-box {
-
     overflow: hidden;
-
-    background:
-        #141414;
-
-    border:
-        1px solid rgba(255,
-            255,
-            255,
-            0.08);
-
-    border-radius:
-        10px;
-
-    transition:
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.4s ease;
-
+    background: #141414;
+    border: 1px solid #262626;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease, box-shadow 0.4s ease;
 }
-
 
 .award-box:hover {
-
-    transform:
-        translateY(-6px);
-
-    border-color:
-        var(--accent-color);
-
+    transform: translateY(-6px);
+    border-color: var(--accent-color);
+    box-shadow: 0 18px 40px rgba(165, 0, 13, 0.2);
 }
-
 
 .award-img {
-
     width: 100%;
-
     height: 320px;
-
     overflow: hidden;
-
-    background:
-        #050505;
-
+    background: #1A1A1A;
 }
-
 
 .award-img img {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
-
-    transition:
-        transform 0.6s ease;
-
+    transition: transform 0.6s ease;
 }
-
 
 .award-box:hover .award-img img {
-
-    transform:
-        scale(1.05);
-
+    transform: scale(1.05);
 }
-
 
 .award-caption {
-
     padding: 1.5rem;
-
     text-align: center;
-
 }
-
 
 .award-caption h3 {
-
-    color:
-        var(--white);
-
+    color: #FFFFFF;
     font-size: 1.05rem;
-
     font-weight: 700;
-
     line-height: 1.5;
-
 }
-
 
 /* ============================================================
    16. TEAM
 ============================================================ */
-
 .team-section {
-
-    background:
-        #383838;
-
+    background: #0A0A0A;
+    border-top: 1px solid #1F1F1F;
 }
-
 
 .team-cards-grid {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(3,
-            minmax(0, 1fr));
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
-
 }
-
 
 .team-card {
-
     overflow: hidden;
-
-    background:
-        #141414;
-
-    border:
-        1px solid rgba(255,
-            255,
-            255,
-            0.08);
-
-    border-radius:
-        16px;
-
-    transition:
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.4s ease;
-
+    background: #141414;
+    border: 1px solid #262626;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-
 .team-card:hover {
-
-    transform:
-        translateY(-8px);
-
-    border-color:
-        var(--accent-color);
-
+    transform: translateY(-8px);
+    border-color: var(--accent-color);
+    box-shadow: 0 18px 40px rgba(165, 0, 13, 0.2);
 }
 
 
@@ -1439,7 +1053,7 @@ section {
 
     width: 100%;
 
-    height: 360px;
+    height: 568px;
 
     overflow: hidden;
 
@@ -1472,30 +1086,18 @@ section {
 
 
 .team-info {
-
     padding: 1.75rem;
-
     text-align: center;
-
-    background:
-        var(--white);
-
+    background: #141414;
 }
 
 
 .member-name {
-
     margin-bottom: 0.35rem;
-
-    color:
-        var(--primary-color);
-
+    color: #FFFFFF;
     font-size: 1.25rem;
-
     font-weight: 800;
-
     line-height: 1.4;
-
 }
 
 

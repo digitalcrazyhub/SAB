@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Not Found | Sri Amma Builder Pvt Ltd</title>
+    <meta name="description"
+        content="The page you are looking for does not exist. Explore our industrial, commercial, residential, and warehouse construction services.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="./asset/css/root.css">
+    <link rel="stylesheet" href="./asset/css/global.css">
+    <link rel="stylesheet" href="./asset/css/navbar.css">
+    <link rel="stylesheet" href="./asset/css/footer.css">
+    <link rel="stylesheet" href="./asset/css/float.css">
+    <link rel="stylesheet" href="./asset/css/responsive.css">
+    <link rel="icon" href="./asset/img/web_icon.png" sizes="192x192">
+
+    <style>
+        .error-page-section {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(80px, 12vw, 140px) 0;
+            background: linear-gradient(180deg, #0A0A0A 0%, #141414 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .error-page-backdrop {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: clamp(12rem, 25vw, 22rem);
+            font-weight: 900;
+            font-family: var(--font-heading);
+            color: rgba(255, 255, 255, 0.02);
+            user-select: none;
+            pointer-events: none;
+            letter-spacing: -0.05em;
+            z-index: 1;
+        }
+
+        .error-content {
+            position: relative;
+            z-index: 2;
+            max-width: 740px;
+            margin: 0 auto;
+        }
+
+        .error-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background: rgba(165, 0, 13, 0.15);
+            border: 1px solid var(--primary-color);
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .error-title {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--white);
+            margin-bottom: 18px;
+        }
+
+        .error-title span {
+            color: var(--primary-color);
+        }
+
+        .error-desc {
+            font-size: clamp(1rem, 1.4vw, 1.15rem);
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .error-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .error-services-quick {
+            border-top: 1px solid var(--border-dark-subtle);
+            padding-top: 36px;
+            margin-top: 20px;
+        }
+
+        .error-services-label {
+            font-size: 0.8125rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .error-services-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px 24px;
+            flex-wrap: wrap;
+        }
+
+        .error-services-link {
+            color: var(--text-light);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            transition: color var(--transition-fast);
+        }
+
+        .error-services-link:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <div id="saidplNavHeader"></div>
+
+    <!-- Main 404 Section -->
+    <main class="error-page-section" aria-label="Page Not Found">
+        <div class="error-page-backdrop" aria-hidden="true">404</div>
+        <div class="container error-content">
+            <span class="error-badge">ERROR 404 &mdash; ARCHITECTURAL NOTICE</span>
+            <h1 class="error-title">Looking for an <span>Engineered Reality?</span></h1>
+            <p class="error-desc">
+                The page or project blueprint you requested has moved, been archived, or does not exist. Our civil engineering team can direct you to the right destination.
+            </p>
+
+            <div class="error-actions">
+                <a href="./index.html" class="btn btn-primary">
+                    <i class="fa-solid fa-house" aria-hidden="true"></i>
+                    Return to Homepage
+                </a>
+                <a href="./contact.html" class="btn btn-outline-white">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    Contact Engineering Desk
+                </a>
+            </div>
+
+            <div class="error-services-quick">
+                <span class="error-services-label">Quick Sector Navigation</span>
+                <div class="error-services-links">
+                    <a href="./industrial-building-construction.html" class="error-services-link">Industrial Construction</a>
+                    <a href="./commercial_building_construction.html" class="error-services-link">Commercial Construction</a>
+                    <a href="./residential_building_construction.html" class="error-services-link">Residential Construction</a>
+                    <a href="./godown_building_construction.html" class="error-services-link">Godown &amp; Warehousing</a>
+                    <a href="./projects.html" class="error-services-link">Project Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <div id="saidplFooter"></div>
+
+    <!-- Floating Action Buttons -->
+    <div id="saidplFloatingActions"></div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./asset/js/navbar.js"></script>
+    <script src="./asset/js/nav-call.js"></script>
+    <script src="./asset/js/common.js"></script>
+    <script src="./asset/js/float.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+
+</html>
+

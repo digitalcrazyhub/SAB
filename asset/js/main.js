@@ -124,7 +124,7 @@
     }
 
     /* ==========================================================================
-       3. SERVICES INTERACTIVE TAB SLIDING
+       3. SERVICES INTERACTIVE TABS
        ========================================================================== */
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -132,23 +132,27 @@
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.dataset.tab;
+            if (!target) return;
 
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabPanels.forEach(p => p.classList.remove('active'));
+            const activePanel = document.getElementById(target);
+            if (!activePanel) return;
+
+            tabBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            tabPanels.forEach(p => {
+                p.classList.remove('active');
+            });
 
             btn.classList.add('active');
-            const activePanel = document.getElementById(target);
+            btn.setAttribute('aria-selected', 'true');
+
+            // Force animation replay cleanly on the active panel
+            activePanel.style.animation = 'none';
+            void activePanel.offsetWidth; // Trigger reflow
+            activePanel.style.animation = '';
             activePanel.classList.add('active');
-
-            // Reset and trigger slide animations on active elements
-            const leftEl = activePanel.querySelector('.tab-img-box');
-            const rightEl = activePanel.querySelector('.tab-info-box');
-
-            leftEl.style.animation = 'none';
-            rightEl.style.animation = 'none';
-            void leftEl.offsetWidth; // Trigger reflow
-            leftEl.style.animation = '';
-            rightEl.style.animation = '';
         });
     });
 });
