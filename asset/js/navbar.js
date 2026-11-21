@@ -220,6 +220,20 @@
 
                 toggleDropdown(item);
             });
+
+            /* Mobile-friendly toggle on the main link when in drawer */
+            const mainServicesLink = item.querySelector(
+                ".saidpl-nav-link-box > .saidpl-nav-link"
+            );
+            if (mainServicesLink) {
+                mainServicesLink.addEventListener("click", (event) => {
+                    if (mobileQuery.matches) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        toggleDropdown(item);
+                    }
+                });
+            }
         });
 
         /* =================================================
@@ -247,6 +261,9 @@
 
             backdrop.classList.add(
                 "saidpl-nav-backdrop--visible"
+            );
+            backdrop.classList.add(
+                "saidpl-nav-backdrop--open"
             );
 
             document.body.classList.add("saidpl-nav-menu-open");
@@ -283,6 +300,9 @@
 
             backdrop.classList.remove(
                 "saidpl-nav-backdrop--visible"
+            );
+            backdrop.classList.remove(
+                "saidpl-nav-backdrop--open"
             );
 
             document.body.classList.remove("saidpl-nav-menu-open");
@@ -328,6 +348,9 @@
         /* Close drawer after following a navigation link */
         menu.querySelectorAll("a").forEach((link) => {
             link.addEventListener("click", () => {
+                if (link.closest(".saidpl-nav-link-box") && mobileQuery.matches) {
+                    return;
+                }
                 if (mobileQuery.matches) {
                     closeMobileMenu();
                 }
@@ -415,6 +438,9 @@
 
             backdrop.classList.remove(
                 "saidpl-nav-backdrop--visible"
+            );
+            backdrop.classList.remove(
+                "saidpl-nav-backdrop--open"
             );
 
             document.body.classList.remove("saidpl-nav-menu-open");

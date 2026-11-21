@@ -27,100 +27,108 @@
        ========================================================================== */
     const track = document.getElementById('heroTrack');
     const slides = Array.from(document.querySelectorAll('.hero-slide'));
-    const dots = Array.from(document.querySelectorAll('.dot'));
     const prevBtn = document.getElementById('prevSlide');
     const nextBtn = document.getElementById('nextSlide');
+    const dots = Array.from(document.querySelectorAll('.dot'));
     const progressFill = document.getElementById('progressFill');
     const heroSection = document.querySelector('.hero-slider-section');
 
     if (track && slides.length > 0) {
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-        const slideDuration = 6000;
-        let slideTimer = null;
-        let progressTimer = null;
-        let startTime = 0;
-
-        function goToSlide(index) {
-            if (index < 0) {
-                index = totalSlides - 1;
-            } else if (index >= totalSlides) {
-                index = 0;
-            }
-
-            currentIndex = index;
-            track.style.transform = `translate3d(-${currentIndex * 100}%, 0, 0)`;
-
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('is-active', i === currentIndex);
-            });
-
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('is-active', i === currentIndex);
-            });
-
-            startSlideTimer();
-        }
-
-        function startSlideTimer() {
-            stopSlideTimer();
-            startTime = Date.now();
-
-            progressTimer = setInterval(() => {
-                const elapsed = Date.now() - startTime;
-                const percentage = Math.min((elapsed / slideDuration) * 100, 100);
-                if (progressFill) progressFill.style.width = `${percentage}%`;
-            }, 25);
-
-            slideTimer = setTimeout(() => {
-                goToSlide(currentIndex + 1);
-            }, slideDuration);
-        }
-
-        function stopSlideTimer() {
-            if (slideTimer) clearTimeout(slideTimer);
-            if (progressTimer) clearInterval(progressTimer);
-            if (progressFill) progressFill.style.width = '0%';
-        }
-
-        if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-        if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => goToSlide(i));
+        // Ensure the active slide is shown
+        requestAnimationFrame(() => {
+            slides[0].classList.add('is-active');
         });
 
-        if (heroSection) {
-            heroSection.addEventListener('mouseenter', stopSlideTimer);
-            heroSection.addEventListener('mouseleave', startSlideTimer);
-        }
+        // Only initialize carousel automation if there are multiple slides
+        if (slides.length > 1) {
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+            const slideDuration = 6000;
+            let slideTimer = null;
+            let progressTimer = null;
+            let startTime = 0;
 
-        // Touch Swipe Support for Hero
-        let touchStartX = 0;
-        let isTouching = false;
-
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            isTouching = true;
-            stopSlideTimer();
-        }, { passive: true });
-
-        track.addEventListener('touchend', (e) => {
-            if (!isTouching) return;
-            const diffX = touchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diffX) > 45) {
-                if (diffX > 0) {
-                    goToSlide(currentIndex + 1);
-                } else {
-                    goToSlide(currentIndex - 1);
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = totalSlides - 1;
+                } else if (index >= totalSlides) {
+                    index = 0;
                 }
-            } else {
+
+                currentIndex = index;
+                track.style.transform = `translate3d(-${currentIndex * 100}%, 0, 0)`;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('is-active', i === currentIndex);
+                });
+
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === currentIndex);
+                });
+
                 startSlideTimer();
             }
-            isTouching = false;
-        }, { passive: true });
 
-        goToSlide(0);
+            function startSlideTimer() {
+                stopSlideTimer();
+                startTime = Date.now();
+
+                progressTimer = setInterval(() => {
+                    const elapsed = Date.now() - startTime;
+                    const percentage = Math.min((elapsed / slideDuration) * 100, 100);
+                    if (progressFill) progressFill.style.width = `${percentage}%`;
+                }, 25);
+
+                slideTimer = setTimeout(() => {
+                    goToSlide(currentIndex + 1);
+                }, slideDuration);
+            }
+
+            function stopSlideTimer() {
+                if (slideTimer) clearTimeout(slideTimer);
+                if (progressTimer) clearInterval(progressTimer);
+                if (progressFill) progressFill.style.width = '0%';
+            }
+
+            if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+            if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => goToSlide(i));
+            });
+
+            if (heroSection) {
+                heroSection.addEventListener('mouseenter', stopSlideTimer);
+                heroSection.addEventListener('mouseleave', startSlideTimer);
+            }
+
+            // Touch Swipe Support for Hero
+            let touchStartX = 0;
+            let isTouching = false;
+
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                isTouching = true;
+                stopSlideTimer();
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                if (!isTouching) return;
+                const diffX = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diffX) > 45) {
+                    if (diffX > 0) {
+                        goToSlide(currentIndex + 1);
+                    } else {
+                        goToSlide(currentIndex - 1);
+                    }
+                } else {
+                    startSlideTimer();
+                }
+                isTouching = false;
+            }, { passive: true });
+
+            goToSlide(0);
+        }
     }
 
     /* ==========================================================================
@@ -161,6 +169,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const statsBanner = document.querySelector('.stats-banner');
     const counters = document.querySelectorAll('.stat-counter');
+    if (!statsBanner || counters.length === 0) return;
     let animationFrames = [];
 
     // Deceleration easing calculation

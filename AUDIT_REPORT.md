@@ -1,109 +1,89 @@
-# COMPLETE PROJECT AUDIT REPORT: SRI AMMA INDUSTRIAL DEVELOPERS PVT LTD
+# Master Website Audit & Production Readiness Report: Sri Amma Builder Pvt Ltd
 
-**Project**: Sri Amma Builder / Sri Amma Industrial Developers Pvt. Ltd.  
-**Workspace**: `c:\xampp\htdocs\SAB`  
-**Date of Audit**: October 31, 2026  
-**Auditor**: Senior UI/UX Designer, Lead Frontend Engineer & Backend Systems Architect  
-
----
-
-## 1. PROJECT INVENTORY & ROUTE MAP
-
-| Page File | Route URL | Purpose & Scope | Rebuild Status |
-|:---|:---|:---|:---|
-| `index.html` | `/index.html` | Corporate homepage establishing 35-year civil heritage, core services, video process, testimonials, and lead funnel | **Completed** |
-| `about.html` | `/about.html` | Corporate heritage, MD message with authentic photo, 35-year timeline, core values, 4 genuine awards, client grid | **Completed** |
-| `services.html` | `/services.html` | Master services catalog presenting 4 core sectors, technical specs, and 4-phase turnkey delivery framework | **Completed** |
-| `industrial-building-construction.html` | `/industrial-building-construction.html` | Heavy industrial civil engineering: manufacturing plants, PEB steel sheds, Trimix flooring, vibration-isolated machine bases | **Completed** |
-| `residential_building_construction.html` | `/residential_building_construction.html` | Architect-designed custom homes, luxury villas, gated communities, multi-storey residential apartments | **Completed** |
-| `commercial_building_construction.html` | `/commercial_building_construction.html` | Turnkey commercial towers, retail showrooms, enterprise business hubs, modern healthcare medical centers | **Completed** |
-| `godown_building_construction.html` | `/godown_building_construction.html` | Clear-span PEB warehouses, agricultural bulk commodity storage, logistics cross-dock hubs, cold chain facilities | **Completed** |
-| `projects.html` | `/projects.html` | Interactive architectural portfolio: 23 genuine client projects with category filtering and accessible modal lightbox | **Completed** |
-| `team.html` | `/team.html` | Technical leadership directory: 9 genuine staff profiles (`team0.png`–`team8.png`) and operational quality standards | **Completed** |
-| `contact.html` | `/contact.html` | Dual-slide hero banner, 4 direct contact cards, validated lead intake form, CSRF token auto-fetch, reCAPTCHA v3 fallback | **Completed** |
-| `404.html` | `/404.html` | Custom corporate 404 error page with quick links to core services and homepage | **Completed** |
-| `project.html` | `/project.html` | Canonical 301/meta-refresh backward compatibility redirect to `projects.html` | **Completed** |
-| `service.html` | `/service.html` | Canonical 301/meta-refresh backward compatibility redirect to `services.html` | **Completed** |
-| `asset/page/contact.html` | `/asset/page/contact.html` | Errant legacy commit artifact converted into clean HTML/JS redirect to root `contact.html` | **Completed** |
+**Client Name**: Sri Amma Builder Pvt Ltd  
+**Website URL**: https://www.sriammabuilders.com  
+**Audit Date**: November 2026  
+**Auditor**: Lead Full-Stack Engineer, Security Auditor & QA Lead  
+**Audit Status**: Phase 1 Complete (Checks 1, 2, 3, 4, 5, 6, 7, 8, 14 Fixed)  
 
 ---
 
-## 2. AUDIT FINDINGS BY SEVERITY CATEGORY
+## Executive Summary & Stack Detection
 
-### 2.1 CRITICAL FINDINGS (Resolved)
-
-1. **Unresolved Git Merge Conflict Markers Across Codebase**:
-   - *Finding*: Prior to rebuild, multiple files contained Git merge conflict markers (`<<<<<<< HEAD`, `=======`, `>>>>>>>`).
-   - *Impact*: In `backend/contact-submit.php`, an unresolved conflict on line 2 caused an immediate fatal syntax error: `PHP Parse error: syntax error, unexpected token "<<" in contact-submit.php on line 2`. In `backend/.htaccess`, conflict markers broke Apache directives. In `asset/js/contact.js`, 10 conflict markers broke form validation. In `index.html`, 14 conflict markers broke HTML rendering.
-   - *Resolution*: All conflict markers were systematically inspected, merged with the intended logic, and completely eliminated. An automated repository scan verified **zero merge conflict markers** across all source files.
-
-2. **Rogue CSS Rule in `asset/css/main.css` Breaking Hero Layout**:
-   - *Finding*: Line 248 of `asset/css/main.css` declared `.btn-accent { margin-top: 115px; }`.
-   - *Impact*: This rule pushed primary CTA buttons 115px down into subsequent sections, causing layout shifts and overlapping headers.
-   - *Resolution*: Removed the rogue property; standardized all button styles in `asset/css/global.css`.
-
-3. **Backend Public Access to Sensitive Data**:
-   - *Finding*: `backend/credentials/google-service-account.json`, `.env`, and SQL dump files existed in directories potentially accessible over HTTP.
-   - *Impact*: Potential exposure of Google Service Account keys and database connection parameters.
-   - *Resolution*: Hardened `backend/.htaccess` to return HTTP 403 Forbidden on all requests to `.env`, `.sql`, `.log`, `.json`, `composer.*`, `credentials/`, and module subdirectories, while whitelisting only `backend/api/contact.php`.
+- **Frontend Architecture**: Static HTML5, Vanilla JavaScript (ES6+), Modular CSS (14 stylesheets), Font Awesome 6.5.1, Google Fonts.
+- **Backend Architecture**: PHP 8+ (Apache / XAMPP on Windows), Composer (`google/apiclient`, `phpmailer/phpmailer`, `firebase/php-jwt`, `vlucas/phpdotenv`, `guzzlehttp/guzzle`).
+- **Database**: MySQL / MariaDB (Schema at `backend/database/schema.sql`).
+- **Hosting / Server Config**: Apache `.htaccess` (Root `.htaccess` with 301 redirects, `backend/.htaccess`, `backend/logs/.htaccess`, `backend/credentials/.htaccess`).
+- **Critical Alert Handled**: Real Google Cloud Service Account private key (`sriamma@sriamma.iam.gserviceaccount.com`) was committed into git repository in commit `f2473969`. **Key untracked from git cache**, added to `.gitignore`, and logged in `docs/NEEDS_CLIENT_CONFIRMATION.md` for immediate revocation by the owner.
 
 ---
 
-### 2.2 HIGH FINDINGS (Resolved)
+## 30 Master Audit Checks & Progress Matrix
 
-1. **Duplicate `:root` Declarations with Competing Hex Codes**:
-   - *Finding*: Duplicate `:root` declarations were present in `main.css`, `about.css`, `service.css`, `team.css`, `project.css`, `contact.css`, `navbar.css`, `footer.css`, `float.css`, and `industrial-building-construction.css`.
-   - *Impact*: CSS cascade conflicts made global color changes impossible; brand consistency was broken across pages.
-   - *Resolution*: Established [`asset/css/root.css`](file:///c:/xampp/htdocs/SAB/asset/css/root.css) as the single source of truth for all brand tokens (`#A5000D`, `#5F5F5F`), supporting architectural neutrals, typography tokens, layout scales, and elevations. All duplicate `:root` blocks were removed from page stylesheets.
-
-2. **Copy-Paste Text Blunders in Commercial & Residential Pages**:
-   - *Finding*: In `commercial_building_construction.html`, the lead text read: *"Building strong, modern, and comfortable Commercial homes designed for quality living and lasting value... whether it's a luxurious villa, a cozy apartment"*. In all 3 service pages, image `alt` attributes were copied from the industrial page ("Manufacturing Units Facility", "Industrial Sheds").
-   - *Impact*: Highly unprofessional corporate presentation; eroded client credibility; severely hurt search engine ranking.
-   - *Resolution*: Rebuilt all 4 service detail pages with sector-specific engineering content, verified capabilities, and accurate descriptive image `alt` attributes.
-
-3. **Third-Party External Hotlink in `about.html`**:
-   - *Finding*: Line 432 of `about.html` loaded an image from an external staging website (`https://demo.awaikenthemes.com/builtup/wp-content/uploads/2024/02/team-1.jpg`).
-   - *Impact*: External dependency vulnerability, potential 404 if external theme demo is deleted, layout shift, and privacy violation.
-   - *Resolution*: Replaced with local high-resolution asset `./asset/img/Heavy Machinery Factories.jpg`.
-
----
-
-### 2.3 MEDIUM FINDINGS (Resolved)
-
-1. **Floating Action Button Class Inconsistency**:
-   - *Finding*: `float.js` dynamically toggled the CSS class `.saidpl-show`, whereas `asset/css/float.css` only provided styles for `.is-visible`.
-   - *Impact*: The floating contact button remained invisible or failed to fade in reliably on scroll.
-   - *Resolution*: Updated `asset/css/float.css` to support both `.saidpl-show` and `.is-visible`.
-
-2. **Corrupted UTF-8 Quotes and Dashes**:
-   - *Finding*: Multiple HTML files contained corrupted character sequences such as `”“` where an em-dash (`—`) or en-dash (`–`) was intended.
-   - *Impact*: Visual artifacts and typography bugs in modern browsers.
-   - *Resolution*: Replaced all corrupted entities with clean HTML entities (`&mdash;`, `&ndash;`, `&bull;`).
-
-3. **Missing Canonical and OpenGraph Meta Tags**:
-   - *Finding*: Several internal pages lacked canonical URL references and Open Graph social cards.
-   - *Impact*: Search engine crawling ambiguity and poor link previews when shared on messaging platforms.
-   - *Resolution*: Implemented unique `<title>`, `<meta name="description">`, `<link rel="canonical">`, Open Graph, and Twitter Card metadata across all 10 pages.
-
----
-
-### 2.4 LOW FINDINGS (Resolved)
-
-1. **Errant File `asset/page/contact.html`**:
-   - *Finding*: A duplicate contact page file with broken relative paths (`../css/`) existed inside `asset/page/`.
-   - *Resolution*: Converted into a clean, instant HTML meta-refresh and JavaScript redirect to root `contact.html`.
-
-2. **Missing Corporate 404 Page**:
-   - *Finding*: No dedicated 404 error page existed in the repository.
-   - *Resolution*: Built [`404.html`](file:///c:/xampp/htdocs/SAB/404.html) with architectural error messaging, navigation options, and links to core services.
+| # | Audit Check Name | Status | Severity | Notes & Proof |
+|---|---|---|---|---|
+| 1 | File Inventory & Review A to Z | **Fixed** | High | Complete tree mapped in `docs/FILE_INVENTORY.md` (178 files cataloged with purpose & status). |
+| 2 | File Paths & URL Scheme Consistency | **Fixed** | Medium | Uniform `./asset/...` scheme. Link verification tool `tools/check-links.js` passed with 0 missing. |
+| 3 | Broken Links, Anchors & Missing Assets | **Fixed** | High | 6 missing banner/video poster references mapped to authentic project photos (`sitephotos/img01-img05.png`). `tools/check-links.js` reports 0 missing. |
+| 4 | Duplicate Files Removal (`_review_trash`) | **Fixed** | Medium | 13 unreferenced/duplicate files moved non-destructively to `/_review_trash/`, documented in `docs/CLEANUP_LOG.md`. 301 redirects added to `.htaccess`. |
+| 5 | Duplicate Code, Selectors & Inline Blocks | **Fixed** | Medium | Consolidated duplicate root PHP scripts into modular `backend/` packages. Semantic `<main id="mainContent">` added to 5 pages. |
+| 6 | Testing & Debug Leftovers Cleanup | **Fixed** | High | `backend/test.php` and `backend/hello.php` moved to `_review_trash/`. Grep scan confirms 0 `console.log`, `alert()`, `var_dump`, `TODO` in active files. |
+| 7 | Unused Packages & Dependencies | **Fixed** | Medium | 37,200+ vendor files untracked from Git staging cache via `git rm -r --cached backend/vendor`, permanently added to `.gitignore`. |
+| 8 | Complete Incomplete HTML/CSS/JS & Lint | **Fixed** | Low | Automated validator `tools/validate-html.js` passes with 0 issues across all 13 core pages. |
+| 9 | Form Testing & Submission Integrity | Pending (Phase 4) | High | Contact & enquiry forms to be tested against edge cases, SQLi, XSS, and spam. |
+| 10 | Database Security & Prepared Statements | Pending (Phase 4) | Critical | Verify PDO prepared statements, schema.sql validity, and credential isolation. |
+| 11 | Environment Variables & Secrets Isolation | **Blocked on Owner** | Critical | Service account JSON untracked from Git. Awaiting owner key revocation in Google Cloud Console. |
+| 12 | Performance Optimization (Images, Cache, WebP) | Pending (Phase 6) | Medium | Optimize images, implement WebP/AVIF, lazy loading, font-display, and caching headers. |
+| 13 | Company Details Single Source of Truth | Pending (Phase 2) | High | Central config files (`company-config.js` and `company.php`) to be created matching exact Company Data. |
+| 14 | HTML Semantic Validation & Landmarks | **Fixed** | Low | `<main id="mainContent">` verified on all 13 core pages. Heading hierarchy and landmark structure validated. |
+| 15 | Form Sanitization, Validation & CSRF | Pending (Phase 4) | Critical | Server-side validation, CSRF tokens, output escaping, and email header sanitization. |
+| 16 | Server Hardening (`.htaccess` / Nginx) | **In Progress** | Critical | Root `.htaccess` deployed with 301 redirects, directory indexing disabled, sensitive files denied. |
+| 17 | Spam Protection (Honeypot, Time-trap, reCAPTCHA) | Pending (Phase 4) | High | Implement honeypot, time-trap, and reCAPTCHA v3 / Turnstile fallback. |
+| 18 | Rate Limiting & Abuse Prevention | Pending (Phase 4) | High | Per-IP submission throttling (5 requests per 10 mins) returning HTTP 429. |
+| 19 | Email Verification & SMTP Architecture | Pending (Phase 4) | High | PHPMailer SMTP integration, MX domain validation, auto-reply, SPF/DKIM guidance. |
+| 20 | API Keys & Secrets Off Frontend | Pending (Phase 4) | High | Ensure no private API keys, webhook URLs, or tokens are exposed on client side. |
+| 21 | Full Security Audit & Git History Secrets Scan | **Blocked on Owner** | Critical | Untracked leaked key from cache. History scan to be documented; awaiting owner authorization for history rewrite. |
+| 22 | Meta Tags, SEO Titles & Descriptions | Pending (Phase 7) | Medium | Unique titles, meta descriptions, canonical URLs, OG and Twitter tags per page. |
+| 23 | Robots.txt & Sitemap.xml | Pending (Phase 7) | Medium | Validate robots.txt and verify sitemap.xml contains only live canonical URLs. |
+| 24 | Schema Markup (JSON-LD) | Pending (Phase 7) | Medium | Verify `LocalBusiness` / `GeneralContractor` JSON-LD adheres strictly to Company Data. |
+| 25 | Loading States, Empty States & Error Pages | Pending (Phase 7) | Medium | Verify `404.html`, `500.html`, form loading spinner, and empty state messaging. |
+| 26 | Error Tracking, Logging & Debug Mode | Pending (Phase 4) | High | Implement centralized error logger to non-public `logs/` directory; `APP_DEBUG=false` in production. |
+| 27 | Authentication & Admin Panel Security | Pending (Phase 4) | High | Audit any admin or login scripts for session security, password hashing, and brute-force lockout. |
+| 28 | File Upload Security | Pending (Phase 4) | High | Validate MIME types, extension allowlist, file size limits, and non-executable storage. |
+| 29 | Console Cleanliness (Desktop & Mobile) | Pending (Phase 7) | Low | Ensure zero console errors, zero failed requests, and zero uncaught exceptions. |
+| 30 | Navbar, Footer, Floating Actions & Mobile Responsive | Pending (Phase 3) | High | Cross-device testing (320px–1440px), touch targets >= 44px, no overflow, keyboard accessibility. |
 
 ---
 
-### 2.5 IMPROVEMENT RECOMMENDATIONS IMPLEMENTED
+## Detailed Evidence & Verification Logs
 
-1. **Central Design Token System**: Unified `--primary-color: #A5000D`, `--secondary-color: #5F5F5F`, and neutral architectural tokens into `asset/css/root.css`.
-2. **Schema.org JSON-LD Structured Data**: Embedded structured data across all pages (`GeneralContractor`, `AboutPage`, `Service`, `ProfilePage`, `CollectionPage`, `ContactPage`, `BreadcrumbList`).
-3. **Resilient Asynchronous Component Loading**: Updated `nav-call.js` using `Promise.allSettled()` to guarantee that navbar, footer, and floating buttons render without layout shift.
-4. **Enhanced Portfolio Lightbox**: Added keyboard navigation (`Escape`, `ArrowLeft`, `ArrowRight`) and swipe gestures to the image lightbox in `projects.html`.
-5. **Backend Contact API Architecture**: Delegated `backend/contact-submit.php` to `backend/api/contact.php`, providing PDO MySQL storage, CSRF validation, Google reCAPTCHA v3 verification, PHPMailer SMTP alerts, and Google Sheets fallback logging.
+### Evidence for Check 2 & Check 3 (Link Verification)
+```text
+====================================================
+ SRI AMMA BUILDER PVT LTD — LINK VERIFICATION AUDIT
+====================================================
+Pages & Includes Checked: 16
+Total References Scanned: 455
+Missing References Found: 0
 
+SUCCESS: 0 missing files, 0 broken internal links, 0 broken assets.
+```
+
+### Evidence for Check 8 & Check 14 (HTML Semantic & Structure Validation)
+```text
+[index.html]: VALID
+[about.html]: VALID
+[services.html]: VALID
+[industrial-building-construction.html]: VALID
+[commercial_building_construction.html]: VALID
+[residential_building_construction.html]: VALID
+[godown_building_construction.html]: VALID
+[projects.html]: VALID
+[team.html]: VALID
+[contact.html]: VALID
+[privacy-policy.html]: VALID
+[terms-and-conditions.html]: VALID
+[404.html]: VALID
+
+Total Validation Issues: 0
+```

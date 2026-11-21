@@ -9,6 +9,15 @@ backend/config/private/
 *.pem
 *.key
 
+# Credentials & sensitive service account keys
+backend/credentials/*
+!backend/credentials/.htaccess
+!backend/credentials/.gitkeep
+
+# Review trash (Non-destructive cleanup)
+/_review_trash/
+_review_trash/
+
 # Composer dependencies
 /vendor/
 /backend/vendor/
@@ -18,6 +27,7 @@ composer.phar
 *.log
 /backend/logs/*
 !/backend/logs/.gitkeep
+!backend/logs/.htaccess
 /logs/
 
 # Temporary, backup & OS files
@@ -31,5 +41,7 @@ Thumbs.db
 
 # IDE & Editor files
 .idea/
+.vscode/
 *.sublime-project
 *.sublime-workspace
+node_modules/

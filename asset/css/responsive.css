@@ -78,7 +78,7 @@ img {
    ========================================================= */
 
 .hero-slider-section {
-    height: 75vh;
+    height: 95vh;
     min-height: 480px;
 }
 
@@ -546,7 +546,7 @@ img {
     }
 
     .hero-slider-section {
-        height: 70vh;
+        height: 75vh;
         min-height: 420px;
     }
 

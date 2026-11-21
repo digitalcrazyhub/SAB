@@ -1,0 +1,40 @@
+# ==============================================================================
+# SRI AMMA BUILDER PVT LTD — ROOT APACHE SERVER CONFIGURATION
+# Production security hardening, 301 legacy redirects & HTTP headers
+# ==============================================================================
+
+# Disable directory listing
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 301 Canonical Legacy Redirects
+    RewriteRule ^terms-and-condition\.html$ /terms-and-conditions.html [R=301,L]
+    RewriteRule ^service\.html$ /services.html [R=301,L]
+    RewriteRule ^project\.html$ /projects.html [R=301,L]
+
+    # Block direct web access to internal development, documentation, and trash folders
+    RewriteRule ^(?:_review_trash|docs|tools|\.git|\.vscode)/ - [F,L]
+</IfModule>
+
+# Custom Error Documents
+ErrorDocument 404 /404.html
+
+# Deny direct access to sensitive file types
+<FilesMatch "(^\.env|\.git|composer\.(json|lock)$|\.(sql|log|bak|tmp|swp|zip|tar|gz))$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
