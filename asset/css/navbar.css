@@ -964,21 +964,3 @@ body.saidpl-nav-locked {
         animation-duration: 0.01ms !important;
     }
 }
-
-
-/* ==========================================================================
-   7. PREFERS-REDUCED-MOTION
-   ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .saidpl-nav-header,
-    .saidpl-mobile-drawer,
-    .saidpl-mobile-backdrop,
-    .saidpl-hamburger-bar,
-    .saidpl-desktop-dropdown,
-    .saidpl-drawer-submenu {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
-}

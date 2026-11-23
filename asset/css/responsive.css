@@ -20,6 +20,7 @@
 html {
     width: 100%;
     max-width: 100%;
+    overflow-x: hidden;
     overflow-x: clip;
 }
 
@@ -27,6 +28,7 @@ body {
     width: 100%;
     max-width: 100%;
     min-width: 320px;
+    overflow-x: hidden;
     overflow-x: clip;
 }
 
@@ -450,7 +452,7 @@ img {
     }
 
     .team-photo {
-        height: 320px;
+        height: 460px;
     }
 
     .service-row,
@@ -802,7 +804,7 @@ img {
     }
 
     .team-photo {
-        height: 400px;
+        height: 804px;
     }
 
     .support-card {
@@ -876,18 +878,6 @@ img {
 
     .checklist-items {
         gap: 1.15rem;
-    }
-
-    .mobile-toggle {
-        display: block;
-    }
-
-    .main-nav {
-        display: none;
-    }
-
-    .main-nav.nav-open {
-        display: block;
     }
 
     .team-card {
@@ -1027,6 +1017,25 @@ img {
     .slide-left,
     .slide-right {
         transform: translate3d(0, 40px, 0);
+    }
+
+}
+
+
+/* =========================================================
+   20B. LANDSCAPE AND ORIENTATION CORRECTIONS (<= 768px)
+   ========================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+
+    .hero-slider-section {
+        height: 100vmin;
+        min-height: 320px;
+    }
+
+    .global-page-banner,
+    .contact-hero {
+        min-height: 280px;
     }
 
 }
@@ -1349,8 +1358,15 @@ img {
 
     .steps-grid,
     .stats-grid,
-    .footer-grid {
+    .footer-grid,
+    .saidpl-footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    .btn {
+        white-space: normal;
+        text-align: center;
+        max-width: 100%;
     }
 
     .hero-btns {
@@ -1466,23 +1482,7 @@ img {
     }
 
     .team-photo {
-        height: 320px;
-    }
-
-    .global-page-banner {
-        min-height: 320px;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.88rem;
-    }
-
-    .breadcrumbs {
-        font-size: 0.78rem;
+        height: 535px;
     }
 
     .services-details-section {
@@ -1673,30 +1673,11 @@ img {
     }
 
     .team-photo {
-        height: 290px;
+        height: 435px;
     }
 
     .hero-slider-section {
         min-height: 380px;
-    }
-
-}
-
-
-/* =========================================================
-   26. LANDSCAPE AND ORIENTATION CORRECTIONS
-   ========================================================= */
-
-@media (max-width: 768px) and (orientation: landscape) {
-
-    .hero-slider-section {
-        height: 100vmin;
-        min-height: 320px;
-    }
-
-    .global-page-banner,
-    .contact-hero {
-        min-height: 280px;
     }
 
 }
